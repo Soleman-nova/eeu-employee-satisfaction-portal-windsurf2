@@ -1,0 +1,117 @@
+{
+  "project_name": "EEU Employee Satisfaction Portal",
+  "organization": "Ethiopian Electric Utility (EEU)",
+  "goal": "Collect anonymous employee feedback and allow HR/Admins to analyze satisfaction trends securely.",
+  "anonymity_requirement": true,
+  "technology_stack": {
+    "backend": "Django REST Framework",
+    "frontend": "React + TailwindCSS",
+    "database": "PostgreSQL or MySQL",
+    "charts": "Recharts or Chart.js",
+    "auth": "JWT (for Admin only)",
+    "deployment": "Internal web portal"
+  },
+  "modules": {
+    "public_employee_side": {
+      "description": "Anonymous survey form for employees, no login required.",
+      "features": [
+        "Access public survey via link",
+        "Fill multiple-choice and text-based survey questions",
+        "Submit anonymously without personal identifiers",
+        "Display success message after submission"
+      ],
+      "frontend_pages": [
+        "Landing page with organization info and start button",
+        "Survey form page with Likert-scale (1–5) questions and comment boxes",
+        "Submission success/thank-you page"
+      ],
+      "api_endpoints": {
+        "GET": "/api/survey/active/",
+        "POST": "/api/survey/submit/"
+      }
+    },
+    "admin_side": {
+      "description": "Secure admin interface for HR to manage surveys and view results.",
+      "features": [
+        "Admin login with JWT authentication",
+        "Create, edit, and activate/deactivate surveys",
+        "View aggregated survey results",
+        "Generate charts for satisfaction scores",
+        "Export results to Excel or PDF"
+      ],
+      "frontend_pages": [
+        "Admin login page",
+        "Dashboard with charts and summary stats",
+        "Survey management CRUD interface",
+        "Responses page with export buttons"
+      ],
+      "api_endpoints": {
+        "POST": "/api/admin/login/",
+        "GET": "/api/admin/dashboard/",
+        "POST": "/api/admin/survey/create/",
+        "GET": "/api/admin/survey/responses/"
+      }
+    }
+  },
+  "database_schema": {
+    "Survey": {
+      "fields": {
+        "title": "CharField(200)",
+        "description": "TextField(blank=True)",
+        "is_active": "BooleanField(default=False)",
+        "created_at": "DateTimeField(auto_now_add=True)"
+      }
+    },
+    "Question": {
+      "fields": {
+        "survey": "ForeignKey(Survey, CASCADE)",
+        "text": "CharField(300)",
+        "question_type": "CharField(choices=['rating', 'text'])"
+      }
+    },
+    "Response": {
+      "fields": {
+        "survey": "ForeignKey(Survey, CASCADE)",
+        "submitted_at": "DateTimeField(auto_now_add=True)"
+      }
+    },
+    "Answer": {
+      "fields": {
+        "response": "ForeignKey(Response, CASCADE)",
+        "question": "ForeignKey(Question, CASCADE)",
+        "rating": "IntegerField(null=True, blank=True)",
+        "comment": "TextField(blank=True)"
+      }
+    }
+  },
+  "ui_ux": {
+    "theme": "Modern, minimal, professional — blue, white, and gray (EEU brand)",
+    "layout": {
+      "public": "Single-page form with progress bar",
+      "admin": "Dashboard with sidebar navigation"
+    },
+    "components": "TailwindCSS + Headless UI",
+    "charts": "Recharts",
+    "responsive_design": true
+  },
+  "privacy_security": {
+    "employee_login": false,
+    "no_identifiable_data": true,
+    "no_ip_logging": true,
+    "admin_auth_protection": true
+  },
+  "development_stages": [
+    "Step 1: Generate Django models and REST API for anonymous survey submission.",
+    "Step 2: Build React + Tailwind frontend for public survey and thank-you pages.",
+    "Step 3: Implement JWT-based admin authentication and dashboard.",
+    "Step 4: Add survey management (CRUD) and analytics with charts.",
+    "Step 5: Integrate frontend with Django API using Axios.",
+    "Step 6: Enable export to Excel/PDF for admin reports."
+  ],
+  "future_extensions": [
+    "Add department/category question (still anonymous).",
+    "Add sentiment analysis on comment responses.",
+    "Implement scheduled surveys (monthly or quarterly).",
+    "Generate automated satisfaction reports."
+  ]
+}

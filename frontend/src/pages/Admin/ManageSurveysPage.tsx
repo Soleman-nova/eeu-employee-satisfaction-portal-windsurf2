@@ -856,7 +856,7 @@ export default function ManageSurveysPage() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-lg font-semibold mb-1">{t('manage.edit')}</h3>
-                <p className="text-sm text-gray-600">{t('manage.builder_edit_subtitle')} {editSurvey.title}</p>
+                <p className="text-sm text-gray-600">{t('manage.builder_edit_subtitle')} {stripHtml(editSurvey.title)}</p>
               </div>
               <button
                 type="button"

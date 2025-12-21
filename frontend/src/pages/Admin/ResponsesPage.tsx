@@ -9,6 +9,11 @@ import {
   DocumentTextIcon,
 } from '@heroicons/react/24/outline'
 
+const stripHtml = (html?: string | null) => {
+  const raw = (html ?? '').toString()
+  return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
 function downloadBlob(data: Blob, filename: string) {
   const url = URL.createObjectURL(data)
   const a = document.createElement('a')
@@ -125,7 +130,7 @@ export default function ResponsesPage() {
       return [
         r.id,
         new Date(r.submitted_at).toLocaleString(),
-        r.survey.title.replace(/"/g, '""'),
+        stripHtml(r.survey.title).replace(/"/g, '""'),
         answers,
       ]
     })
@@ -224,7 +229,7 @@ export default function ResponsesPage() {
               <tr key={r.id} className="border-t">
                 <td className="p-3">{r.id}</td>
                 <td className="p-3">{new Date(r.submitted_at).toLocaleString()}</td>
-                <td className="p-3">{r.survey.title}</td>
+                <td className="p-3">{stripHtml(r.survey.title)}</td>
                 <td className="p-3">
                   <ul className="space-y-1">
                     {r.answers.map((a, i) => (

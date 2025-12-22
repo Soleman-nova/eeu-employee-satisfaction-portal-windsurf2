@@ -12,13 +12,23 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
 
+  const getLoginErrorMessage = (e: any): string => {
+    const status = e?.response?.status
+    const detail = e?.response?.data?.detail
+
+    if (status === 401) return 'Invalid username or password.'
+    if (typeof detail === 'string' && detail.trim()) return detail
+    return e?.message || 'Login failed'
+  }
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (error) setError('')
     try {
       await login(username, password)
       navigate('/admin/dashboard', { replace: true })
     } catch (e: any) {
-      setError(e?.message || 'Login failed')
+      setError(getLoginErrorMessage(e))
     }
   }
 
@@ -48,7 +58,10 @@ export default function LoginPage() {
                   id="admin-id"
                   placeholder=" "
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    if (error) setError('')
+                    setUsername(e.target.value)
+                  }}
                   aria-label={t('login.username')}
                   className="w-full bg-transparent border-b border-cyan-400/40 text-white placeholder-transparent px-3 pt-5 pb-2 focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 underline-glow"
                 />
@@ -63,7 +76,10 @@ export default function LoginPage() {
                   type={showPassword ? 'text' : 'password'}
                   placeholder=" "
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    if (error) setError('')
+                    setPassword(e.target.value)
+                  }}
                   aria-label={t('login.password')}
                   className="w-full bg-transparent border-b border-cyan-400/40 text-white placeholder-transparent px-3 pt-5 pb-2 focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 underline-glow"
                 />

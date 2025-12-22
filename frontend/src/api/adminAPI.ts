@@ -130,6 +130,7 @@ export type AdminSurvey = {
   description?: string
   header_title?: string
   header_subtitle?: string
+  language?: 'en' | 'am'
   is_active: boolean
   created_at: string
   sections?: AdminSurveySection[]
@@ -141,6 +142,7 @@ export type CreateSurveyInput = {
   description?: string
   header_title?: string
   header_subtitle?: string
+  language?: 'en' | 'am'
   is_active?: boolean
   sections?: Array<{
     id?: number

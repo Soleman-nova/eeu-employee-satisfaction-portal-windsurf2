@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { getActiveSurvey, submitSurvey, type ActiveSurvey, type SurveyQuestionType } from '@/api/surveyAPI'
-import RatingScale from '@/components/RatingScale'
+import { checkAttempts, getActiveSurvey, incrementAttempt, submitSurvey, type ActiveSurvey, type SurveyQuestionType } from '@/api/surveyAPI'
 import TextQuestion from '@/components/TextQuestion'
 import LinearScaleQuestion from '@/components/LinearScaleQuestion'
 import RatingQuestion from '@/components/RatingQuestion'
 import RegionDropdownQuestion from '@/components/RegionDropdownQuestion'
 import SafeHtml from '@/components/SafeHtml'
 import { useI18n } from '@/context/I18nContext'
+import { useAuth } from '@/context/AuthContext'
+import { generateFingerprint } from '@/utils/fingerprint'
 
 export default function SurveyPage() {
   const [loading, setLoading] = useState(true)
@@ -17,7 +18,11 @@ export default function SurveyPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const params = useParams<{ id?: string }>()
-  const { t } = useI18n()
+  const { t, lang, setLang } = useI18n()
+  const prevLangRef = useRef(lang)
+  const { role } = useAuth()
+  const isAdminRole = role === 'super_admin' || role === 'survey_designer' || role === 'viewer'
+  const fingerprintRef = useRef<string | null>(null)
 
   useEffect(() => {
     // For now, preview and normal survey both use the active survey endpoint.
@@ -26,6 +31,92 @@ export default function SurveyPage() {
       setSurvey(data)
     }).finally(() => setLoading(false))
   }, [])
+
+  useEffect(() => {
+    const run = async () => {
+      if (loading) return
+      if (!survey) return
+
+      const isPreview = Boolean(params.id) || new URLSearchParams(location.search).has('preview')
+      if (isPreview) return
+
+      // Completely exempt admin roles from tracking/limits.
+      if (isAdminRole) return
+
+      // Backend provides IP (no need to expose it in the browser, but we include it in the fingerprint input).
+      const ip = (survey as any)?.client_ip as string | undefined
+
+      let fp: string | null = null
+      try {
+        fp = await generateFingerprint(ip)
+      } catch {
+        fp = null
+      }
+
+      if (fp) {
+        fingerprintRef.current = fp
+
+        // LocalStorage fallback still applied even when backend is used.
+        const localKey = `eeu_survey_attempts_${fp}`
+        const localAttempts = Number(localStorage.getItem(localKey) || '0')
+        if (localAttempts >= 2) {
+          navigate('/thank-you', {
+            replace: true,
+            state: {
+              message: 'Thank you for your feedback! This survey is limited to two responses per person.',
+              variant: 'limit',
+            },
+          })
+          return
+        }
+
+        try {
+          const res = await checkAttempts(fp)
+          if (res?.allowed === false) {
+            navigate('/thank-you', {
+              replace: true,
+              state: {
+                message: 'Thank you for your feedback! This survey is limited to two responses per person.',
+                variant: 'limit',
+              },
+            })
+            return
+          }
+        } catch {
+          // If backend check fails, we still allow access but rely on localStorage enforcement.
+        }
+
+        return
+      }
+
+      // Fingerprint generation failed: fall back to a generic localStorage key.
+      const fallbackKey = 'eeu_survey_attempts_fallback'
+      const localAttempts = Number(localStorage.getItem(fallbackKey) || '0')
+      if (localAttempts >= 2) {
+        navigate('/thank-you', {
+          replace: true,
+          state: {
+            message: 'Thank you for your feedback! This survey is limited to two responses per person.',
+            variant: 'limit',
+          },
+        })
+      }
+    }
+
+    run()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, survey, isAdminRole])
+
+  useEffect(() => {
+    if (!survey?.language) return
+    if (survey.language === lang) return
+    prevLangRef.current = lang
+    setLang(survey.language)
+    return () => {
+      setLang(prevLangRef.current)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [survey?.language])
 
   const isPreview = Boolean(params.id) || new URLSearchParams(location.search).has('preview')
 
@@ -100,6 +191,36 @@ export default function SurveyPage() {
       }
       console.log('Submitting payload:', payload)
       await submitSurvey(payload)
+
+      // Increment attempt count only for non-admin respondents.
+      if (!isAdminRole) {
+        const ip = (survey as any)?.client_ip as string | undefined
+        let fp = fingerprintRef.current
+        if (!fp) {
+          try {
+            fp = await generateFingerprint(ip)
+            fingerprintRef.current = fp
+          } catch {
+            fp = null
+          }
+        }
+
+        if (fp) {
+          const localKey = `eeu_survey_attempts_${fp}`
+          const localAttempts = Number(localStorage.getItem(localKey) || '0')
+          localStorage.setItem(localKey, String(localAttempts + 1))
+          try {
+            await incrementAttempt(fp)
+          } catch {
+            // ignore
+          }
+        } else {
+          const fallbackKey = 'eeu_survey_attempts_fallback'
+          const localAttempts = Number(localStorage.getItem(fallbackKey) || '0')
+          localStorage.setItem(fallbackKey, String(localAttempts + 1))
+        }
+      }
+
       navigate('/thank-you')
     } catch (error) {
       console.error('Submit error:', error)
@@ -120,25 +241,6 @@ export default function SurveyPage() {
     return (
       <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-white text-gray-700 text-sm">
         No active survey is available at the moment.
-      </div>
-    )
-  }
-
-  // Check if employee has already responded
-  if (survey.has_responded) {
-    return (
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-white text-gray-700 text-sm">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold mb-4" style={{ color: '#5F6368' }}>
-            Survey Already Completed
-          </h1>
-          <p className="mb-4">
-            Thank you for your participation. You have already completed this survey.
-          </p>
-          <p className="text-sm text-gray-600">
-            Only one response per employee is allowed.
-          </p>
-        </div>
       </div>
     )
   }

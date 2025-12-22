@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 export default function ThankYouPage() {
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const state = (location.state || {}) as any
+  const softMessage: string | undefined = state?.message
+  const variant: string | undefined = state?.variant
 
   useEffect(() => {
     const t = setTimeout(() => navigate('/', { replace: true }), 10000)
@@ -62,6 +67,18 @@ export default function ThankYouPage() {
               Thank you for helping shape the future of Ethiopian Electric Utility! Your feedback is invaluable in improving our
               services and workplace experience.
             </p>
+
+            {softMessage ? (
+              <div
+                className="mx-auto mb-6 max-w-xl rounded-xl border px-4 py-3 text-sm sm:text-base"
+                style={{ borderColor: '#FF6200', backgroundColor: 'rgba(255, 98, 0, 0.06)', color: '#3C4043' }}
+              >
+                <div className="font-semibold" style={{ color: '#FF6200' }}>
+                  {variant === 'limit' ? 'Notice' : 'Info'}
+                </div>
+                <div className="mt-1">{softMessage}</div>
+              </div>
+            ) : null}
 
             {/* Secondary muted line (like Google Forms style) */}
             <p className="text-xs text-[#5F6368] mb-8">

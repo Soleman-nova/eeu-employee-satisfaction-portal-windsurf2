@@ -16,7 +16,10 @@ export type ActiveSurvey = {
   description?: string
   header_title?: string
   header_subtitle?: string
+  language?: 'en' | 'am'
   has_responded?: boolean
+  client_ip?: string
+  admin_bypass?: boolean
   sections?: Array<{
     id: number | null
     title: string
@@ -66,5 +69,21 @@ export type SubmitSurveyPayload = {
 
 export async function submitSurvey(payload: SubmitSurveyPayload): Promise<{ ok: boolean }> {
   const res = await axiosClient.post('/api/survey/submit/', payload)
+  return res.data
+}
+
+export type CheckAttemptsResponse = {
+  allowed: boolean
+  unlimited?: boolean
+  fallback?: boolean
+}
+
+export async function checkAttempts(fingerprint: string): Promise<CheckAttemptsResponse> {
+  const res = await axiosClient.post('/api/check-attempts/', { fingerprint })
+  return res.data
+}
+
+export async function incrementAttempt(fingerprint: string): Promise<{ ok: boolean; ignored?: boolean; fallback?: boolean }> {
+  const res = await axiosClient.post('/api/increment-attempt/', { fingerprint })
   return res.data
 }

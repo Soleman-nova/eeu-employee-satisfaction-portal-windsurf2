@@ -89,6 +89,8 @@ export default function DashboardPage() {
 
   const fmtPct = (v: number) => `${Number.isFinite(v) ? v : 0}%`
 
+  const ratingSliceColors = ['#B91C1C', '#DC2626', '#6B7280', '#16A34A', '#15803D']
+
   return (
     <div className="space-y-6">
       <div className="bg-white rounded border p-4 md:p-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
@@ -259,32 +261,65 @@ export default function DashboardPage() {
               const qpct4 = qOverview['4']?.percent ?? 0
               const qpct5 = qOverview['5']?.percent ?? 0
 
+              const total =
+                qOverview['1']?.total ??
+                qOverview['2']?.total ??
+                qOverview['3']?.total ??
+                qOverview['4']?.total ??
+                qOverview['5']?.total ??
+                0
+
+              const donutData = [
+                { key: '1', name: t('dashboard.rating_1'), value: qpct1 },
+                { key: '2', name: t('dashboard.rating_2'), value: qpct2 },
+                { key: '3', name: t('dashboard.rating_3'), value: qpct3 },
+                { key: '4', name: t('dashboard.rating_4'), value: qpct4 },
+                { key: '5', name: t('dashboard.rating_5'), value: qpct5 },
+              ]
+
               return (
                 <div key={q.question_id} className="bg-white rounded border p-4">
                   <div className="flex items-start justify-between gap-3 mb-3">
-                    <div className="font-semibold leading-snug">{q.question}</div>
-                    <div className="text-xs text-gray-500">%</div>
+                    <div className="font-semibold leading-snug">{stripHtml(q.question)}</div>
+                    <div className="text-xs text-gray-500">{total} ratings</div>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                    <div className="rounded border bg-gray-50 p-3">
-                      <div className="text-xs text-gray-600">{t('dashboard.rating_1')}</div>
-                      <div className="text-xl font-bold mt-1 text-red-700">{fmtPct(qpct1)}</div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                    <div className="w-full h-56">
+                      <ResponsiveContainer>
+                        <PieChart>
+                          <Tooltip formatter={(value: any, name: any) => [`${Number(value) || 0}%`, name]} />
+                          <Pie
+                            data={donutData}
+                            dataKey="value"
+                            nameKey="name"
+                            cx="50%"
+                            cy="50%"
+                            innerRadius={55}
+                            outerRadius={80}
+                            paddingAngle={2}
+                            stroke="#ffffff"
+                            strokeWidth={2}
+                            isAnimationActive={false}
+                          >
+                            {donutData.map((_, idx) => (
+                              <Cell key={`cell-${idx}`} fill={ratingSliceColors[idx]} />
+                            ))}
+                          </Pie>
+                        </PieChart>
+                      </ResponsiveContainer>
                     </div>
-                    <div className="rounded border bg-gray-50 p-3">
-                      <div className="text-xs text-gray-600">{t('dashboard.rating_2')}</div>
-                      <div className="text-xl font-bold mt-1 text-red-600">{fmtPct(qpct2)}</div>
-                    </div>
-                    <div className="rounded border bg-gray-50 p-3">
-                      <div className="text-xs text-gray-600">{t('dashboard.rating_3')}</div>
-                      <div className="text-xl font-bold mt-1 text-gray-700">{fmtPct(qpct3)}</div>
-                    </div>
-                    <div className="rounded border bg-gray-50 p-3">
-                      <div className="text-xs text-gray-600">{t('dashboard.rating_4')}</div>
-                      <div className="text-xl font-bold mt-1 text-green-600">{fmtPct(qpct4)}</div>
-                    </div>
-                    <div className="rounded border bg-gray-50 p-3">
-                      <div className="text-xs text-gray-600">{t('dashboard.rating_5')}</div>
-                      <div className="text-xl font-bold mt-1 text-green-700">{fmtPct(qpct5)}</div>
+
+                    <div className="space-y-2">
+                      {donutData.map((d, idx) => (
+                        <div key={d.key} className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2">
+                            <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: ratingSliceColors[idx] }}></span>
+                            <span className="text-xs text-gray-700">{d.name}</span>
+                          </div>
+                          <div className="text-xs font-semibold text-gray-900 tabular-nums">{fmtPct(d.value)}</div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

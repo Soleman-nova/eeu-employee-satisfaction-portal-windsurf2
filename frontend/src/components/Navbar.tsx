@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useI18n } from '@/context/I18nContext'
 import { useAuth } from '@/context/AuthContext'
 import {
@@ -19,6 +19,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const userMenuRef = useRef<HTMLDivElement | null>(null)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     if (!open) return
@@ -55,6 +56,8 @@ export default function Navbar() {
   const roleLabel =
     role === 'super_admin' ? 'Super Admin' : role === 'survey_designer' ? 'Survey Designer' : role === 'viewer' ? 'Viewer' : ''
 
+  const isSurveyRoute = location.pathname === '/survey' || location.pathname.startsWith('/survey/')
+
   return (
     <header className="border-b bg-white">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -81,14 +84,16 @@ export default function Navbar() {
             </NavLink>
           )}
 
-          <button
-            aria-label="Toggle language"
-            onClick={() => setLang(lang === 'en' ? 'am' : 'en')}
-            className="ml-2 px-2 py-1 rounded border text-xs hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand inline-flex items-center gap-1.5"
-          >
-            <LanguageIcon className="h-4 w-4" />
-            <span>{t('nav.toggle_lang')}</span>
-          </button>
+          {!isSurveyRoute && (
+            <button
+              aria-label="Toggle language"
+              onClick={() => setLang(lang === 'en' ? 'am' : 'en')}
+              className="ml-2 px-2 py-1 rounded border text-xs hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand inline-flex items-center gap-1.5"
+            >
+              <LanguageIcon className="h-4 w-4" />
+              <span>{t('nav.toggle_lang')}</span>
+            </button>
+          )}
 
           {token && (
             <div ref={userMenuRef} className="relative ml-3">

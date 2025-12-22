@@ -361,6 +361,7 @@ export default function ManageSurveysPage() {
   const [showModal, setShowModal] = useState(false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [surveyLanguage, setSurveyLanguage] = useState<'en' | 'am'>('en')
   const [makeActive, setMakeActive] = useState(false)
   const [sections, setSections] = useState<NewSection[]>([defaultSection()])
   const [saving, setSaving] = useState(false)
@@ -372,6 +373,7 @@ export default function ManageSurveysPage() {
   const [editDescription, setEditDescription] = useState('')
   const [editHeaderTitle, setEditHeaderTitle] = useState('')
   const [editHeaderSubtitle, setEditHeaderSubtitle] = useState('')
+  const [editSurveyLanguage, setEditSurveyLanguage] = useState<'en' | 'am'>('en')
   const [editMakeActive, setEditMakeActive] = useState(false)
   const [updating, setUpdating] = useState(false)
   const [editSections, setEditSections] = useState<NewSection[]>([defaultSection()])
@@ -405,6 +407,7 @@ export default function ManageSurveysPage() {
   const resetModal = () => {
     setTitle('')
     setDescription('')
+    setSurveyLanguage('en')
     setMakeActive(false)
     setSections([defaultSection()])
   }
@@ -574,6 +577,7 @@ export default function ManageSurveysPage() {
       const payload: CreateSurveyInput = {
         title: normalizedTitle,
         description: normalizeRichText(description) || undefined,
+        language: surveyLanguage,
         is_active: makeActive,
         sections: sections.map((s, sIdx) => ({
           title: normalizeRichText(s.title || 'Untitled Section') || 'Untitled Section',
@@ -623,6 +627,7 @@ export default function ManageSurveysPage() {
     setEditDescription(s.description || '')
     setEditHeaderTitle((s as any).header_title || '')
     setEditHeaderSubtitle((s as any).header_subtitle || '')
+    setEditSurveyLanguage((s as any).language || 'en')
     setEditMakeActive(!!s.is_active)
     const secs = (s.sections && s.sections.length > 0)
       ? s.sections
@@ -682,6 +687,7 @@ export default function ManageSurveysPage() {
         description: normalizeRichText(editDescription) || undefined,
         header_title: normalizeRichText(editHeaderTitle) || undefined,
         header_subtitle: normalizeRichText(editHeaderSubtitle) || undefined,
+        language: editSurveyLanguage,
         is_active: submitMode === 'publish' ? true : editMakeActive,
         sections: editSections.map((s, sIdx) => ({
           id: s.backendId,
@@ -812,6 +818,17 @@ export default function ManageSurveysPage() {
                 <label className="block text-sm text-gray-700 mb-1">{t('manage.description_label')}</label>
                 <RichTextEditor value={description} onChange={setDescription} placeholder={t('manage.description_label')} />
               </div>
+              <div>
+                <label className="block text-sm text-gray-700 mb-1">Survey Language</label>
+                <select
+                  className="w-full border border-[#DADCE0] rounded px-3 py-2 text-sm bg-white"
+                  value={surveyLanguage}
+                  onChange={(e) => setSurveyLanguage(e.target.value as any)}
+                >
+                  <option value="en">English</option>
+                  <option value="am">Amharic</option>
+                </select>
+              </div>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="text-sm font-medium">Sections</div>
@@ -876,6 +893,17 @@ export default function ManageSurveysPage() {
               <div>
                 <label className="block text-sm text-gray-700 mb-1">{t('manage.description_label')}</label>
                 <RichTextEditor value={editDescription} onChange={setEditDescription} placeholder={t('manage.description_label')} />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-700 mb-1">Survey Language</label>
+                <select
+                  className="w-full border border-[#DADCE0] rounded px-3 py-2 text-sm bg-white"
+                  value={editSurveyLanguage}
+                  onChange={(e) => setEditSurveyLanguage(e.target.value as any)}
+                >
+                  <option value="en">English</option>
+                  <option value="am">Amharic</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm text-gray-700 mb-1">Survey Header Title</label>

@@ -6,6 +6,7 @@ class Survey(models.Model):
     description = models.TextField(blank=True)
     header_title = models.TextField(blank=True, default="")
     header_subtitle = models.TextField(blank=True, default="")
+    language = models.CharField(max_length=2, choices=(("en", "English"), ("am", "Amharic")), default="en")
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -66,10 +67,9 @@ class Response(models.Model):
     submitted_at = models.DateTimeField(auto_now_add=True)
     # Store AD domain username for employee identification (e.g., "DOMAIN\\username")
     employee_identifier = models.CharField(max_length=255, blank=True, null=True)
-    
+
     class Meta:
-        # Ensure one response per employee per survey
-        unique_together = ("survey", "employee_identifier")
+        pass
 
 
 class Answer(models.Model):
@@ -82,6 +82,12 @@ class Answer(models.Model):
 
     class Meta:
         unique_together = ("response", "question")
+
+
+class SurveyAttempt(models.Model):
+    fingerprint_hash = models.CharField(max_length=128, primary_key=True)
+    attempts = models.IntegerField(default=0)
+    last_submitted = models.DateTimeField(null=True, blank=True)
 
 # class Region(models.Model):
 #     value = models.CharField(max_length=10, unique=True)

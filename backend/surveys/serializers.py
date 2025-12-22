@@ -36,6 +36,7 @@ class SurveySerializer(serializers.ModelSerializer):
             "description",
             "header_title",
             "header_subtitle",
+            "language",
             "is_active",
             "created_at",
             "sections",
@@ -192,6 +193,7 @@ class SurveyCreateUpdateSerializer(serializers.ModelSerializer):
             "description",
             "header_title",
             "header_subtitle",
+            "language",
             "is_active",
             "sections",
             # Legacy support
@@ -429,6 +431,7 @@ class SurveyDetailSerializer(serializers.ModelSerializer):
             "description",
             "header_title",
             "header_subtitle",
+            "language",
             "is_active",
             "created_at",
             "sections",

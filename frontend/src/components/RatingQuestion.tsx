@@ -34,10 +34,11 @@ export default function RatingQuestion({ labels, displayStyle, value, onChange, 
     if (displayStyle === 'emojis') {
       return (
         <div
-          className="w-10 h-10 rounded-full border-2 flex items-center justify-center"
+          className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${
+            selected ? 'bg-[#E8F5E9] dark:bg-slate-800' : 'bg-white dark:bg-slate-950'
+          }`}
           style={{
             borderColor: selected ? '#006400' : '#5F6368',
-            backgroundColor: selected ? '#E8F5E9' : 'white',
           }}
         >
           <span className="text-2xl leading-none">{emojiByValue[n]}</span>
@@ -48,13 +49,14 @@ export default function RatingQuestion({ labels, displayStyle, value, onChange, 
     if (displayStyle === 'numbers') {
       return (
         <div
-          className="w-10 h-10 rounded-full border-2 flex items-center justify-center"
+          className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${
+            selected ? 'bg-[#006400]' : 'bg-white dark:bg-slate-950'
+          }`}
           style={{
             borderColor: selected ? '#006400' : '#5F6368',
-            backgroundColor: selected ? '#006400' : 'white',
           }}
         >
-          <span className="text-sm font-semibold" style={{ color: selected ? 'white' : '#202124' }}>
+          <span className={`text-sm font-semibold ${selected ? 'text-white' : 'text-[#202124] dark:text-slate-100'}`}>
             {n}
           </span>
         </div>
@@ -115,7 +117,7 @@ export default function RatingQuestion({ labels, displayStyle, value, onChange, 
                 </div>
               </div>
 
-              <div className="mt-2 text-[11px] leading-tight" style={{ color: '#5F6368' }}>
+              <div className="mt-2 text-[11px] leading-tight text-[#5F6368] dark:text-slate-400">
                 {it.label}
               </div>
 

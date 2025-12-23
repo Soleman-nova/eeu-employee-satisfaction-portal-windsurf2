@@ -25,7 +25,7 @@ export default function LinearScaleQuestion({ labels, value, onChange, required 
       <div className="relative">
         {/* Track line (Google Forms-like). Only show on horizontal layout. */}
         <div className="hidden sm:block absolute left-4 right-4" style={{ top: 18 }}>
-          <div className="h-[3px] rounded-full" style={{ backgroundColor: '#DADCE0' }}>
+          <div className="h-[3px] rounded-full bg-[#DADCE0] dark:bg-slate-800">
             <div
               className="h-[3px] rounded-full"
               style={{ width: `${progressPercent}%`, backgroundColor: '#006400' }}
@@ -48,17 +48,18 @@ export default function LinearScaleQuestion({ labels, value, onChange, required 
                 required={required}
               />
               <div
-                className="w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all"
+                className={`w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all ${
+                  selected ? 'bg-[#006400]' : 'bg-white dark:bg-slate-950'
+                }`}
                 style={{
                   borderColor: selected ? '#006400' : '#5F6368',
-                  backgroundColor: selected ? '#006400' : 'white',
                 }}
               >
-                <span className="text-sm font-semibold" style={{ color: selected ? 'white' : '#202124' }}>
+                <span className={`text-sm font-semibold ${selected ? 'text-white' : 'text-[#202124] dark:text-slate-100'}`}>
                   {it.n}
                 </span>
               </div>
-              <div className="mt-2 text-[11px] leading-tight" style={{ color: '#5F6368' }}>
+              <div className="mt-2 text-[11px] leading-tight text-[#5F6368] dark:text-slate-400">
                 {it.label}
               </div>
             </label>

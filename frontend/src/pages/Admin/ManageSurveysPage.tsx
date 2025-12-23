@@ -85,6 +85,18 @@ const defaultRatingLabels: LinearScaleLabels = {
   5: 'Very Satisfied',
 }
 
+const formatApiError = (e: any) => {
+  const data = e?.response?.data
+  if (!data) return e?.message || 'Request failed'
+  if (typeof data === 'string') return data
+  if (typeof data?.detail === 'string') return data.detail
+  try {
+    return JSON.stringify(data)
+  } catch {
+    return 'Request failed'
+  }
+}
+
  const stripHtml = (html?: string | null) => {
    const raw = (html ?? '').toString()
    return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
@@ -114,242 +126,242 @@ const defaultRatingLabels: LinearScaleLabels = {
      opacity: isDragging ? 0.6 : 1,
    }
 
-   const isEmpty = q.text.trim().length === 0
-   const optionsVisible = q.question_type === 'dropdown' || q.question_type === 'multiple_choice'
-   const scaleVisible = q.question_type === 'linear_scale'
-   const ratingVisible = q.question_type === 'rating'
+  const isEmpty = q.text.trim().length === 0
+  const optionsVisible = q.question_type === 'dropdown' || q.question_type === 'multiple_choice'
+  const scaleVisible = q.question_type === 'linear_scale'
+  const ratingVisible = q.question_type === 'rating'
 
-   return (
-     <div ref={setNodeRef} style={style} className="rounded-xl border border-[#DADCE0] bg-[#F8F9FA] px-4 py-3 flex flex-col gap-2">
-       <div className="flex items-start justify-between gap-2">
-         <div className="flex items-start gap-2 flex-1">
-           <span className="cursor-move select-none px-2 py-1 text-gray-500" {...attributes} {...listeners} title="Drag question">⠿</span>
-           <div className="flex-1">
-             <input
-               value={q.text}
-               onChange={e => updateQuestion(mode, sectionId, q.id, { text: e.target.value })}
-               placeholder="Question text"
-               className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 ${isEmpty ? 'border-red-500' : 'border-[#DADCE0]'}`}
-             />
-             {isEmpty && <div className="text-xs text-red-600 mt-1">Question text is required</div>}
-             <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-[#5F6368]">
-               <select
-                 value={q.question_type}
-                 onChange={e => updateQuestion(mode, sectionId, q.id, { question_type: e.target.value as any, maxChars: getMaxCharsForType(e.target.value as any) })}
-                 className="border border-[#DADCE0] rounded px-2 py-1 text-xs bg-white"
-               >
-                 <option value="dropdown">{t('manage.builder_type_dropdown')}</option>
-                 <option value="multiple_choice">{t('manage.builder_type_multiple_choice')}</option>
-                 <option value="regions">{t('manage.builder_type_regions')}</option>
-                 <option value="linear_scale">{t('manage.builder_type_linear_scale')}</option>
-                 <option value="paragraph">{t('manage.builder_type_paragraph')}</option>
-                 <option value="rating">{t('manage.builder_type_rating')}</option>
-                 <option value="text">{t('manage.builder_type_text')}</option>
-               </select>
-               <label className="inline-flex items-center gap-1">
-                 <input
-                   type="checkbox"
-                   checked={q.required ?? true}
-                   onChange={e => updateQuestion(mode, sectionId, q.id, { required: e.target.checked })}
-                 />
-                 <span style={{ color: '#FF6200' }}>{t('manage.builder_required')}</span>
-               </label>
-             </div>
-           </div>
-         </div>
-         <div className="flex flex-col items-end gap-1 text-xs">
-           <button type="button" className="px-2 py-1 rounded border border-red-200 text-red-600" onClick={() => removeQuestion(mode, sectionId, q.id)}>
-             {t('manage.remove')}
-           </button>
-         </div>
-       </div>
+  return (
+    <div ref={setNodeRef} style={style} className="rounded-xl border border-[#DADCE0] dark:border-slate-700 bg-[#F8F9FA] dark:bg-slate-900 px-4 py-3 flex flex-col gap-2">
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex items-start gap-2 flex-1">
+          <span className="cursor-move select-none px-2 py-1 text-gray-500 dark:text-slate-400" {...attributes} {...listeners} title="Drag question">⠿</span>
+          <div className="flex-1">
+            <input
+              value={q.text}
+              onChange={e => updateQuestion(mode, sectionId, q.id, { text: e.target.value })}
+              placeholder="Question text"
+              className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400 ${isEmpty ? 'border-red-500' : 'border-[#DADCE0] dark:border-slate-700'}`}
+            />
+            {isEmpty && <div className="text-xs text-red-600 mt-1">Question text is required</div>}
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-[#5F6368] dark:text-slate-300">
+              <select
+                value={q.question_type}
+                onChange={e => updateQuestion(mode, sectionId, q.id, { question_type: e.target.value as any, maxChars: getMaxCharsForType(e.target.value as any) })}
+                className="border border-[#DADCE0] dark:border-slate-700 rounded px-2 py-1 text-xs bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
+              >
+                <option value="dropdown">{t('manage.builder_type_dropdown')}</option>
+                <option value="multiple_choice">{t('manage.builder_type_multiple_choice')}</option>
+                <option value="regions">{t('manage.builder_type_regions')}</option>
+                <option value="linear_scale">{t('manage.builder_type_linear_scale')}</option>
+                <option value="paragraph">{t('manage.builder_type_paragraph')}</option>
+                <option value="rating">{t('manage.builder_type_rating')}</option>
+                <option value="text">{t('manage.builder_type_text')}</option>
+              </select>
+              <label className="inline-flex items-center gap-1">
+                <input
+                  type="checkbox"
+                  checked={q.required ?? true}
+                  onChange={e => updateQuestion(mode, sectionId, q.id, { required: e.target.checked })}
+                />
+                <span style={{ color: '#FF6200' }}>{t('manage.builder_required')}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-end gap-1 text-xs">
+          <button type="button" className="px-2 py-1 rounded border border-red-200 text-red-600" onClick={() => removeQuestion(mode, sectionId, q.id)}>
+            {t('manage.remove')}
+          </button>
+        </div>
+      </div>
 
-       {optionsVisible && (
-         <div className="mt-2">
-           <label className="block text-xs text-gray-600 mb-1">{t('manage.builder_options_label')}</label>
-           <textarea
-             className="w-full border border-[#DADCE0] rounded px-3 py-2 text-xs focus:outline-none focus:ring-1"
-             rows={3}
-             value={q.options ?? ''}
-             onChange={e => updateQuestion(mode, sectionId, q.id, { options: e.target.value })}
-             placeholder={t('manage.builder_options_placeholder')}
-           />
-         </div>
-       )}
+      {optionsVisible && (
+        <div className="mt-2">
+          <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('manage.builder_options_label')}</label>
+          <textarea
+            className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-xs focus:outline-none focus:ring-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400"
+            rows={3}
+            value={q.options ?? ''}
+            onChange={e => updateQuestion(mode, sectionId, q.id, { options: e.target.value })}
+            placeholder={t('manage.builder_options_placeholder')}
+          />
+        </div>
+      )}
 
-       {scaleVisible && (
-         <div className="mt-3">
-           <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
-             {[1, 2, 3, 4, 5].map((n) => (
-               <div key={n}>
-                 <label className="block text-gray-600 mb-1">Label for {n}</label>
-                 <input
-                   className="w-full border border-[#DADCE0] rounded px-2 py-1"
-                   value={((q as any).labels?.[n] ?? '') as any}
-                   onChange={e => {
-                     const nextLabels = { ...(((q as any).labels) || { ...defaultLinearScaleLabels }) }
-                     nextLabels[n] = e.target.value
-                     updateQuestion(mode, sectionId, q.id, {
-                       labels: nextLabels as any,
-                       scale_min_label: n === 1 ? e.target.value : q.scale_min_label,
-                       scale_max_label: n === 5 ? e.target.value : q.scale_max_label,
-                     })
-                   }}
-                   required
-                   placeholder={n === 3 ? 'Neutral' : ''}
-                 />
-               </div>
-             ))}
-           </div>
-         </div>
-       )}
+      {scaleVisible && (
+        <div className="mt-3">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <div key={n}>
+                <label className="block text-gray-600 dark:text-slate-300 mb-1">Label for {n}</label>
+                <input
+                  className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-2 py-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400"
+                  value={((q as any).labels?.[n] ?? '') as any}
+                  onChange={e => {
+                    const nextLabels = { ...(((q as any).labels) || { ...defaultLinearScaleLabels }) }
+                    nextLabels[n] = e.target.value
+                    updateQuestion(mode, sectionId, q.id, {
+                      labels: nextLabels as any,
+                      scale_min_label: n === 1 ? e.target.value : q.scale_min_label,
+                      scale_max_label: n === 5 ? e.target.value : q.scale_max_label,
+                    })
+                  }}
+                  required
+                  placeholder={n === 3 ? 'Neutral' : ''}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
-       {ratingVisible && (
-         <div className="mt-3">
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-             <div>
-               <label className="block text-gray-600 mb-1">Display as</label>
-               <select
-                 className="w-full border border-[#DADCE0] rounded px-2 py-1 bg-white"
-                 value={q.displayStyle || 'stars'}
-                 onChange={(e) => updateQuestion(mode, sectionId, q.id, { displayStyle: e.target.value as any })}
-               >
-                 <option value="stars">Stars 🌟</option>
-                 <option value="emojis">Emojis 😊</option>
-                 <option value="numbers">Numbers ①②③④⑤</option>
-               </select>
-             </div>
-           </div>
-         </div>
-       )}
-     </div>
-   )
- }
+      {ratingVisible && (
+        <div className="mt-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <div>
+              <label className="block text-gray-600 dark:text-slate-300 mb-1">Display as</label>
+              <select
+                className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-2 py-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
+                value={q.displayStyle || 'stars'}
+                onChange={(e) => updateQuestion(mode, sectionId, q.id, { displayStyle: e.target.value as any })}
+              >
+                <option value="stars">Stars 🌟</option>
+                <option value="emojis">Emojis 😊</option>
+                <option value="numbers">Numbers ①②③④⑤</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
- const SortableSectionCard: React.FC<{
-   mode: 'create' | 'edit'
-   section: NewSection
-   t: (key: string) => string
-   updateSectionMeta: (mode: 'create' | 'edit', sectionId: string, patch: Partial<Pick<NewSection, 'title' | 'description' | 'collapsed'>>) => void
-   duplicateSection: (mode: 'create' | 'edit', sectionId: string) => void
-   deleteSection: (mode: 'create' | 'edit', sectionId: string) => void
-   addQuestionToSection: (mode: 'create' | 'edit', sectionId: string, type: QuestionType) => void
-   addSection: (mode: 'create' | 'edit') => void
-   updateQuestion: (mode: 'create' | 'edit', sectionId: string, questionId: string, patch: Partial<NewQuestion>) => void
-   removeQuestion: (mode: 'create' | 'edit', sectionId: string, questionId: string) => void
- }> = ({
-   mode,
-   section,
-   t,
-   updateSectionMeta,
-   duplicateSection,
-   deleteSection,
-   addQuestionToSection,
-   addSection,
-   updateQuestion,
-   removeQuestion,
- }) => {
-   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-     id: section.id,
-     data: { type: 'section' },
-   })
-   const style: React.CSSProperties = {
-     transform: CSS.Transform.toString(transform),
-     transition,
-     opacity: isDragging ? 0.6 : 1,
-   }
+const SortableSectionCard: React.FC<{
+  mode: 'create' | 'edit'
+  section: NewSection
+  t: (key: string) => string
+  updateSectionMeta: (mode: 'create' | 'edit', sectionId: string, patch: Partial<Pick<NewSection, 'title' | 'description' | 'collapsed'>>) => void
+  duplicateSection: (mode: 'create' | 'edit', sectionId: string) => void
+  deleteSection: (mode: 'create' | 'edit', sectionId: string) => void
+  addQuestionToSection: (mode: 'create' | 'edit', sectionId: string, type: QuestionType) => void
+  addSection: (mode: 'create' | 'edit') => void
+  updateQuestion: (mode: 'create' | 'edit', sectionId: string, questionId: string, patch: Partial<NewQuestion>) => void
+  removeQuestion: (mode: 'create' | 'edit', sectionId: string, questionId: string) => void
+}> = ({
+  mode,
+  section,
+  t,
+  updateSectionMeta,
+  duplicateSection,
+  deleteSection,
+  addQuestionToSection,
+  addSection,
+  updateQuestion,
+  removeQuestion,
+}) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: section.id,
+    data: { type: 'section' },
+  })
+  const style: React.CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.6 : 1,
+  }
 
-   const questions = section.questions || []
+  const questions = section.questions || []
 
-   const headerLabel = stripHtml(section.title) || 'Untitled Section'
+  const headerLabel = stripHtml(section.title) || 'Untitled Section'
 
-   return (
-     <div ref={setNodeRef} style={style} className="rounded-2xl border border-[#DADCE0] bg-white shadow-sm overflow-hidden">
-       <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: '#006400', color: '#fff' }}>
-         <div className="flex items-center gap-2 min-w-0">
-           <button type="button" className="text-white/90 hover:text-white" {...attributes} {...listeners} title="Drag section">⠿</button>
-           <div className="font-semibold truncate">{headerLabel}</div>
-         </div>
-         <div className="flex items-center gap-2">
-           <button
-             type="button"
-             className="px-2 py-1 rounded bg-white/15 hover:bg-white/25 text-xs"
-             onClick={() => updateSectionMeta(mode, section.id, { collapsed: !section.collapsed })}
-           >
-             {section.collapsed ? 'Expand' : 'Collapse'}
-           </button>
-           <button type="button" className="px-2 py-1 rounded bg-white/15 hover:bg-white/25 text-xs" onClick={() => duplicateSection(mode, section.id)}>Duplicate</button>
-           <button type="button" className="px-2 py-1 rounded bg-red-500/80 hover:bg-red-500 text-xs" onClick={() => deleteSection(mode, section.id)}>Delete</button>
-         </div>
-       </div>
+  return (
+    <div ref={setNodeRef} style={style} className="rounded-2xl border border-[#DADCE0] dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3" style={{ backgroundColor: '#006400', color: '#fff' }}>
+        <div className="flex items-center gap-2 min-w-0">
+          <button type="button" className="text-white/90 hover:text-white" {...attributes} {...listeners} title="Drag section">⠿</button>
+          <div className="font-semibold truncate">{headerLabel}</div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className="px-2 py-1 rounded bg-white/15 hover:bg-white/25 text-xs"
+            onClick={() => updateSectionMeta(mode, section.id, { collapsed: !section.collapsed })}
+          >
+            {section.collapsed ? 'Expand' : 'Collapse'}
+          </button>
+          <button type="button" className="px-2 py-1 rounded bg-white/15 hover:bg-white/25 text-xs" onClick={() => duplicateSection(mode, section.id)}>Duplicate</button>
+          <button type="button" className="px-2 py-1 rounded bg-red-500/80 hover:bg-red-500 text-xs" onClick={() => deleteSection(mode, section.id)}>Delete</button>
+        </div>
+      </div>
 
-       {!section.collapsed && (
-         <div className="p-4 space-y-3">
-           <div>
-             <div id={`${section.id}-title`}>
-               <RichTextEditor
-                 value={section.title}
-                 onChange={(html) => updateSectionMeta(mode, section.id, { title: html })}
-                 placeholder="Section title"
-               />
-             </div>
-             <div className="mt-2">
-               <RichTextEditor
-                 value={section.description || ''}
-                 onChange={(html) => updateSectionMeta(mode, section.id, { description: html })}
-                 placeholder="Section description (optional)"
-               />
-             </div>
-           </div>
+      {!section.collapsed && (
+        <div className="p-4 space-y-3">
+          <div>
+            <div id={`${section.id}-title`}>
+              <RichTextEditor
+                value={section.title}
+                onChange={(html) => updateSectionMeta(mode, section.id, { title: html })}
+                placeholder="Section title"
+              />
+            </div>
+            <div className="mt-2">
+              <RichTextEditor
+                value={section.description || ''}
+                onChange={(html) => updateSectionMeta(mode, section.id, { description: html })}
+                placeholder="Section description (optional)"
+              />
+            </div>
+          </div>
 
-           <div className="flex items-center justify-between">
-             <div className="text-xs text-gray-500">{questions.length} questions</div>
-             <div className="flex items-center gap-2">
-               <button
-                 type="button"
-                 className="w-10 h-10 rounded-full flex items-center justify-center shadow border bg-white hover:bg-gray-50"
-                 title="Add question"
-                 onClick={() => addQuestionToSection(mode, section.id, 'multiple_choice')}
-               >
-                 +
-               </button>
-               <div className="flex flex-wrap gap-2 text-xs">
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'rating')} className="px-2 py-1 rounded-full border">★ Rating</button>
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'linear_scale')} className="px-2 py-1 rounded-full border">━┅━ Scale</button>
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'multiple_choice')} className="px-2 py-1 rounded-full border">◉ Choice</button>
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'dropdown')} className="px-2 py-1 rounded-full border">▾ Dropdown</button>
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'regions')} className="px-2 py-1 rounded-full border">⌂ Regions</button>
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'text')} className="px-2 py-1 rounded-full border">T Text</button>
-                 <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'paragraph')} className="px-2 py-1 rounded-full border">¶ Paragraph</button>
-               </div>
-             </div>
-           </div>
+          <div className="flex items-center justify-between">
+            <div className="text-xs text-gray-500 dark:text-slate-400">{questions.length} questions</div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                className="w-10 h-10 rounded-full flex items-center justify-center shadow border bg-white dark:bg-slate-950 hover:bg-gray-50 dark:hover:bg-slate-800"
+                title="Add question"
+                onClick={() => addQuestionToSection(mode, section.id, 'multiple_choice')}
+              >
+                +
+              </button>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'rating')} className="px-2 py-1 rounded-full border dark:border-slate-700">★ Rating</button>
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'linear_scale')} className="px-2 py-1 rounded-full border dark:border-slate-700">━┅━ Scale</button>
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'multiple_choice')} className="px-2 py-1 rounded-full border dark:border-slate-700">◉ Choice</button>
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'dropdown')} className="px-2 py-1 rounded-full border dark:border-slate-700">▾ Dropdown</button>
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'regions')} className="px-2 py-1 rounded-full border dark:border-slate-700">⌂ Regions</button>
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'text')} className="px-2 py-1 rounded-full border dark:border-slate-700">T Text</button>
+                <button type="button" onClick={() => addQuestionToSection(mode, section.id, 'paragraph')} className="px-2 py-1 rounded-full border dark:border-slate-700">¶ Paragraph</button>
+              </div>
+            </div>
+          </div>
 
-           <SortableContext items={questions.map(q => q.id)} strategy={verticalListSortingStrategy}>
-             <div className="space-y-3">
-               {questions.map((q) => (
-                 <SortableQuestionCard
-                   key={q.id}
-                   mode={mode}
-                   sectionId={section.id}
-                   q={q}
-                   t={t}
-                   updateQuestion={updateQuestion}
-                   removeQuestion={removeQuestion}
-                 />
-               ))}
-             </div>
-           </SortableContext>
+          <SortableContext items={questions.map(q => q.id)} strategy={verticalListSortingStrategy}>
+            <div className="space-y-3">
+              {questions.map((q) => (
+                <SortableQuestionCard
+                  key={q.id}
+                  mode={mode}
+                  sectionId={section.id}
+                  q={q}
+                  t={t}
+                  updateQuestion={updateQuestion}
+                  removeQuestion={removeQuestion}
+                />
+              ))}
+            </div>
+          </SortableContext>
 
-           <div className="flex items-center justify-between pt-2 border-t">
-             <button type="button" className="px-3 py-1.5 rounded border" onClick={() => addSection(mode)}>Add Section</button>
-             <div className="text-xs text-gray-500">Drag questions between sections</div>
-           </div>
-         </div>
-       )}
-     </div>
-   )
- }
+          <div className="flex items-center justify-between pt-2 border-t dark:border-slate-700">
+            <button type="button" className="px-3 py-1.5 rounded border dark:border-slate-700" onClick={() => addSection(mode)}>Add Section</button>
+            <div className="text-xs text-gray-500 dark:text-slate-400">Drag questions between sections</div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function ManageSurveysPage() {
   const { t } = useI18n()
@@ -604,7 +616,9 @@ export default function ManageSurveysPage() {
       resetModal()
       await refresh()
     } catch (e: any) {
-      setError(e?.message || 'Failed to create survey')
+      const msg = formatApiError(e)
+      setError(msg)
+      alert(msg)
     } finally {
       setSaving(false)
     }
@@ -718,7 +732,9 @@ export default function ManageSurveysPage() {
       setEditOpen(false)
       await refresh()
     } catch (e: any) {
-      setError(e?.message || 'Failed to update survey')
+      const msg = formatApiError(e)
+      setError(msg)
+      alert(msg)
     } finally {
       setUpdating(false)
     }
@@ -745,9 +761,9 @@ export default function ManageSurveysPage() {
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div className="overflow-x-auto bg-white border rounded">
+        <div className="overflow-x-auto bg-white dark:bg-slate-950 border dark:border-slate-800 rounded">
           <table className="min-w-full w-full text-sm table-fixed">
-            <thead className="bg-eeuGray text-gray-700">
+            <thead className="bg-eeuGray text-gray-700 dark:bg-slate-900 dark:text-slate-100 border-b border-gray-200 dark:border-slate-800">
               <tr>
                 <th className="text-left p-3 w-[55%]">{t('manage.title_label')}</th>
                 <th className="text-left p-3 w-[20%]">{t('manage.created')}</th>
@@ -757,17 +773,17 @@ export default function ManageSurveysPage() {
             </thead>
             <tbody>
               {surveys.map(s => (
-                <tr key={s.id} className="border-t">
+                <tr key={s.id} className="border-t dark:border-slate-800">
                   <td className="p-3">
                     <div className="font-medium truncate" title={stripHtml(s.title)}>{stripHtml(s.title)}</div>
                     {s.description && (
-                      <div className="text-gray-600 truncate" title={stripHtml(s.description)}>
+                      <div className="text-gray-600 dark:text-slate-300 truncate" title={stripHtml(s.description)}>
                         {stripHtml(s.description)}
                       </div>
                     )}
-                    <div className="text-gray-600">{s.questions.length} questions</div>
+                    <div className="text-gray-600 dark:text-slate-300">{s.questions.length} questions</div>
                   </td>
-                  <td className="p-3 text-gray-600">{new Date(s.created_at).toLocaleString()}</td>
+                  <td className="p-3 text-gray-600 dark:text-slate-300">{new Date(s.created_at).toLocaleString()}</td>
                   <td className="p-3">
                     {s.is_active ? (
                       <span className="inline-block px-2 py-1 text-xs bg-emerald-100 text-emerald-700 rounded">{t('manage.active')}</span>
@@ -797,7 +813,7 @@ export default function ManageSurveysPage() {
               ))}
               {surveys.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="p-4 text-center text-gray-600">{t('manage.no_surveys')}</td>
+                  <td colSpan={4} className="p-4 text-center text-gray-600 dark:text-slate-300">{t('manage.no_surveys')}</td>
                 </tr>
               )}
             </tbody>
@@ -806,22 +822,22 @@ export default function ManageSurveysPage() {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="bg-white w-full max-w-2xl rounded-2xl shadow p-6">
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/30 overflow-auto p-4 md:p-6">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-2xl max-h-[90vh] rounded-2xl shadow p-6 overflow-hidden flex flex-col">
             <h3 className="text-lg font-semibold mb-4">{t('manage.create_title')}</h3>
-            <form onSubmit={onSaveSurvey} className="space-y-4">
+            <form onSubmit={onSaveSurvey} className="space-y-4 flex-1 overflow-auto pr-2">
               <div>
-                <label className="block text-sm text-gray-700 mb-1">{t('manage.title_label')}</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">{t('manage.title_label')}</label>
                 <RichTextEditor value={title} onChange={setTitle} placeholder={t('manage.title_label')} />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">{t('manage.description_label')}</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">{t('manage.description_label')}</label>
                 <RichTextEditor value={description} onChange={setDescription} placeholder={t('manage.description_label')} />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">Survey Language</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Survey Language</label>
                 <select
-                  className="w-full border border-[#DADCE0] rounded px-3 py-2 text-sm bg-white"
+                  className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-sm bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
                   value={surveyLanguage}
                   onChange={(e) => setSurveyLanguage(e.target.value as any)}
                 >
@@ -832,7 +848,7 @@ export default function ManageSurveysPage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="text-sm font-medium">Sections</div>
-                  <button type="button" className="px-3 py-1.5 rounded border" onClick={() => addSection('create')}>Add Section</button>
+                  <button type="button" className="px-3 py-1.5 rounded border dark:border-slate-700" onClick={() => addSection('create')}>Add Section</button>
                 </div>
 
                 <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEndSections('create')}>
@@ -859,7 +875,7 @@ export default function ManageSurveysPage() {
               </div>
 
               <div className="flex items-center justify-end gap-3 pt-2">
-                <button type="button" onClick={() => { setShowModal(false); resetModal() }} className="px-4 py-2 rounded border">{t('manage.cancel')}</button>
+                <button type="button" onClick={() => { setShowModal(false); resetModal() }} className="px-4 py-2 rounded border dark:border-slate-700">{t('manage.cancel')}</button>
                 <button disabled={saving} className="px-4 py-2 rounded bg-eeuBlue text-white">{saving ? '...' : t('manage.create')}</button>
               </div>
             </form>
@@ -869,11 +885,11 @@ export default function ManageSurveysPage() {
 
       {editOpen && editSurvey && (
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/30 overflow-auto p-4 md:p-6">
-          <div className="bg-white w-full max-w-6xl h-[90vh] rounded-2xl shadow p-6 overflow-hidden flex flex-col">
+          <div className="bg-white dark:bg-slate-900 w-full max-w-6xl max-h-[90vh] rounded-2xl shadow p-6 overflow-hidden flex flex-col">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h3 className="text-lg font-semibold mb-1">{t('manage.edit')}</h3>
-                <p className="text-sm text-gray-600">{t('manage.builder_edit_subtitle')} {stripHtml(editSurvey.title)}</p>
+                <p className="text-sm text-gray-600 dark:text-slate-300">{t('manage.builder_edit_subtitle')} {stripHtml(editSurvey.title)}</p>
               </div>
               <button
                 type="button"
@@ -887,17 +903,17 @@ export default function ManageSurveysPage() {
             </div>
             <form onSubmit={onUpdateSurvey} className="space-y-4 flex-1 overflow-auto pr-2">
               <div>
-                <label className="block text-sm text-gray-700 mb-1">{t('manage.title_label')}</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">{t('manage.title_label')}</label>
                 <RichTextEditor value={editTitle} onChange={setEditTitle} placeholder={t('manage.title_label')} />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">{t('manage.description_label')}</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">{t('manage.description_label')}</label>
                 <RichTextEditor value={editDescription} onChange={setEditDescription} placeholder={t('manage.description_label')} />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">Survey Language</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Survey Language</label>
                 <select
-                  className="w-full border border-[#DADCE0] rounded px-3 py-2 text-sm bg-white"
+                  className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-sm bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
                   value={editSurveyLanguage}
                   onChange={(e) => setEditSurveyLanguage(e.target.value as any)}
                 >
@@ -906,11 +922,11 @@ export default function ManageSurveysPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">Survey Header Title</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Survey Header Title</label>
                 <RichTextEditor value={editHeaderTitle} onChange={setEditHeaderTitle} placeholder="Survey Header Title" />
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">Survey Header Subtitle</label>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Survey Header Subtitle</label>
                 <RichTextEditor value={editHeaderSubtitle} onChange={setEditHeaderSubtitle} placeholder="Survey Header Subtitle" />
               </div>
               <div className="flex items-center gap-2">
@@ -919,8 +935,8 @@ export default function ManageSurveysPage() {
               </div>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <label className="block text-sm text-gray-700">Sections</label>
-                  <button type="button" className="px-3 py-1.5 rounded border" onClick={() => addSection('edit')}>Add Section</button>
+                  <label className="block text-sm text-gray-700 dark:text-slate-200">Sections</label>
+                  <button type="button" className="px-3 py-1.5 rounded border dark:border-slate-700" onClick={() => addSection('edit')}>Add Section</button>
                 </div>
 
                 <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEndSections('edit')}>
@@ -945,15 +961,15 @@ export default function ManageSurveysPage() {
                   </SortableContext>
                 </DndContext>
               </div>
-              <div className="flex items-center justify-between gap-3 pt-3 border-t border-[#DADCE0] mt-2">
-                <div className="text-xs text-gray-600">
+              <div className="flex items-center justify-between gap-3 pt-3 border-t border-[#DADCE0] dark:border-slate-700 mt-2">
+                <div className="text-xs text-gray-600 dark:text-slate-300">
                   {editQuestionCount} {editQuestionCount === 1 ? t('manage.builder_question_count_single') : t('manage.builder_question_count')}
                 </div>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => setEditOpen(false)}
-                    className="px-4 py-2 rounded border text-sm"
+                    className="px-4 py-2 rounded border dark:border-slate-700 text-sm"
                   >
                     {t('manage.cancel')}
                   </button>
@@ -961,7 +977,7 @@ export default function ManageSurveysPage() {
                     type="submit"
                     onClick={() => setSubmitMode('draft')}
                     disabled={updating || editHasEmptyQuestion}
-                    className="px-4 py-2 rounded bg-gray-200 text-sm text-gray-800 disabled:opacity-60"
+                    className="px-4 py-2 rounded bg-gray-200 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-slate-700 text-sm text-gray-800 dark:text-slate-100 disabled:opacity-60"
                   >
                     {updating && submitMode === 'draft' ? '...' : t('manage.builder_save_draft')}
                   </button>

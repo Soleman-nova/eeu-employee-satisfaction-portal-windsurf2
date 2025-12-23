@@ -31,8 +31,8 @@ export default function RegionDropdownQuestion({
   return (
     <div className="mt-1">
       <select
-        className="w-full border border-[#DADCE0] rounded-md px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-1 bg-white"
-        style={{ borderColor: '#DADCE0', boxShadow: 'none' }}
+        className="w-full border border-[#DADCE0] dark:border-slate-700 rounded-md px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
+        style={{ boxShadow: 'none' }}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required={required}

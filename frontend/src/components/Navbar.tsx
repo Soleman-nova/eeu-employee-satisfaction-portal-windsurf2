@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useI18n } from '@/context/I18nContext'
 import { useAuth } from '@/context/AuthContext'
+import { useTheme } from '@/context/ThemeContext'
 import {
   ArrowRightOnRectangleIcon,
   ChevronDownIcon,
@@ -16,6 +17,7 @@ import {
 export default function Navbar() {
   const { t, lang, setLang } = useI18n()
   const { user, role, isSuperAdmin, logout, token } = useAuth()
+  const { theme, toggleTheme } = useTheme()
   const [open, setOpen] = useState(false)
   const userMenuRef = useRef<HTMLDivElement | null>(null)
   const navigate = useNavigate()
@@ -59,7 +61,7 @@ export default function Navbar() {
   const isSurveyRoute = location.pathname === '/survey' || location.pathname.startsWith('/survey/')
 
   return (
-    <header className="border-b bg-white">
+    <header className="border-b bg-white dark:bg-slate-950">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="text-lg font-bold text-brand" aria-label="EEU Survey Portal">EEU Survey Portal</Link>
         <nav className="flex items-center gap-4 text-sm">
@@ -95,6 +97,15 @@ export default function Navbar() {
             </button>
           )}
 
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={toggleTheme}
+            className="ml-2 px-2 py-1 rounded border text-xs hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
+          >
+            {theme === 'dark' ? t('nav.theme_light') : t('nav.theme_dark')}
+          </button>
+
           {token && (
             <div ref={userMenuRef} className="relative ml-3">
               <button
@@ -102,7 +113,7 @@ export default function Navbar() {
                 onClick={() => setOpen(o => !o)}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs text-gray-700 hover:bg-gray-50"
               >
-                <span className="h-6 w-6 rounded-full bg-brand text-white flex items-center justify-center text-[10px] font-semibold">
+                <span className="h-6 w-6 rounded-full bg-[#006400] text-white flex items-center justify-center text-[10px] font-semibold">
                   {displayName?.[0]?.toUpperCase() ?? 'A'}
                 </span>
                 <span className="flex flex-col items-start">

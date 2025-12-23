@@ -232,7 +232,7 @@ export default function SurveyPage() {
 
   if (loading) {
     return (
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-white text-gray-600 text-sm">
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-white dark:bg-slate-950 text-gray-600 dark:text-slate-300 text-sm">
         Loading survey...
       </div>
     )
@@ -240,7 +240,7 @@ export default function SurveyPage() {
 
   if (!survey) {
     return (
-      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-white text-gray-700 text-sm">
+      <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-white dark:bg-slate-950 text-gray-700 dark:text-slate-300 text-sm">
         No active survey is available at the moment.
       </div>
     )
@@ -292,21 +292,21 @@ export default function SurveyPage() {
   const isLastPage = currentPage >= totalPages
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-white flex flex-col">
+    <div className="min-h-[calc(100vh-64px)] bg-white dark:bg-slate-950 flex flex-col">
       {/* Header */}
-      <header className="border-b border-[#DADCE0] bg-white">
+      <header className="border-b border-[#DADCE0] dark:border-slate-800 bg-white dark:bg-slate-950">
         <div className="max-w-3xl mx-auto px-4 py-6 flex flex-col items-center text-center">
           <img src="/eeu_logo.png" alt="EEU logo" className="w-30 h-20 mb-3" />
           <SafeHtml
             html={survey?.header_title || survey?.title || t('survey.header_title')}
-            className="rte-content text-2xl md:text-3xl font-semibold"
+            className="rte-content text-2xl md:text-3xl font-semibold text-gray-900 dark:text-slate-100"
           />
           <SafeHtml
             html={survey?.header_subtitle || survey?.description || t('survey.header_subtitle')}
-            className="rte-content mt-1 text-sm md:text-base"
+            className="rte-content mt-1 text-sm md:text-base text-gray-700 dark:text-slate-300"
           />
           {isPreview && (
-            <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#DADCE0] bg-[#F8F9FA] px-3 py-1 text-xs text-[#5F6368]">
+            <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-[#DADCE0] dark:border-slate-700 bg-[#F8F9FA] dark:bg-slate-900 px-3 py-1 text-xs text-[#5F6368] dark:text-slate-300">
               <span></span>
               <span>{t('survey.preview_banner')}</span>
             </div>
@@ -315,9 +315,9 @@ export default function SurveyPage() {
       </header>
 
       {/* Progress bar */}
-      <div className="border-b border-[#DADCE0] bg-white sticky top-0 z-20">
-        <div className="max-w-3xl mx-auto px-4 py-3 bg-white">
-          <div className="h-2 rounded-full bg-[#DADCE0] overflow-hidden">
+      <div className="border-b border-[#DADCE0] dark:border-slate-800 bg-white dark:bg-slate-950 sticky top-0 z-20">
+        <div className="max-w-3xl mx-auto px-4 py-3 bg-white dark:bg-slate-950">
+          <div className="h-2 rounded-full bg-[#DADCE0] dark:bg-slate-800 overflow-hidden">
             <div
               className="h-full rounded-full"
               style={{
@@ -331,21 +331,21 @@ export default function SurveyPage() {
       </div>
 
       {/* Body */}
-      <main className="flex-1 bg-[#FFFFFF]">
+      <main className="flex-1 bg-white dark:bg-slate-950">
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto px-4 py-6 space-y-4">
           {/* Title block similar to Google Forms card */}
-          <section className="bg-white rounded-xl border border-[#DADCE0] shadow-sm px-5 py-4">
-            <SafeHtml html={survey.title} className="rte-content text-lg font-semibold mb-1" />
-            {survey.description && <SafeHtml html={survey.description} className="rte-content text-sm" />}
+          <section className="bg-white dark:bg-slate-900 rounded-xl border border-[#DADCE0] dark:border-slate-700 shadow-sm px-5 py-4">
+            <SafeHtml html={survey.title} className="rte-content text-lg font-semibold mb-1 text-gray-900 dark:text-slate-100" />
+            {survey.description && <SafeHtml html={survey.description} className="rte-content text-sm text-gray-700 dark:text-slate-300" />}
           </section>
 
           {/* Sections + Questions */}
           {renderSections.map((sec: any, secIdx: number) => (
             <React.Fragment key={sec.id ?? `sec-${secIdx}`}>
               {(sec.title || sec.description) ? (
-                <section className="rounded-xl border shadow-sm px-5 py-4" style={{ backgroundColor: 'rgba(0, 100, 0, 0.05)', borderColor: 'rgba(0, 100, 0, 0.18)' }}>
-                  {sec.title ? <SafeHtml html={sec.title} className="rte-content text-base font-semibold" /> : null}
-                  {sec.description ? <SafeHtml html={sec.description} className="rte-content text-sm mt-1" /> : null}
+                <section className="rounded-xl border shadow-sm px-5 py-4 bg-[rgba(0,100,0,0.05)] border-[rgba(0,100,0,0.18)]">
+                  {sec.title ? <SafeHtml html={sec.title} className="rte-content text-base font-semibold text-gray-900 dark:text-slate-100" /> : null}
+                  {sec.description ? <SafeHtml html={sec.description} className="rte-content text-sm mt-1 text-gray-700 dark:text-slate-300" /> : null}
                 </section>
               ) : null}
 
@@ -353,10 +353,10 @@ export default function SurveyPage() {
                 <section
                   key={q.id}
                   id={`q-${q.id}`}
-                  className={`bg-white rounded-xl border shadow-sm px-5 py-4 ${missingRequired[q.id] ? 'border-red-500' : 'border-[#DADCE0]'}`}
+                  className={`bg-white dark:bg-slate-900 rounded-xl border shadow-sm px-5 py-4 ${missingRequired[q.id] ? 'border-red-500' : 'border-[#DADCE0] dark:border-slate-700'}`}
                 >
                   <div className="flex items-start gap-1 mb-3">
-                    <p className="text-sm md:text-base font-medium" style={{ color: '#202124' }}>
+                    <p className="text-sm md:text-base font-medium text-[#202124] dark:text-slate-100">
                       {++questionNumber}. {q.text}
                     </p>
                     {q.required ? (
@@ -459,8 +459,7 @@ export default function SurveyPage() {
               ) : q.question_type === 'dropdown' ? (
                 <div className="mt-1">
                   <select
-                    className="w-full border border-[#DADCE0] rounded-md px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-1 bg-white"
-                    style={{ borderColor: '#DADCE0', boxShadow: 'none' }}
+                    className="w-full border border-[#DADCE0] dark:border-slate-700 rounded-md px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
                     value={answers[q.id]?.choice ?? ''}
                     onChange={(e) =>
                       setAnswers(prev => {
@@ -494,8 +493,7 @@ export default function SurveyPage() {
                     return (
                       <label
                         key={opt}
-                        className="flex items-center gap-3 cursor-pointer text-sm md:text-base"
-                        style={{ color: '#3C4043' }}
+                        className="flex items-center gap-3 cursor-pointer text-sm md:text-base text-[#3C4043] dark:text-slate-200"
                       >
                         <span
                           className="inline-flex items-center justify-center rounded-full border w-4 h-4"
@@ -608,8 +606,8 @@ export default function SurveyPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#DADCE0] bg-[#F8F9FA] mt-4">
-        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between text-xs text-[#5F6368]">
+      <footer className="border-t border-[#DADCE0] dark:border-slate-800 bg-[#F8F9FA] dark:bg-slate-950 mt-4">
+        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between text-xs text-[#5F6368] dark:text-slate-400">
           <span>
             {t('survey.footer_page')} {currentPage} {t('survey.footer_of')} {totalPages}
           </span>

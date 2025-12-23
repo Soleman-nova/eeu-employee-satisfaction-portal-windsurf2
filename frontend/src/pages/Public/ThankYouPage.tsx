@@ -15,23 +15,23 @@ export default function ThankYouPage() {
   }, [navigate])
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen bg-white dark:bg-slate-950 flex items-center justify-center px-4 py-10">
       <div className="relative w-full max-w-3xl">
         {/* Background subtle particles */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute w-40 h-40 bg-green-100 rounded-full opacity-40 blur-3xl -top-10 -left-10 animate-pulse" />
-          <div className="absolute w-32 h-32 bg-green-50 rounded-full opacity-50 blur-2xl bottom-0 right-0 animate-[ping_6s_ease-in-out_infinite]" />
-          <div className="absolute w-24 h-24 bg-green-50 rounded-full opacity-60 blur-2xl top-1/2 -translate-y-1/2 right-1/3 animate-[pulse_7s_ease-in-out_infinite]" />
+          <div className="absolute w-40 h-40 bg-green-100 dark:bg-green-900/30 rounded-full opacity-40 blur-3xl -top-10 -left-10 animate-pulse" />
+          <div className="absolute w-32 h-32 bg-green-50 dark:bg-green-900/20 rounded-full opacity-50 blur-2xl bottom-0 right-0 animate-[ping_6s_ease-in-out_infinite]" />
+          <div className="absolute w-24 h-24 bg-green-50 dark:bg-green-900/20 rounded-full opacity-60 blur-2xl top-1/2 -translate-y-1/2 right-1/3 animate-[pulse_7s_ease-in-out_infinite]" />
         </div>
 
-        <div className="relative bg-white border border-gray-200 rounded-2xl shadow-[0_4px_20px_rgba(60,64,67,0.18)] overflow-hidden">
+        <div className="relative bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-2xl shadow-[0_4px_20px_rgba(60,64,67,0.18)] overflow-hidden">
           {/* Header logo */}
           <div className="pt-8 flex justify-center">
             <div className="flex items-center justify-center">
               <div className="w-10 h-10 rounded-full border-2 border-[#FF6200] flex items-center justify-center mr-2">
                 <div className="w-6 h-6 rounded-full border-2 border-[#008000]" />
               </div>
-              <span className="text-xs font-medium tracking-wide text-[#5F6368] uppercase">Ethiopian Electric Utility</span>
+              <span className="text-xs font-medium tracking-wide text-gray-600 dark:text-slate-200 uppercase">Ethiopian Electric Utility</span>
             </div>
           </div>
 
@@ -55,7 +55,7 @@ export default function ThankYouPage() {
             </div>
 
             {/* Title */}
-            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#5F6368] mb-2">
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-700 dark:text-slate-100 mb-2">
               Your response has been recorded.
             </h1>
 
@@ -63,17 +63,16 @@ export default function ThankYouPage() {
             <div className="mx-auto mb-4 h-1 w-24 rounded-full bg-[#FF6200]" />
 
             {/* Subtext */}
-            <p className="text-sm sm:text-base text-[#3C4043] max-w-xl mx-auto mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-700 dark:text-slate-200 max-w-xl mx-auto mb-6 leading-relaxed">
               Thank you for helping shape the future of Ethiopian Electric Utility! Your feedback is invaluable in improving our
               services and workplace experience.
             </p>
 
             {softMessage ? (
               <div
-                className="mx-auto mb-6 max-w-xl rounded-xl border px-4 py-3 text-sm sm:text-base"
-                style={{ borderColor: '#FF6200', backgroundColor: 'rgba(255, 98, 0, 0.06)', color: '#3C4043' }}
+                className="mx-auto mb-6 max-w-xl rounded-xl border px-4 py-3 text-sm sm:text-base border-[#FF6200] bg-[rgba(255,98,0,0.06)] dark:bg-[rgba(255,98,0,0.14)] text-gray-700 dark:text-slate-100"
               >
-                <div className="font-semibold" style={{ color: '#FF6200' }}>
+                <div className="font-semibold text-[#FF6200]">
                   {variant === 'limit' ? 'Notice' : 'Info'}
                 </div>
                 <div className="mt-1">{softMessage}</div>
@@ -81,7 +80,7 @@ export default function ThankYouPage() {
             ) : null}
 
             {/* Secondary muted line (like Google Forms style) */}
-            <p className="text-xs text-[#5F6368] mb-8">
+            <p className="text-xs text-gray-600 dark:text-slate-300 mb-8">
               You can close this window, or submit another response below. You will be redirected to the home page shortly.
             </p>
 
@@ -94,13 +93,13 @@ export default function ThankYouPage() {
                 Submit another response
               </Link>
 
-              <span className="text-xs text-[#5F6368]">Automatically returning home in a few seconds…</span>
+              <span className="text-xs text-gray-600 dark:text-slate-300">Automatically returning home in a few seconds…</span>
             </div>
           </div>
 
           {/* Footer */}
-          <div className="border-t border-[#DADCE0] bg-[#F8F9FA] px-4 py-3 text-center">
-            <p className="text-[11px] text-[#5F6368]">
+          <div className="border-t border-[#DADCE0] dark:border-slate-800 bg-[#F8F9FA] dark:bg-slate-950 px-4 py-3 text-center">
+            <p className="text-[11px] text-gray-600 dark:text-slate-300">
               © 2025 Ethiopian Electric Utility • Powered by secure internal system
             </p>
           </div>

@@ -70,10 +70,10 @@ export default function LandingPage() {
         <img src="/eeu_logo.png" alt="EEU logo" className="w-34 h-28 md:w-34 md:h-28 drop-shadow-sm" />
 
         {/* Headline */}
-        <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ color: '#064d06' }}>
+        <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#064d06] dark:text-green-300">
           {t('landing.headline')}
         </h1>
-        <p className="mt-3 max-w-3xl text-base md:text-lg" style={{ color: 'rgba(6,77,6,0.8)' }}>
+        <p className="mt-3 max-w-3xl text-base md:text-lg text-[#064d06]/80 dark:text-green-200">
           {t('landing.subheadline')}
         </p>
 
@@ -96,9 +96,9 @@ export default function LandingPage() {
         </div>
 
         {/* Card container hint for clean, minimalist feel */}
-        <div className="mt-12 w-full max-w-4xl mx-auto rounded-3xl bg-white/70 backdrop-blur border" style={{ borderColor: 'rgba(0,100,0,0.12)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+        <div className="mt-12 w-full max-w-4xl mx-auto rounded-3xl bg-white/70 dark:bg-slate-900/75 backdrop-blur border dark:border-slate-700/60" style={{ borderColor: 'rgba(0,100,0,0.12)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
           <div className="px-6 md:px-10 py-6 md:py-8 text-left">
-            <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#064d06' }}>{t('landing.section_title')}</h3>
+            <h3 className="text-lg md:text-xl font-semibold text-[#064d06] dark:text-green-300">{t('landing.section_title')}</h3>
             <p className="mt-2 text-sm md:text-base text-gray-700">
               {t('landing.section_body')}
             </p>

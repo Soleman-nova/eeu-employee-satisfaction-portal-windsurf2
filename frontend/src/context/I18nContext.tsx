@@ -11,6 +11,8 @@ const strings: Record<Lang, Dict> = {
     'nav.admin': 'Admin',
     'nav.toggle_lang': '\u12a0\u121b',
     'nav.logout': 'Logout',
+    'nav.theme_dark': 'Dark',
+    'nav.theme_light': 'Light',
 
     'landing.headline': 'Welcome to EEU Employee Survey Portal',
     'landing.subheadline': 'Your voice powers our future. Take 5 minutes to share your feedback.',
@@ -174,6 +176,8 @@ const strings: Record<Lang, Dict> = {
     'nav.admin': 'አድሚን',
     'nav.toggle_lang': 'EN',
     'nav.logout': 'ውጣ',
+    'nav.theme_dark': 'ጨለማ',
+    'nav.theme_light': 'ብርሃን',
 
     'landing.headline': 'አንኳን ወደ የኢትዮጵያ ኤሌክትሪክ አገልግሎት የሰራተኞች የዳሰሳ ጥናት ገጽ በደህና መጡ።',
     'landing.subheadline': 'ድምጽዎ የወደፊታችን ኃይል ነው። አስተያየቶን ለማካፈል 5 ደቂቃ ይውሰዱ።',

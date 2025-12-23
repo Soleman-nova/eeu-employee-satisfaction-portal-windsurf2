@@ -6,15 +6,18 @@ import '@/styles/globals.css'
 import 'react-quill/dist/quill.snow.css'
 import { AuthProvider } from '@/context/AuthContext'
 import { I18nProvider } from '@/context/I18nContext'
+import { ThemeProvider } from '@/context/ThemeContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <I18nProvider>
-      <AuthProvider>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
-      </AuthProvider>
-    </I18nProvider>
+    <ThemeProvider>
+      <I18nProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </AuthProvider>
+      </I18nProvider>
+    </ThemeProvider>
   </React.StrictMode>
 )

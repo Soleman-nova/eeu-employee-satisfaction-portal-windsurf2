@@ -6,6 +6,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, Pi
 import SafeHtml from '@/components/SafeHtml'
 import { ClipboardDocumentListIcon, InboxStackIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { useI18n } from '@/context/I18nContext'
+import { useTheme } from '@/context/ThemeContext'
 import RegionsEn from '@/data/Regions-en.json'
 import RegionsAm from '@/data/Regions-am.json'
 
@@ -41,6 +42,14 @@ export default function DashboardPage() {
   const [region, setRegion] = useState<string>('')
   const navigate = useNavigate()
   const { t, lang } = useI18n()
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+
+  const tooltipContentStyle = isDark
+    ? { backgroundColor: 'rgb(15 23 42)', border: '1px solid rgb(51 65 85)', color: 'rgb(241 245 249)' }
+    : undefined
+  const tooltipLabelStyle = isDark ? { color: 'rgb(226 232 240)' } : undefined
+  const tooltipItemStyle = isDark ? { color: 'rgb(241 245 249)' } : undefined
 
   useEffect(() => {
     setLoading(true)
@@ -89,7 +98,9 @@ export default function DashboardPage() {
 
   const fmtPct = (v: number) => `${Number.isFinite(v) ? v : 0}%`
 
-  const ratingSliceColors = ['#B91C1C', '#DC2626', '#6B7280', '#16A34A', '#15803D']
+  const ratingSliceColors = isDark
+    ? ['#7F1D1D', '#EF4444', '#94A3B8', '#4ADE80', '#14532D']
+    : ['#B91C1C', '#DC2626', '#6B7280', '#16A34A', '#15803D']
 
   return (
     <div className="space-y-6">
@@ -109,10 +120,11 @@ export default function DashboardPage() {
           )}
         </div>
         <div className="flex items-center gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded border bg-white text-sm">
-            <MapPinIcon className="h-5 w-5 text-gray-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded border bg-white dark:bg-slate-950 text-sm dark:border-slate-800">
+            <MapPinIcon className="h-5 w-5 text-gray-600 dark:text-slate-300" />
             <select
-              className="bg-transparent focus:outline-none"
+              className="bg-white dark:bg-slate-950 focus:outline-none text-gray-900 dark:text-slate-100"
+              style={{ colorScheme: isDark ? 'dark' : 'light' }}
               value={region}
               onChange={(e) => setRegion(e.target.value)}
             >
@@ -152,7 +164,7 @@ export default function DashboardPage() {
       {ratingSectionOverview.length > 0 && (
         <div className="space-y-3">
           <h3 className="font-semibold">Rating % by Section</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {ratingSectionOverview.map((sec) => {
               const r = sec.ratings || {}
               const spct1 = r['1']?.percent ?? 0
@@ -288,7 +300,12 @@ export default function DashboardPage() {
                     <div className="w-full h-56">
                       <ResponsiveContainer>
                         <PieChart>
-                          <Tooltip formatter={(value: any, name: any) => [`${Number(value) || 0}%`, name]} />
+                          <Tooltip
+                            formatter={(value: any, name: any) => [`${Number(value) || 0}%`, name]}
+                            contentStyle={tooltipContentStyle}
+                            labelStyle={tooltipLabelStyle}
+                            itemStyle={tooltipItemStyle}
+                          />
                           <Pie
                             data={donutData}
                             dataKey="value"
@@ -357,7 +374,12 @@ export default function DashboardPage() {
                     <Cell key={idx} fill={genderColors[idx % genderColors.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any, _name: any, props: any) => [value, 'Count']} />
+                <Tooltip
+                  formatter={(value: any, _name: any, props: any) => [value, 'Count']}
+                  contentStyle={tooltipContentStyle}
+                  labelStyle={tooltipLabelStyle}
+                  itemStyle={tooltipItemStyle}
+                />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
@@ -373,7 +395,13 @@ export default function DashboardPage() {
             <LineChart data={lineData}>
               <XAxis dataKey="label" />
               <YAxis allowDecimals={false} />
-              <Tooltip formatter={(value: any) => [value, 'Responses']} labelFormatter={(label: any) => `Date: ${label}`} />
+              <Tooltip
+                formatter={(value: any) => [value, 'Responses']}
+                labelFormatter={(label: any) => `Date: ${label}`}
+                contentStyle={tooltipContentStyle}
+                labelStyle={tooltipLabelStyle}
+                itemStyle={tooltipItemStyle}
+              />
               <Legend />
               <Line name="Responses" type="monotone" dataKey="value" stroke="#00D1FF" strokeWidth={2} dot={false} activeDot={{ r: 4, onClick: (props: any) => {
                 const d = props?.payload?.dateISO as string | undefined

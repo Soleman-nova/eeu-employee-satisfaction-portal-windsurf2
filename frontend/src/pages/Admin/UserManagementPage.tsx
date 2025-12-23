@@ -260,7 +260,7 @@ export default function UserManagementPage() {
                         <button
                           type="button"
                           onClick={() => setEditingId(null)}
-                          className="px-2 py-1 text-xs rounded bg-gray-200 text-gray-800"
+                          className="px-2 py-1 text-xs rounded bg-gray-200 text-gray-800 dark:bg-slate-800 dark:text-slate-100 hover:bg-gray-300 dark:hover:bg-slate-700"
                         >
                           {t('users.cancel')}
                         </button>
@@ -270,7 +270,7 @@ export default function UserManagementPage() {
                         <button
                           type="button"
                           onClick={() => startEdit(u)}
-                          className="px-2 py-1 text-xs rounded bg-gray-200 text-gray-800"
+                          className="px-2 py-1 text-xs rounded bg-gray-200 text-gray-800 dark:bg-slate-800 dark:text-slate-100 hover:bg-gray-300 dark:hover:bg-slate-700"
                         >
                           {t('users.edit')}
                         </button>
@@ -280,7 +280,7 @@ export default function UserManagementPage() {
                             setResetId(u.id)
                             setResetPassword('')
                           }}
-                          className="px-2 py-1 text-xs rounded bg-blue-600 text-white"
+                          className="px-2 py-1 text-xs rounded bg-blue-600 text-white hover:bg-blue-700"
                         >
                           {t('users.reset_password')}
                         </button>
@@ -288,7 +288,7 @@ export default function UserManagementPage() {
                           <button
                             type="button"
                             onClick={() => handleDelete(u.id)}
-                            className="px-2 py-1 text-xs rounded bg-red-600 text-white"
+                            className="px-2 py-1 text-xs rounded bg-red-600 text-white hover:bg-red-700"
                           >
                             {t('users.delete')}
                           </button>

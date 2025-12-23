@@ -86,6 +86,19 @@ export default function ResponsesPage() {
 
   const currentSurvey = useMemo(() => surveys.find(s => s.id === survey), [surveys, survey])
   const questionOptions = currentSurvey?.questions ?? []
+  const selectedQuestion = useMemo(
+    () => questionOptions.find(q => q.id === question),
+    [questionOptions, question]
+  )
+  const ratingDisabled = !!(selectedQuestion && selectedQuestion.question_type !== 'rating')
+
+  useEffect(() => {
+    if (ratingDisabled && (ratingMin != null || ratingMax != null)) {
+      setRatingMin(undefined)
+      setRatingMax(undefined)
+      setPage(1)
+    }
+  }, [ratingDisabled, ratingMin, ratingMax])
 
   const isFiltered = !!(survey || from || to || question || ratingMin || ratingMax)
 
@@ -96,7 +109,7 @@ export default function ResponsesPage() {
       let vb: number | string = 0
       if (sortKey === 'id') { va = a.id; vb = b.id }
       else if (sortKey === 'submitted_at') { va = new Date(a.submitted_at).getTime(); vb = new Date(b.submitted_at).getTime() }
-      else { va = a.survey.title.toLowerCase(); vb = b.survey.title.toLowerCase() }
+      else { va = stripHtml(a.survey.title).toLowerCase(); vb = stripHtml(b.survey.title).toLowerCase() }
       if (va < vb) return sortDir === 'asc' ? -1 : 1
       if (va > vb) return sortDir === 'asc' ? 1 : -1
       return 0
@@ -177,7 +190,7 @@ export default function ResponsesPage() {
             <label className="block text-xs text-gray-600 mb-1">{t('responses.survey')}</label>
             <select value={survey ?? ''} onChange={e => { const id = e.target.value ? Number(e.target.value) : undefined; setSurvey(id); setQuestion(undefined); setPage(1) }} className="w-full border rounded px-2 py-2">
               <option value="">All</option>
-              {surveys.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
+              {surveys.map(s => <option key={s.id} value={s.id}>{stripHtml(s.title)}</option>)}
             </select>
           </div>
           <div>
@@ -199,11 +212,39 @@ export default function ResponsesPage() {
           </div>
           <div>
             <label className="block text-xs text-gray-600 mb-1">{t('responses.rating_min')}</label>
-            <input type="number" min={1} max={5} value={ratingMin ?? ''} onChange={e => { const v = e.target.value; setRatingMin(v ? Number(v) : undefined); setPage(1) }} className="w-full border rounded px-2 py-2" />
+            <input
+              type="number"
+              min={1}
+              max={5}
+              disabled={ratingDisabled}
+              value={ratingMin ?? ''}
+              onChange={e => {
+                const raw = e.target.value
+                const next = raw ? Math.max(1, Math.min(5, Math.trunc(Number(raw)))) : undefined
+                setRatingMin(next)
+                if (next != null && ratingMax != null && next > ratingMax) setRatingMax(next)
+                setPage(1)
+              }}
+              className="w-full border rounded px-2 py-2 disabled:bg-gray-100"
+            />
           </div>
           <div>
             <label className="block text-xs text-gray-600 mb-1">{t('responses.rating_max')}</label>
-            <input type="number" min={1} max={5} value={ratingMax ?? ''} onChange={e => { const v = e.target.value; setRatingMax(v ? Number(v) : undefined); setPage(1) }} className="w-full border rounded px-2 py-2" />
+            <input
+              type="number"
+              min={1}
+              max={5}
+              disabled={ratingDisabled}
+              value={ratingMax ?? ''}
+              onChange={e => {
+                const raw = e.target.value
+                const next = raw ? Math.max(1, Math.min(5, Math.trunc(Number(raw)))) : undefined
+                setRatingMax(next)
+                if (next != null && ratingMin != null && next < ratingMin) setRatingMin(next)
+                setPage(1)
+              }}
+              className="w-full border rounded px-2 py-2 disabled:bg-gray-100"
+            />
           </div>
         </div>
       </div>

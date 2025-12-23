@@ -78,12 +78,12 @@ export type CheckAttemptsResponse = {
   fallback?: boolean
 }
 
-export async function checkAttempts(fingerprint: string): Promise<CheckAttemptsResponse> {
-  const res = await axiosClient.post('/api/check-attempts/', { fingerprint })
+export async function checkAttempts(surveyId: number, fingerprint: string): Promise<CheckAttemptsResponse> {
+  const res = await axiosClient.post('/api/check-attempts/', { survey_id: surveyId, fingerprint })
   return res.data
 }
 
-export async function incrementAttempt(fingerprint: string): Promise<{ ok: boolean; ignored?: boolean; fallback?: boolean }> {
-  const res = await axiosClient.post('/api/increment-attempt/', { fingerprint })
+export async function incrementAttempt(surveyId: number, fingerprint: string): Promise<{ ok: boolean; ignored?: boolean; fallback?: boolean }> {
+  const res = await axiosClient.post('/api/increment-attempt/', { survey_id: surveyId, fingerprint })
   return res.data
 }

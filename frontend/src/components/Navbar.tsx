@@ -61,7 +61,7 @@ export default function Navbar() {
   return (
     <header className="border-b bg-white">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="text-lg font-bold text-brand" aria-label="EEU Portal">EEU Portal</Link>
+        <Link to="/" className="text-lg font-bold text-brand" aria-label="EEU Survey Portal">EEU Survey Portal</Link>
         <nav className="flex items-center gap-4 text-sm">
           <NavLink to="/" className={navItemClass}>
             <HomeIcon className="h-4 w-4" />

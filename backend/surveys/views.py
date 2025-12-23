@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from django.utils import timezone
 from django.db import transaction
+from django.db.utils import OperationalError
 import hashlib
 
 from .models import Survey, SurveyAttempt
@@ -27,10 +28,11 @@ def _is_admin_bypass(request) -> bool:
     return bool(is_admin_user(employee_identifier, request=request))
 
 
-def _fingerprint_hash(request, fingerprint: str) -> str:
+def _fingerprint_hash(request, fingerprint: str, survey_id: int) -> str:
+    # Scope the fingerprint to a specific survey so limits reset when a new survey is activated.
     # Tie the fingerprint to the client IP on the backend so we never need to send the IP to the frontend.
     ip = _get_client_ip(request)
-    raw = f"{fingerprint}|{ip}".encode("utf-8", errors="ignore")
+    raw = f"{survey_id}|{fingerprint}|{ip}".encode("utf-8", errors="ignore")
     return hashlib.sha256(raw).hexdigest()
 
 
@@ -85,14 +87,25 @@ class CheckAttemptsView(APIView):
             return Response({"allowed": True, "unlimited": True}, status=status.HTTP_200_OK)
 
         fingerprint = (request.data.get("fingerprint") or "").strip()
-        if not fingerprint:
+        survey_id_raw = request.data.get("survey_id")
+        try:
+            survey_id = int(survey_id_raw)
+        except (TypeError, ValueError):
+            survey_id = 0
+
+        if not fingerprint or survey_id <= 0:
             # If the client can't generate a fingerprint, allow and let frontend fallback to localStorage.
             return Response({"allowed": True, "unlimited": False, "fallback": True}, status=status.HTTP_200_OK)
 
-        fp_hash = _fingerprint_hash(request, fingerprint)
-        attempt = SurveyAttempt.objects.filter(fingerprint_hash=fp_hash).first()
-        attempts = int(getattr(attempt, "attempts", 0) or 0)
-        return Response({"allowed": attempts < 2, "unlimited": False}, status=status.HTTP_200_OK)
+        fp_hash = _fingerprint_hash(request, fingerprint, survey_id)
+        try:
+            attempt = SurveyAttempt.objects.filter(fingerprint_hash=fp_hash).first()
+            attempts = int(getattr(attempt, "attempts", 0) or 0)
+            return Response({"allowed": attempts < 2, "unlimited": False}, status=status.HTTP_200_OK)
+        except OperationalError:
+            # DB migrations not applied yet (e.g., missing surveys_surveyattempt table).
+            # Allow and rely on frontend localStorage fallback instead of crashing.
+            return Response({"allowed": True, "unlimited": False, "fallback": True}, status=status.HTTP_200_OK)
 
 
 class IncrementAttemptView(APIView):
@@ -104,19 +117,29 @@ class IncrementAttemptView(APIView):
             return Response({"ok": True, "ignored": True}, status=status.HTTP_200_OK)
 
         fingerprint = (request.data.get("fingerprint") or "").strip()
-        if not fingerprint:
+        survey_id_raw = request.data.get("survey_id")
+        try:
+            survey_id = int(survey_id_raw)
+        except (TypeError, ValueError):
+            survey_id = 0
+
+        if not fingerprint or survey_id <= 0:
             return Response({"ok": True, "fallback": True}, status=status.HTTP_200_OK)
 
-        fp_hash = _fingerprint_hash(request, fingerprint)
+        fp_hash = _fingerprint_hash(request, fingerprint, survey_id)
         now = timezone.now()
 
-        with transaction.atomic():
-            obj, _created = SurveyAttempt.objects.select_for_update().get_or_create(
-                fingerprint_hash=fp_hash,
-                defaults={"attempts": 0, "last_submitted": None},
-            )
-            obj.attempts = int(obj.attempts or 0) + 1
-            obj.last_submitted = now
-            obj.save(update_fields=["attempts", "last_submitted"])
+        try:
+            with transaction.atomic():
+                obj, _created = SurveyAttempt.objects.select_for_update().get_or_create(
+                    fingerprint_hash=fp_hash,
+                    defaults={"attempts": 0, "last_submitted": None},
+                )
+                obj.attempts = int(obj.attempts or 0) + 1
+                obj.last_submitted = now
+                obj.save(update_fields=["attempts", "last_submitted"])
+        except OperationalError:
+            # DB migrations not applied yet.
+            return Response({"ok": True, "fallback": True}, status=status.HTTP_200_OK)
 
         return Response({"ok": True}, status=status.HTTP_200_OK)

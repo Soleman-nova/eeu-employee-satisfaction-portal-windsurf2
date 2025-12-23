@@ -11,23 +11,43 @@ from .serializers import (
 )
 
 
+def _get_user_role(user) -> str:
+    """Normalize the role used across the admin portal.
+
+    Some deployments use Django's default User model without a persisted `role` field.
+    In that case we infer role based on is_superuser/is_staff.
+    """
+    raw_role = getattr(user, "role", None)
+    if raw_role in ("super_admin", "survey_designer", "viewer"):
+        return raw_role
+    if getattr(user, "is_superuser", False):
+        return "super_admin"
+    if getattr(user, "is_staff", False):
+        return "survey_designer"
+    return "viewer"
+
+
 def _can_edit_surveys(user) -> bool:
     """Return True if the given user is allowed to manage surveys.
 
     We allow the explicit roles super_admin and survey_designer, and fall back
     to the historical is_staff flag for backwards compatibility.
     """
-    role = getattr(user, "role", None)
-    if role in ("super_admin", "survey_designer"):
-        return True
-    return getattr(user, "is_staff", False)
+    role = _get_user_role(user)
+    return role in ("super_admin", "survey_designer")
+
+
+def _can_view_surveys(user) -> bool:
+    """Return True if the given user is allowed to view surveys in the admin portal."""
+    role = _get_user_role(user)
+    return role in ("super_admin", "survey_designer", "viewer")
 
 
 class AdminSurveyListCreateView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        if not _can_edit_surveys(request.user):
+        if not _can_view_surveys(request.user):
             return Response({"detail": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)
         qs = Survey.objects.order_by('-created_at').prefetch_related('sections', 'sections__questions', 'questions')
         data = SurveyDetailSerializer(qs, many=True).data

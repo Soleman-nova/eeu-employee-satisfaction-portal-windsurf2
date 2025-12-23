@@ -57,7 +57,8 @@ export default function SurveyPage() {
         fingerprintRef.current = fp
 
         // LocalStorage fallback still applied even when backend is used.
-        const localKey = `eeu_survey_attempts_${fp}`
+        // Scope attempts to survey id so limits reset when a different survey is activated.
+        const localKey = `eeu_survey_attempts_${survey.id}_${fp}`
         const localAttempts = Number(localStorage.getItem(localKey) || '0')
         if (localAttempts >= 2) {
           navigate('/thank-you', {
@@ -71,7 +72,7 @@ export default function SurveyPage() {
         }
 
         try {
-          const res = await checkAttempts(fp)
+          const res = await checkAttempts(survey.id, fp)
           if (res?.allowed === false) {
             navigate('/thank-you', {
               replace: true,
@@ -90,7 +91,7 @@ export default function SurveyPage() {
       }
 
       // Fingerprint generation failed: fall back to a generic localStorage key.
-      const fallbackKey = 'eeu_survey_attempts_fallback'
+      const fallbackKey = `eeu_survey_attempts_fallback_${survey.id}`
       const localAttempts = Number(localStorage.getItem(fallbackKey) || '0')
       if (localAttempts >= 2) {
         navigate('/thank-you', {
@@ -206,16 +207,16 @@ export default function SurveyPage() {
         }
 
         if (fp) {
-          const localKey = `eeu_survey_attempts_${fp}`
+          const localKey = `eeu_survey_attempts_${survey.id}_${fp}`
           const localAttempts = Number(localStorage.getItem(localKey) || '0')
           localStorage.setItem(localKey, String(localAttempts + 1))
           try {
-            await incrementAttempt(fp)
+            await incrementAttempt(survey.id, fp)
           } catch {
             // ignore
           }
         } else {
-          const fallbackKey = 'eeu_survey_attempts_fallback'
+          const fallbackKey = `eeu_survey_attempts_fallback_${survey.id}`
           const localAttempts = Number(localStorage.getItem(fallbackKey) || '0')
           localStorage.setItem(fallbackKey, String(localAttempts + 1))
         }

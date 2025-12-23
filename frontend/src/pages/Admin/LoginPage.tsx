@@ -33,12 +33,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="relative eeu-dark min-h-[calc(100vh-64px)] overflow-hidden">
-      <div className="absolute inset-0 grid-overlay"></div>
-
-      <div className="steam"></div>
-      <div className="steam delay"></div>
-      <div className="steam delay2"></div>
+    <div className="relative min-h-[calc(100vh-64px)] overflow-hidden bg-white">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url('/landing-bg.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      <div className="pointer-events-none absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.35)' }} />
 
       <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-10">
         <div className="flex flex-col items-center text-center space-y-6">

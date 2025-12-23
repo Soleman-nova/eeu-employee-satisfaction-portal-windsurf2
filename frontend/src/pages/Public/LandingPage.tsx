@@ -7,6 +7,18 @@ export default function LandingPage() {
   const { t } = useI18n()
   return (
     <div className="relative min-h-[calc(100vh-64px)] overflow-hidden bg-white">
+      {/* Background image */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "url('/landing-bg.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.28,
+        }}
+      />
+
       {/* Subtle Ethiopian pattern border */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0" style={{

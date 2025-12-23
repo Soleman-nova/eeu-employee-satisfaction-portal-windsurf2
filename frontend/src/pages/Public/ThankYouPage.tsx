@@ -10,7 +10,7 @@ export default function ThankYouPage() {
   const variant: string | undefined = state?.variant
 
   useEffect(() => {
-    const t = setTimeout(() => navigate('/', { replace: true }), 10000)
+    const t = setTimeout(() => navigate('/', { replace: true }), 15000)
     return () => clearTimeout(t)
   }, [navigate])
 

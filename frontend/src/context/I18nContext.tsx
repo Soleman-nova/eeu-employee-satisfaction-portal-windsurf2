@@ -10,6 +10,7 @@ const strings: Record<Lang, Dict> = {
     'nav.survey': 'Survey',
     'nav.admin': 'Admin',
     'nav.toggle_lang': '\u12a0\u121b',
+    'nav.logout': 'Logout',
 
     'landing.headline': 'Welcome to EEU Employee Survey Portal',
     'landing.subheadline': 'Your voice powers our future. Take 5 minutes to share your feedback.',

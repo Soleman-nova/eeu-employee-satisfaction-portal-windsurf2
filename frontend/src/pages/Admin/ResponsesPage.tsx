@@ -85,7 +85,18 @@ export default function ResponsesPage() {
   const totalPages = Math.max(1, Math.ceil(count / pageSize))
 
   const currentSurvey = useMemo(() => surveys.find(s => s.id === survey), [surveys, survey])
-  const questionOptions = currentSurvey?.questions ?? []
+  const questionOptions = useMemo(() => {
+    if (!currentSurvey) return []
+    const fromSections = (currentSurvey.sections || []).flatMap((sec) => sec.questions || [])
+    const fromRoot = currentSurvey.questions || []
+    const all = [...fromSections, ...fromRoot]
+    const map = new Map<number, (typeof all)[number]>()
+    for (const q of all) {
+      if (q?.id == null) continue
+      if (!map.has(q.id)) map.set(q.id, q)
+    }
+    return Array.from(map.values()).sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  }, [currentSurvey])
   const selectedQuestion = useMemo(
     () => questionOptions.find(q => q.id === question),
     [questionOptions, question]
@@ -180,38 +191,49 @@ export default function ResponsesPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded border p-4">
+      <div className="bg-white dark:bg-slate-950 rounded border dark:border-slate-800 p-4">
         <div className="flex items-center justify-between mb-3">
-          <div className="text-sm text-gray-700">{t('responses.filters')}</div>
+          <div className="text-sm text-gray-700 dark:text-slate-200">{t('responses.filters')}</div>
           {isFiltered && <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">{t('responses.filters_applied')}</span>}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
           <div>
-            <label className="block text-xs text-gray-600 mb-1">{t('responses.survey')}</label>
-            <select value={survey ?? ''} onChange={e => { const id = e.target.value ? Number(e.target.value) : undefined; setSurvey(id); setQuestion(undefined); setPage(1) }} className="w-full border rounded px-2 py-2">
+            <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('responses.survey')}</label>
+            <select
+              value={survey ?? ''}
+              onChange={e => { const id = e.target.value ? Number(e.target.value) : undefined; setSurvey(id); setQuestion(undefined); setPage(1) }}
+              className="w-full border dark:border-slate-700 rounded px-2 py-2 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
+              style={{ colorScheme: 'dark' }}
+            >
               <option value="">All</option>
               {surveys.map(s => <option key={s.id} value={s.id}>{stripHtml(s.title)}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs text-gray-600 mb-1">{t('responses.from')}</label>
-            <input type="date" value={from} onChange={e => { setFrom(e.target.value); setPage(1) }} className="w-full border rounded px-2 py-2" />
+            <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('responses.from')}</label>
+            <input type="date" value={from} onChange={e => { setFrom(e.target.value); setPage(1) }} className="w-full border dark:border-slate-700 rounded px-2 py-2 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100" />
           </div>
           <div>
-            <label className="block text-xs text-gray-600 mb-1">{t('responses.to')}</label>
-            <input type="date" value={to} onChange={e => { setTo(e.target.value); setPage(1) }} className="w-full border rounded px-2 py-2" />
+            <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('responses.to')}</label>
+            <input type="date" value={to} onChange={e => { setTo(e.target.value); setPage(1) }} className="w-full border dark:border-slate-700 rounded px-2 py-2 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100" />
           </div>
           <div>
-            <label className="block text-xs text-gray-600 mb-1">{t('responses.question')}</label>
-            <select value={question ?? ''} disabled={!survey} onChange={e => { const v = e.target.value; setQuestion(v ? Number(v) : undefined); setPage(1) }} className="w-full border rounded px-2 py-2 disabled:bg-gray-100">
+            <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('responses.question')}</label>
+            <select
+              value={question ?? ''}
+              disabled={!survey}
+              onChange={e => { const v = e.target.value; setQuestion(v ? Number(v) : undefined); setPage(1) }}
+              className="w-full border dark:border-slate-700 rounded px-2 py-2 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 disabled:bg-gray-100 dark:disabled:bg-slate-900 disabled:text-gray-500 dark:disabled:text-slate-500"
+              style={{ colorScheme: 'dark' }}
+            >
               <option value="">All</option>
               {questionOptions.map(q => (
-                <option key={q.id} value={q.id}>{q.text}</option>
+                <option key={q.id} value={q.id}>{stripHtml(q.text)}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-xs text-gray-600 mb-1">{t('responses.rating_min')}</label>
+            <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('responses.rating_min')}</label>
             <input
               type="number"
               min={1}
@@ -225,11 +247,11 @@ export default function ResponsesPage() {
                 if (next != null && ratingMax != null && next > ratingMax) setRatingMax(next)
                 setPage(1)
               }}
-              className="w-full border rounded px-2 py-2 disabled:bg-gray-100"
+              className="w-full border dark:border-slate-700 rounded px-2 py-2 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 disabled:bg-gray-100 dark:disabled:bg-slate-900 disabled:text-gray-500 dark:disabled:text-slate-500"
             />
           </div>
           <div>
-            <label className="block text-xs text-gray-600 mb-1">{t('responses.rating_max')}</label>
+            <label className="block text-xs text-gray-600 dark:text-slate-300 mb-1">{t('responses.rating_max')}</label>
             <input
               type="number"
               min={1}
@@ -243,7 +265,7 @@ export default function ResponsesPage() {
                 if (next != null && ratingMin != null && next < ratingMin) setRatingMin(next)
                 setPage(1)
               }}
-              className="w-full border rounded px-2 py-2 disabled:bg-gray-100"
+              className="w-full border dark:border-slate-700 rounded px-2 py-2 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 disabled:bg-gray-100 dark:disabled:bg-slate-900 disabled:text-gray-500 dark:disabled:text-slate-500"
             />
           </div>
         </div>

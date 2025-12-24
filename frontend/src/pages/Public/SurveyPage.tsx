@@ -15,6 +15,7 @@ export default function SurveyPage() {
   const [survey, setSurvey] = useState<ActiveSurvey | null>(null)
   const [answers, setAnswers] = useState<Record<number, { rating?: number; comment?: string; choice?: string }>>({})
   const [missingRequired, setMissingRequired] = useState<Record<number, boolean>>({})
+  const [currentSectionIdx, setCurrentSectionIdx] = useState(0)
   const location = useLocation()
   const navigate = useNavigate()
   const params = useParams<{ id?: string }>()
@@ -131,8 +132,8 @@ export default function SurveyPage() {
     return Boolean(ans.comment?.trim())
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault()
     if (!survey) return
 
     if (isPreview) {
@@ -142,8 +143,12 @@ export default function SurveyPage() {
     }
 
     // Validate all required questions are answered
+    const allQs = (survey.sections && survey.sections.length > 0)
+      ? survey.sections.flatMap((s: any) => s.questions || [])
+      : survey.questions
+
     const missingAnswers = []
-    for (const q of survey.questions) {
+    for (const q of allQs) {
       if (q.required !== true) continue
       
       const ans = answers[q.id] || {}
@@ -174,7 +179,7 @@ export default function SurveyPage() {
     }
 
     // Defensive: enforce text length limits (maxlength should prevent this anyway)
-    for (const q of survey.questions) {
+    for (const q of allQs) {
       if (q.question_type !== 'text' && q.question_type !== 'paragraph') continue
       const ans = answers[q.id] || {}
       const text = (ans.comment || '').toString()
@@ -286,10 +291,55 @@ export default function SurveyPage() {
 
   let questionNumber = 0
 
-  // Paging model: currently a single-page survey, but this can be extended later.
-  const totalPages = 1
-  const currentPage = 1
-  const isLastPage = currentPage >= totalPages
+  const totalPages = Math.max(1, renderSections.length)
+  const currentPage = Math.min(totalPages, Math.max(1, currentSectionIdx + 1))
+  const isLastPage = currentSectionIdx >= totalPages - 1
+
+  const currentSection = renderSections[currentSectionIdx] || renderSections[0]
+
+  const validateSectionRequired = (sec: any) => {
+    const missingAnswers: number[] = []
+    for (const q of (sec?.questions || [])) {
+      if (q.required !== true) continue
+      const ans = answers[q.id] || {}
+      if (!isAnswered(q, ans)) missingAnswers.push(q.id)
+    }
+
+    if (missingAnswers.length === 0) {
+      if (Object.keys(missingRequired).length > 0) setMissingRequired({})
+      return true
+    }
+
+    const nextMissing: Record<number, boolean> = {}
+    for (const id of missingAnswers) nextMissing[id] = true
+    setMissingRequired(nextMissing)
+
+    const firstId = missingAnswers[0]
+    requestAnimationFrame(() => {
+      const el = document.getElementById(`q-${firstId}`)
+      if (el && typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    })
+    return false
+  }
+
+  const goNextSection = () => {
+    if (!validateSectionRequired(currentSection)) return
+    setCurrentSectionIdx((idx) => Math.min(totalPages - 1, idx + 1))
+    setMissingRequired({})
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+  }
+
+  const goPrevSection = () => {
+    setCurrentSectionIdx((idx) => Math.max(0, idx - 1))
+    setMissingRequired({})
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    })
+  }
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-white dark:bg-slate-950 flex flex-col">
@@ -332,24 +382,23 @@ export default function SurveyPage() {
 
       {/* Body */}
       <main className="flex-1 bg-white dark:bg-slate-950">
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto px-4 py-6 space-y-4">
+        <form noValidate onSubmit={handleSubmit} className="max-w-3xl mx-auto px-4 py-6 space-y-4">
           {/* Title block similar to Google Forms card */}
           <section className="bg-white dark:bg-slate-900 rounded-xl border border-[#DADCE0] dark:border-slate-700 shadow-sm px-5 py-4">
             <SafeHtml html={survey.title} className="rte-content text-lg font-semibold mb-1 text-gray-900 dark:text-slate-100" />
             {survey.description && <SafeHtml html={survey.description} className="rte-content text-sm text-gray-700 dark:text-slate-300" />}
           </section>
 
-          {/* Sections + Questions */}
-          {renderSections.map((sec: any, secIdx: number) => (
-            <React.Fragment key={sec.id ?? `sec-${secIdx}`}>
-              {(sec.title || sec.description) ? (
-                <section className="rounded-xl border shadow-sm px-5 py-4 bg-[rgba(0,100,0,0.05)] border-[rgba(0,100,0,0.18)]">
-                  {sec.title ? <SafeHtml html={sec.title} className="rte-content text-base font-semibold text-gray-900 dark:text-slate-100" /> : null}
-                  {sec.description ? <SafeHtml html={sec.description} className="rte-content text-sm mt-1 text-gray-700 dark:text-slate-300" /> : null}
-                </section>
-              ) : null}
+          {/* Sections + Questions (paged by section) */}
+          <>
+            {(currentSection?.title || currentSection?.description) ? (
+              <section className="rounded-xl border shadow-sm px-5 py-4 bg-[rgba(0,100,0,0.05)] border-[rgba(0,100,0,0.18)]">
+                {currentSection.title ? <SafeHtml html={currentSection.title} className="rte-content text-base font-semibold text-gray-900 dark:text-slate-100" /> : null}
+                {currentSection.description ? <SafeHtml html={currentSection.description} className="rte-content text-sm mt-1 text-gray-700 dark:text-slate-300" /> : null}
+              </section>
+            ) : null}
 
-              {(sec.questions || []).map((q: any) => (
+            {(currentSection?.questions || []).map((q: any) => (
                 <section
                   key={q.id}
                   id={`q-${q.id}`}
@@ -568,25 +617,38 @@ export default function SurveyPage() {
                 />
               )}
                 </section>
-              ))}
-            </React.Fragment>
-          ))}
+            ))}
+          </>
           {/* Actions */}
           <div className="flex items-center justify-between pt-2">
             <button
               type="button"
               className="px-4 py-2 rounded-md border text-sm"
               style={{ borderColor: '#DADCE0', color: '#5F6368' }}
-              onClick={() => navigate('/')}
+              onClick={() => {
+                if (currentSectionIdx > 0) goPrevSection()
+                else navigate('/')
+              }}
             >
               {t('survey.action_back')}
             </button>
             <button
-              type="submit"
+              type="button"
               className="px-6 py-2 rounded-md text-sm font-semibold text-white shadow-sm"
               style={{
                 backgroundColor: '#006400',
                 boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
+              }}
+              onClick={() => {
+                if (isPreview) {
+                  handleSubmit()
+                  return
+                }
+                if (!isLastPage) {
+                  goNextSection()
+                  return
+                }
+                handleSubmit()
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#0a7a0a'

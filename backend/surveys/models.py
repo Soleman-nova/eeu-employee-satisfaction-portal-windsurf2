@@ -7,6 +7,7 @@ class Survey(models.Model):
     header_title = models.TextField(blank=True, default="")
     header_subtitle = models.TextField(blank=True, default="")
     language = models.CharField(max_length=2, choices=(("en", "English"), ("am", "Amharic")), default="en")
+    budget_year = models.IntegerField(null=True, blank=True, db_index=True)
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 

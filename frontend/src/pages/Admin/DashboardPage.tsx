@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ChartCard from '@/components/ChartCard'
-import { fetchDashboardWithParams } from '@/api/adminAPI'
+import { fetchDashboardWithParams, listSurveys, type AdminSurvey } from '@/api/adminAPI'
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, LabelList } from 'recharts'
 import SafeHtml from '@/components/SafeHtml'
 import { ClipboardDocumentListIcon, InboxStackIcon, MapPinIcon } from '@heroicons/react/24/outline'
@@ -54,6 +54,12 @@ export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [region, setRegion] = useState<string>('')
+  const [surveys, setSurveys] = useState<AdminSurvey[]>([])
+  const [surveyQuery, setSurveyQuery] = useState<string>('')
+  const [budgetYear, setBudgetYear] = useState<string>('')
+  const [surveyId, setSurveyId] = useState<number | undefined>(undefined)
+  const [fromDate, setFromDate] = useState<string>('')
+  const [toDate, setToDate] = useState<string>('')
   const navigate = useNavigate()
   const { t, lang } = useI18n()
   const { theme } = useTheme()
@@ -65,13 +71,30 @@ export default function DashboardPage() {
   const tooltipLabelStyle = isDark ? { color: 'rgb(226 232 240)' } : undefined
   const tooltipItemStyle = isDark ? { color: 'rgb(241 245 249)' } : undefined
 
+  // Load dashboard data when filters change
   useEffect(() => {
     setLoading(true)
-    fetchDashboardWithParams(region ? { region } : undefined)
+    const params: any = {}
+    if (region) params.region = region
+    if (surveyId != null) params.survey = surveyId
+    if (fromDate) params.from = fromDate
+    if (toDate) params.to = toDate
+    fetchDashboardWithParams(Object.keys(params).length ? params : undefined)
       .then((res) => setData(res))
       .catch((e) => setError(e?.message || 'Failed to load dashboard'))
       .finally(() => setLoading(false))
-  }, [region])
+  }, [region, surveyId, fromDate, toDate])
+
+  // Load surveys for selection with server-side filters (name and budget year)
+  useEffect(() => {
+    const params: any = {}
+    if (surveyQuery) params.q = surveyQuery
+    if (budgetYear) {
+      const by = Number(budgetYear)
+      if (Number.isFinite(by)) params.budget_year = by
+    }
+    listSurveys(params).then(setSurveys).catch(() => {})
+  }, [surveyQuery, budgetYear])
 
   const regionOptions = (lang === 'am' ? (RegionsAm as any) : (RegionsEn as any)) as Array<{ value: string; title: string }>
 
@@ -147,52 +170,90 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded border p-4 md:p-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div>
+      <div className="bg-white rounded border p-4 md:p-5 flex flex-col gap-3">
+        <div className="flex items-center justify-between gap-3 flex-wrap">
           <h2 className="text-2xl font-semibold">{t('dashboard.title')}</h2>
-          {data.survey && (
-            <div className="text-sm text-gray-600 mt-1">
-              {t('dashboard.active_survey')}:
-              <SafeHtml html={data.survey.title} className="rte-content inline font-medium" />
-            </div>
-          )}
-          {region && (
-            <div className="text-sm text-gray-600 mt-1">
-              Region: <span className="font-medium">{region}</span>
-            </div>
-          )}
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded border bg-white dark:bg-slate-950 text-sm dark:border-slate-800">
-            <MapPinIcon className="h-5 w-5 text-gray-600 dark:text-slate-300" />
-            <select
-              className="bg-white dark:bg-slate-950 focus:outline-none text-gray-900 dark:text-slate-100"
-              style={{ colorScheme: isDark ? 'dark' : 'light' }}
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate('/admin/manage-surveys')}
+              className="px-3 py-1.5 rounded border bg-white hover:bg-gray-50 inline-flex items-center gap-2"
             >
-              <option value="">All Regions</option>
-              {regionOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.title}
-                </option>
+              <ClipboardDocumentListIcon className="h-5 w-5 text-gray-700" />
+              <span>Manage Surveys</span>
+            </button>
+            <button
+              onClick={() => navigate('/admin/responses')}
+              className="px-3 py-1.5 rounded bg-eeuLightBlue text-white hover:opacity-95 inline-flex items-center gap-2"
+            >
+              <InboxStackIcon className="h-5 w-5" />
+              <span>View Responses</span>
+            </button>
+          </div>
+        </div>
+        {data.survey && (
+          <div className="text-sm text-gray-600">
+            {t('dashboard.active_survey')}: <SafeHtml html={data.survey.title} className="rte-content inline font-medium" />
+          </div>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
+          <div className="md:col-span-2">
+            <label className="block text-xs text-gray-600 mb-1">Search name</label>
+            <input
+              value={surveyQuery}
+              onChange={(e) => setSurveyQuery(e.target.value)}
+              className="w-full border rounded px-3 py-2 text-sm bg-white dark:bg-slate-950"
+              placeholder="Survey name"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Budget year</label>
+            <input
+              type="number"
+              value={budgetYear}
+              onChange={(e) => setBudgetYear(e.target.value)}
+              className="w-full border rounded px-3 py-2 text-sm bg-white dark:bg-slate-950"
+              placeholder="e.g. 2025"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">Survey</label>
+            <select
+              value={surveyId ?? ''}
+              onChange={(e) => setSurveyId(e.target.value ? Number(e.target.value) : undefined)}
+              className="w-full border rounded px-3 py-2 text-sm bg-white dark:bg-slate-950"
+            >
+              <option value="">Active survey</option>
+              {surveys.map((s) => (
+                <option key={s.id} value={s.id}>{stripHtml(s.title)}</option>
               ))}
             </select>
           </div>
-          <button
-            onClick={() => navigate('/admin/manage-surveys')}
-            className="px-3 py-1.5 rounded border bg-white hover:bg-gray-50 inline-flex items-center gap-2"
-          >
-            <ClipboardDocumentListIcon className="h-5 w-5 text-gray-700" />
-            <span>Manage Surveys</span>
-          </button>
-          <button
-            onClick={() => navigate('/admin/responses')}
-            className="px-3 py-1.5 rounded bg-eeuLightBlue text-white hover:opacity-95 inline-flex items-center gap-2"
-          >
-            <InboxStackIcon className="h-5 w-5" />
-            <span>View Responses</span>
-          </button>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">From</label>
+            <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} className="w-full border rounded px-3 py-2 text-sm bg-white dark:bg-slate-950" />
+          </div>
+          <div>
+            <label className="block text-xs text-gray-600 mb-1">To</label>
+            <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} className="w-full border rounded px-3 py-2 text-sm bg-white dark:bg-slate-950" />
+          </div>
+          <div className="flex items-end">
+            <div className="inline-flex items-center gap-2 px-3 py-2 rounded border bg-white dark:bg-slate-950 text-sm dark:border-slate-800 w-full">
+              <MapPinIcon className="h-5 w-5 text-gray-600 dark:text-slate-300" />
+              <select
+                className="flex-1 bg-white dark:bg-slate-950 focus:outline-none text-gray-900 dark:text-slate-100"
+                style={{ colorScheme: isDark ? 'dark' : 'light' }}
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+              >
+                <option value="">All Regions</option>
+                {regionOptions.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
       </div>
 

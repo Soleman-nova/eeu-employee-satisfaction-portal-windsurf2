@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.utils import timezone
 from .models import Survey, Section, Question, Response, Answer
 
 
@@ -37,6 +38,7 @@ class SurveySerializer(serializers.ModelSerializer):
             "header_title",
             "header_subtitle",
             "language",
+            "budget_year",
             "is_active",
             "created_at",
             "sections",
@@ -194,6 +196,7 @@ class SurveyCreateUpdateSerializer(serializers.ModelSerializer):
             "header_title",
             "header_subtitle",
             "language",
+            "budget_year",
             "is_active",
             "sections",
             # Legacy support
@@ -206,6 +209,9 @@ class SurveyCreateUpdateSerializer(serializers.ModelSerializer):
         # If creating with is_active=True, deactivate others
         if validated_data.get("is_active"):
             Survey.objects.filter(is_active=True).update(is_active=False)
+        # Default budget_year to current year if not provided
+        if validated_data.get("budget_year") is None:
+            validated_data["budget_year"] = timezone.now().year
         survey = Survey.objects.create(**validated_data)
         if sections_payload is None:
             # Backwards compatible: create a default section and put all questions in it.
@@ -432,6 +438,7 @@ class SurveyDetailSerializer(serializers.ModelSerializer):
             "header_title",
             "header_subtitle",
             "language",
+            "budget_year",
             "is_active",
             "created_at",
             "sections",

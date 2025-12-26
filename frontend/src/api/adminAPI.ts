@@ -39,6 +39,9 @@ export async function fetchDashboard() {
 
 export type DashboardQuery = {
   region?: string
+  survey?: number
+  from?: string
+  to?: string
 }
 
 export async function fetchDashboardWithParams(params?: DashboardQuery) {
@@ -131,6 +134,7 @@ export type AdminSurvey = {
   header_title?: string
   header_subtitle?: string
   language?: 'en' | 'am'
+  budget_year?: number | null
   is_active: boolean
   created_at: string
   sections?: AdminSurveySection[]
@@ -143,6 +147,7 @@ export type CreateSurveyInput = {
   header_title?: string
   header_subtitle?: string
   language?: 'en' | 'am'
+  budget_year?: number
   is_active?: boolean
   sections?: Array<{
     id?: number
@@ -178,8 +183,16 @@ export type CreateSurveyInput = {
   }>
 }
 
-export async function listSurveys(): Promise<AdminSurvey[]> {
-  const res = await axiosClient.get('/api/admin/surveys/')
+export type ListSurveysQuery = {
+  q?: string
+  year?: number
+  budget_year?: number
+  language?: 'en' | 'am'
+  is_active?: boolean
+}
+
+export async function listSurveys(params?: ListSurveysQuery): Promise<AdminSurvey[]> {
+  const res = await axiosClient.get('/api/admin/surveys/', { params })
   return res.data
 }
 

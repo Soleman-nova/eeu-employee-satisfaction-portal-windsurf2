@@ -86,11 +86,21 @@ class DashboardView(APIView):
         description="Aggregated dashboard data for the active survey: totals, averages, timeseries, and distributions.",
     )
     def get(self, request):
-        survey = (
-            Survey.objects.filter(is_active=True)
-            .order_by("-created_at")
-            .first()
-        )
+        survey_id = request.query_params.get("survey")
+        date_from = request.query_params.get("from")
+        date_to = request.query_params.get("to")
+        survey = None
+        if survey_id:
+            try:
+                survey = Survey.objects.filter(id=int(survey_id)).first()
+            except (TypeError, ValueError):
+                survey = None
+        if not survey:
+            survey = (
+                Survey.objects.filter(is_active=True)
+                .order_by("-created_at")
+                .first()
+            )
         if not survey:
             return Response({
                 "survey": None,
@@ -104,6 +114,15 @@ class DashboardView(APIView):
         region = request.query_params.get("region")
 
         base_responses_qs = SurveyResponse.objects.filter(survey=survey)
+        # Date filters (inclusive)
+        if date_from:
+            d = parse_date(date_from)
+            if d:
+                base_responses_qs = base_responses_qs.filter(submitted_at__date__gte=d)
+        if date_to:
+            d = parse_date(date_to)
+            if d:
+                base_responses_qs = base_responses_qs.filter(submitted_at__date__lte=d)
         if region:
             # Filter responses by selected region based on the Regions question answer.
             base_responses_qs = base_responses_qs.filter(
@@ -437,7 +456,7 @@ class DashboardView(APIView):
             "gender": gender,
             "age": age,
             "education": education,
-            "filters": {"region": region},
+            "filters": {"region": region, "from": date_from, "to": date_to, "survey": (int(survey_id) if survey_id and str(survey_id).isdigit() else None)},
         })
 
 

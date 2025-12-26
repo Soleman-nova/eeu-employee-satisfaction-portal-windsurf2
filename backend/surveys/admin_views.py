@@ -49,7 +49,33 @@ class AdminSurveyListCreateView(APIView):
     def get(self, request):
         if not _can_view_surveys(request.user):
             return Response({"detail": "Forbidden"}, status=status.HTTP_403_FORBIDDEN)
-        qs = Survey.objects.order_by('-created_at').prefetch_related('sections', 'sections__questions', 'questions')
+        qs = Survey.objects.all()
+        q = request.query_params.get("q")
+        year = request.query_params.get("year")
+        budget_year = request.query_params.get("budget_year")
+        language = request.query_params.get("language")
+        is_active = request.query_params.get("is_active")
+
+        if q:
+            qs = qs.filter(title__icontains=q)
+        if budget_year:
+            try:
+                by = int(budget_year)
+                qs = qs.filter(budget_year=by)
+            except (TypeError, ValueError):
+                pass
+        elif year:
+            try:
+                y = int(year)
+                qs = qs.filter(created_at__year=y)
+            except (TypeError, ValueError):
+                pass
+        if language:
+            qs = qs.filter(language=language)
+        if is_active in ("true", "false"):
+            qs = qs.filter(is_active=(is_active == "true"))
+
+        qs = qs.order_by('-created_at').prefetch_related('sections', 'sections__questions', 'questions')
         data = SurveyDetailSerializer(qs, many=True).data
         return Response(data)
 

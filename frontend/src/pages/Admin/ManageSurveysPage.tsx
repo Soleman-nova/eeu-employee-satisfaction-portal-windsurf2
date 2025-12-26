@@ -375,6 +375,7 @@ export default function ManageSurveysPage() {
   const [description, setDescription] = useState('')
   const [surveyLanguage, setSurveyLanguage] = useState<'en' | 'am'>('en')
   const [makeActive, setMakeActive] = useState(false)
+  const [budgetYear, setBudgetYear] = useState<string>('')
   const [sections, setSections] = useState<NewSection[]>([defaultSection()])
   const [saving, setSaving] = useState(false)
 
@@ -387,6 +388,7 @@ export default function ManageSurveysPage() {
   const [editHeaderSubtitle, setEditHeaderSubtitle] = useState('')
   const [editSurveyLanguage, setEditSurveyLanguage] = useState<'en' | 'am'>('en')
   const [editMakeActive, setEditMakeActive] = useState(false)
+  const [editBudgetYear, setEditBudgetYear] = useState<string>('')
   const [updating, setUpdating] = useState(false)
   const [editSections, setEditSections] = useState<NewSection[]>([defaultSection()])
   const [existingQuestionIds, setExistingQuestionIds] = useState<Set<number>>(new Set())
@@ -421,6 +423,7 @@ export default function ManageSurveysPage() {
     setDescription('')
     setSurveyLanguage('en')
     setMakeActive(false)
+    setBudgetYear('')
     setSections([defaultSection()])
   }
 
@@ -586,11 +589,13 @@ export default function ManageSurveysPage() {
     }
     setSaving(true)
     try {
+      const by = budgetYear ? Number(budgetYear) : undefined
       const payload: CreateSurveyInput = {
         title: normalizedTitle,
         description: normalizeRichText(description) || undefined,
         language: surveyLanguage,
         is_active: makeActive,
+        budget_year: (by != null && Number.isFinite(by)) ? by : undefined,
         sections: sections.map((s, sIdx) => ({
           title: normalizeRichText(s.title || 'Untitled Section') || 'Untitled Section',
           description: normalizeRichText(s.description || '') || undefined,
@@ -643,6 +648,7 @@ export default function ManageSurveysPage() {
     setEditHeaderSubtitle((s as any).header_subtitle || '')
     setEditSurveyLanguage((s as any).language || 'en')
     setEditMakeActive(!!s.is_active)
+    setEditBudgetYear((s as any).budget_year != null ? String((s as any).budget_year) : '')
     const secs = (s.sections && s.sections.length > 0)
       ? s.sections
       : [{ id: null, title: 'Untitled Section', description: '', questions: s.questions }]
@@ -696,6 +702,7 @@ export default function ManageSurveysPage() {
     }
     setUpdating(true)
     try {
+      const by = editBudgetYear ? Number(editBudgetYear) : undefined
       await updateSurvey(editSurvey.id, {
         title: normalizedEditTitle,
         description: normalizeRichText(editDescription) || undefined,
@@ -703,6 +710,7 @@ export default function ManageSurveysPage() {
         header_subtitle: normalizeRichText(editHeaderSubtitle) || undefined,
         language: editSurveyLanguage,
         is_active: submitMode === 'publish' ? true : editMakeActive,
+        budget_year: (by != null && Number.isFinite(by)) ? by : undefined,
         sections: editSections.map((s, sIdx) => ({
           id: s.backendId,
           title: normalizeRichText(s.title || 'Untitled Section') || 'Untitled Section',
@@ -845,6 +853,16 @@ export default function ManageSurveysPage() {
                   <option value="am">Amharic</option>
                 </select>
               </div>
+              <div>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Budget Year</label>
+                <input
+                  type="number"
+                  className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-sm bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
+                  value={budgetYear}
+                  onChange={(e) => setBudgetYear(e.target.value)}
+                  placeholder="e.g. 2025"
+                />
+              </div>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="text-sm font-medium">Sections</div>
@@ -928,6 +946,16 @@ export default function ManageSurveysPage() {
               <div>
                 <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Survey Header Subtitle</label>
                 <RichTextEditor value={editHeaderSubtitle} onChange={setEditHeaderSubtitle} placeholder="Survey Header Subtitle" />
+              </div>
+              <div>
+                <label className="block text-sm text-gray-700 dark:text-slate-200 mb-1">Budget Year</label>
+                <input
+                  type="number"
+                  className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-sm bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
+                  value={editBudgetYear}
+                  onChange={(e) => setEditBudgetYear(e.target.value)}
+                  placeholder="e.g. 2025"
+                />
               </div>
               <div className="flex items-center gap-2">
                 <input id="editactive" type="checkbox" checked={editMakeActive} onChange={e => setEditMakeActive(e.target.checked)} />

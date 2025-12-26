@@ -361,6 +361,69 @@ class DashboardView(APIView):
                 },
             }
 
+        # Age (እድሜ) distribution: locate question by text ('age' or 'እድሜ')
+        age = None
+        age_q = (
+            Question.objects.filter(survey=survey)
+            .filter(Q(text__icontains="age") | Q(text__icontains="እድሜ"))
+            .order_by("id")
+            .first()
+        )
+        if age_q:
+            # Count by selected choice (works best if the question is dropdown/multiple_choice)
+            counts_map = {}
+            for row in (
+                Answer.objects.filter(response__in=base_responses_qs, question=age_q)
+                .exclude(choice__isnull=True)
+                .values("choice")
+                .annotate(c=Count("id"))
+            ):
+                label = str(row.get("choice") or "").strip()
+                if not label:
+                    continue
+                counts_map[label] = int(row.get("c") or 0) + int(counts_map.get(label, 0))
+
+            total = int(sum(counts_map.values()))
+            percent_map = {k: (round((v / total) * 100.0, 1) if total > 0 else 0.0) for k, v in counts_map.items()}
+            age = {
+                "question_id": age_q.id,
+                "question": age_q.text,
+                "counts": counts_map,
+                "total": total,
+                "percent": percent_map,
+            }
+
+        # Education level (የትምህርት ደረጃ) distribution: locate question by text ('education' or 'የትምህርት')
+        education = None
+        edu_q = (
+            Question.objects.filter(survey=survey)
+            .filter(Q(text__icontains="education") | Q(text__icontains="የትምህርት"))
+            .order_by("id")
+            .first()
+        )
+        if edu_q:
+            edu_counts = {}
+            for row in (
+                Answer.objects.filter(response__in=base_responses_qs, question=edu_q)
+                .exclude(choice__isnull=True)
+                .values("choice")
+                .annotate(c=Count("id"))
+            ):
+                label = str(row.get("choice") or "").strip()
+                if not label:
+                    continue
+                edu_counts[label] = int(row.get("c") or 0) + int(edu_counts.get(label, 0))
+
+            total = int(sum(edu_counts.values()))
+            edu_percent = {k: (round((v / total) * 100.0, 1) if total > 0 else 0.0) for k, v in edu_counts.items()}
+            education = {
+                "question_id": edu_q.id,
+                "question": edu_q.text,
+                "counts": edu_counts,
+                "total": total,
+                "percent": edu_percent,
+            }
+
         return Response({
             "survey": {"id": survey.id, "title": survey.title},
             "totals": {"responses": total_responses},
@@ -372,6 +435,8 @@ class DashboardView(APIView):
             "rating_question_overview": rating_question_overview,
             "rating_section_overview": rating_section_overview,
             "gender": gender,
+            "age": age,
+            "education": education,
             "filters": {"region": region},
         })
 

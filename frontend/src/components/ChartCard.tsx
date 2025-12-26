@@ -9,6 +9,10 @@ type Props = {
   xLabelPrefix?: string
   valueLabel?: string
   allowDecimals?: boolean
+  yDomain?: [number, number]
+  yTicks?: number[]
+  yTickFormatter?: (value: number) => string
+  yTickCount?: number
 }
 
 export default function ChartCard({
@@ -18,6 +22,10 @@ export default function ChartCard({
   xLabelPrefix = 'Rating',
   valueLabel = 'Count',
   allowDecimals = false,
+  yDomain,
+  yTicks,
+  yTickFormatter,
+  yTickCount,
 }: Props) {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
@@ -29,7 +37,13 @@ export default function ChartCard({
         <ResponsiveContainer>
           <BarChart data={data}>
             <XAxis dataKey="name" />
-            <YAxis allowDecimals={allowDecimals} />
+            <YAxis
+              allowDecimals={allowDecimals}
+              domain={yDomain}
+              ticks={yTicks}
+              tickFormatter={yTickFormatter}
+              tickCount={yTickCount}
+            />
             <Tooltip
               formatter={(value: any) => [value, valueLabel]}
               labelFormatter={(label: any) => `${xLabelPrefix}: ${label}`}

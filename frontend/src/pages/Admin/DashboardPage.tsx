@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ChartCard from '@/components/ChartCard'
 import { fetchDashboardWithParams } from '@/api/adminAPI'
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts'
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, LabelList } from 'recharts'
 import SafeHtml from '@/components/SafeHtml'
 import { ClipboardDocumentListIcon, InboxStackIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { useI18n } from '@/context/I18nContext'
@@ -31,6 +31,20 @@ type DashboardData = {
     counts: { male: number; female: number }
     total: number
     percent: { male: number; female: number }
+  } | null
+  education?: {
+    question_id: number
+    question: string
+    counts: Record<string, number>
+    total: number
+    percent: Record<string, number>
+  } | null
+  age?: {
+    question_id: number
+    question: string
+    counts: Record<string, number>
+    total: number
+    percent: Record<string, number>
   } | null
   filters?: { region?: string | null }
 }
@@ -81,7 +95,30 @@ export default function DashboardPage() {
         { name: genderLabelFemale, value: data.gender.counts?.female ?? 0, percent: data.gender.percent?.female ?? 0 },
       ]
     : []
-  const genderColors = ['#006400', '#FF6200']
+  const genderColors = ['#3B82F6', '#EC4899']
+
+  const ageLabel = lang === 'am' ? 'እድሜ' : 'Age'
+  const ageData = data.age
+    ? Object.entries(data.age.counts || {}).map(([name, value]) => ({
+        name,
+        value: (value as number) ?? 0,
+        percent: (data.age?.percent as any)?.[name] ?? 0,
+      }))
+    : []
+  const ageColors = ['#60A5FA', '#F59E0B', '#10B981', '#F472B6', '#8B5CF6', '#F87171', '#22D3EE', '#34D399']
+
+  const eduTitle = lang === 'am' ? 'የትምህርት ደረጃ' : 'Education Level'
+  const percentLabel = lang === 'am' ? 'መቶኛ' : 'Percent'
+  const countLabel = lang === 'am' ? 'ብዛት' : 'Count'
+  const eduData = data.education
+    ? Object.entries(data.education.percent || {}).map(([name, p]) => ({
+        name,
+        value: Number(p) || 0,
+        label: `${Number(p) || 0}%`,
+        count: (data.education?.counts as any)?.[name] ?? 0,
+      }))
+    : []
+  const eduChartHeight = Math.max(200, Math.min(400, 40 * (eduData.length || 1) + 40))
 
   const noActiveSurvey = !data.survey
   const noResponses = (data.totals?.responses ?? 0) === 0
@@ -97,6 +134,12 @@ export default function DashboardPage() {
   const ratingSectionOverview = (data.rating_section_overview || []).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
 
   const fmtPct = (v: number) => `${Number.isFinite(v) ? v : 0}%`
+  const fmtK = (v: number) => {
+    const n = Number(v) || 0
+    if (n >= 1000000) return `${(n / 1000000).toFixed(1).replace(/\.0$/, '')}m`
+    if (n >= 1000) return `${(n / 1000).toFixed(1).replace(/\.0$/, '')}k`
+    return String(n)
+  }
 
   const ratingSliceColors = isDark
     ? ['#7F1D1D', '#EF4444', '#94A3B8', '#4ADE80', '#14532D']
@@ -160,6 +203,14 @@ export default function DashboardPage() {
           <div className="text-sm">{t('dashboard.no_active_desc')}</div>
         </div>
       )}
+
+      
+      
+      
+
+      
+
+      
 
       {ratingSectionOverview.length > 0 && (
         <div className="space-y-3">
@@ -352,36 +403,101 @@ export default function DashboardPage() {
         xLabelPrefix="Question"
         valueLabel="Avg Rating"
         allowDecimals
+        yDomain={[1, 5]}
+        yTicks={[1, 2, 3, 4, 5]}
       />
 
-      {/* Gender (Sex) ratio */}
-      {data.gender && (
+      {/* Sex and Age distributions */}
+      {(data.gender || data.age) && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {data.gender && (
+            <div className="bg-white rounded border p-4">
+              <h3 className="font-semibold mb-2">{lang === 'am' ? 'ጾታ' : 'Sex'}</h3>
+              <div className="w-full h-64">
+                <ResponsiveContainer>
+                  <PieChart>
+                    <Pie
+                      data={genderData}
+                      dataKey="value"
+                      nameKey="name"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={80}
+                      label={(entry: any) => `${entry.name}: ${entry.percent}%`}
+                    >
+                      {genderData.map((_, idx) => (
+                        <Cell key={idx} fill={genderColors[idx % genderColors.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value: any, _name: any, props: any) => [value, 'Count']}
+                      contentStyle={tooltipContentStyle}
+                      labelStyle={tooltipLabelStyle}
+                      itemStyle={tooltipItemStyle}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          )}
+
+          {data.age && (
+            <div className="bg-white rounded border p-4">
+              <h3 className="font-semibold mb-2">{ageLabel}</h3>
+              <div className="w-full h-64">
+                <ResponsiveContainer>
+                  <PieChart>
+                    <Pie
+                      data={ageData}
+                      dataKey="value"
+                      nameKey="name"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={80}
+                      label={(entry: any) => `${entry.name}: ${entry.percent}%`}
+                    >
+                      {ageData.map((_, idx) => (
+                        <Cell key={idx} fill={ageColors[idx % ageColors.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(value: any, _name: any, props: any) => [value, 'Count']}
+                      contentStyle={tooltipContentStyle}
+                      labelStyle={tooltipLabelStyle}
+                      itemStyle={tooltipItemStyle}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Education level horizontal bar (% on bars) placed below the pie charts */}
+      {data.education && eduData.length > 0 && (
         <div className="bg-white rounded border p-4">
-          <h3 className="font-semibold mb-2">{lang === 'am' ? 'ጾታ' : 'Sex'}</h3>
-          <div className="w-full h-64">
+          <h3 className="font-semibold mb-2">{eduTitle}</h3>
+          <div className="w-full" style={{ height: eduChartHeight }}>
             <ResponsiveContainer>
-              <PieChart>
-                <Pie
-                  data={genderData}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  label={(entry: any) => `${entry.name}: ${entry.percent}%`}
-                >
-                  {genderData.map((_, idx) => (
-                    <Cell key={idx} fill={genderColors[idx % genderColors.length]} />
-                  ))}
-                </Pie>
+              <BarChart data={eduData} layout="vertical" margin={{ left: 12, right: 12, top: 8, bottom: 8 }}>
+                <XAxis type="number" domain={[0, 100]} tickFormatter={(v: number) => `${v}%`} tickCount={6} />
+                <YAxis type="category" dataKey="name" width={180} interval={0} />
                 <Tooltip
-                  formatter={(value: any, _name: any, props: any) => [value, 'Count']}
+                  formatter={(value: any, _name: any, props: any) => [
+                    `${value}% (${countLabel}: ${props?.payload?.count ?? 0})`,
+                    percentLabel,
+                  ]}
                   contentStyle={tooltipContentStyle}
                   labelStyle={tooltipLabelStyle}
                   itemStyle={tooltipItemStyle}
                 />
-                <Legend />
-              </PieChart>
+                <Bar dataKey="value" name={percentLabel} fill="#10B981" radius={[4, 4, 4, 4]}>
+                  <LabelList dataKey="label" position="right" />
+                </Bar>
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
@@ -394,7 +510,7 @@ export default function DashboardPage() {
           <ResponsiveContainer>
             <LineChart data={lineData}>
               <XAxis dataKey="label" />
-              <YAxis allowDecimals={false} />
+              <YAxis allowDecimals={false} tickFormatter={fmtK} tickCount={5} />
               <Tooltip
                 formatter={(value: any) => [value, 'Responses']}
                 labelFormatter={(label: any) => `Date: ${label}`}
@@ -434,6 +550,9 @@ export default function DashboardPage() {
                 key={qid}
                 title={avgMeta ? avgMeta.question : `Question ${qid}`}
                 data={distData}
+                valueLabel="Responses"
+                yTickFormatter={fmtK}
+                yTickCount={5}
                 onBarClick={(entry) => {
                   const rating = parseInt(entry.name, 10)
                   if (!Number.isFinite(rating)) return

@@ -324,7 +324,7 @@ export default function UserManagementPage() {
                     setResetId(null)
                     setResetPassword('')
                   }}
-                  className="px-3 py-1 rounded text-sm bg-gray-200 text-gray-800"
+                  className="px-3 py-1 rounded text-sm bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
                 >
                   Cancel
                 </button>

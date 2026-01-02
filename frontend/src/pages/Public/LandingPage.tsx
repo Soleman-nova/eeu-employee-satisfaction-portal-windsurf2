@@ -67,7 +67,8 @@ export default function LandingPage() {
       {/* Content */}
       <div className="relative mx-auto max-w-6xl px-6 py-16 grid place-items-center text-center">
         {/* Logo */}
-        <img src="/eeu_logo.png" alt="EEU logo" className="w-34 h-28 md:w-34 md:h-28 drop-shadow-sm" />
+        <img src="/eeu_logo.png" alt="EEU logo" className="w-30 h-24 md:w-30 md:h-24 drop-shadow-sm" />
+        
 
         {/* Headline */}
         <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#064d06] dark:text-green-300">

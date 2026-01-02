@@ -124,7 +124,7 @@ export default function LoginPage() {
           </div>
 
           <div className="flex items-center justify-center gap-3 mt-8 text-[rgba(229,246,255,.8)]">
-            <img src="/eeu_logo.png" alt="EEU logo" className="w-15 h-15 md:w-32 md:h-20 drop-shadow-sm" />
+            <img src="/eeu_logo.png" alt="EEU logo" className="w-10 h-10 md:w-15 md:h-15 drop-shadow-sm" />
             <span className="text-xs">© 2025 Ethiopian Electric Utility</span>
           </div>
         </div>

@@ -1,0 +1,6287 @@
+[
+{
+  "model": "surveys.survey",
+  "pk": 1,
+  "fields": {
+    "title": "MY first survey 1",
+    "description": "this is to test hjbhgg",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2025,
+    "is_active": false,
+    "created_at": "2025-11-14T07:18:01.947Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 2,
+  "fields": {
+    "title": "Dr.Dawt Survey",
+    "description": "faetaet",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2025,
+    "is_active": false,
+    "created_at": "2025-11-14T13:17:32.850Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 4,
+  "fields": {
+    "title": "ድፍጅፎኢድጊኦ",
+    "description": "ዝፍጅጎጅስፊኦግጂዕግጅ",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2025,
+    "is_active": false,
+    "created_at": "2025-11-14T13:35:09.584Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 6,
+  "fields": {
+    "title": "EEU standard survey",
+    "description": "This is a standard EEU employee satisfaction survey.",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2025,
+    "is_active": false,
+    "created_at": "2025-12-02T15:14:40.512Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 7,
+  "fields": {
+    "title": "EEU standard survey 2",
+    "description": "This is a second standard survey",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2025,
+    "is_active": false,
+    "created_at": "2025-12-04T09:12:38.621Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 8,
+  "fields": {
+    "title": "EEU standard Survey 3",
+    "description": "This is the third standard survey",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2025,
+    "is_active": false,
+    "created_at": "2025-12-12T08:42:28.169Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 9,
+  "fields": {
+    "title": "<p>EEU standard survey 4</p>",
+    "description": "<p>This is the fourth standard survey</p>",
+    "header_title": "",
+    "header_subtitle": "",
+    "language": "en",
+    "budget_year": 2018,
+    "is_active": false,
+    "created_at": "2025-12-12T09:09:00.519Z"
+  }
+},
+{
+  "model": "surveys.survey",
+  "pk": 10,
+  "fields": {
+    "title": "<h2><strong style=\"color: rgb(255, 153, 0);\">የኢትዮጵያ ኤሌክትሪክ አገልግሎት በ2018 በጀት ዓመት የሰራተኞች የስራ ላይ እርካታ ጥናት</strong></h2>",
+    "description": "<p>የዚህ ጥናት ግብ በኢትዮጵያ ኤሌክትሪክ አገልግሎት ውስጥ የሚሰሩ ሰራተኞች የስራ ላይ እርካታ ደረጃን በጥናት በመለየት ወደፊት የሰራተኛውን የስራ ላይ እርካታ ለማሻሻል የሚረዱ ሃሳቦችን የያዘ የጥናት ሰነድ ማዘጋጀት ነው። ይህ ጥናት የተሳካ እንዲሆን ይህን አጭር መጠይቅ እንዲሞሉልን በአክብሮት እንጠይቃለን፡፡ መጠይቁን ለመሙላት <strong>ከ5 ደቂቃ</strong> በላይ አይፈጅም፡፡ ለጥያቄዎቹ የሚሰጡት መልስ ለጥናታችን ከፍተኛ ጠቀሜታ አለው፡፡</p><p><span style=\"color: rgb(230, 0, 0);\">*</span>\t<span style=\"color: rgb(230, 0, 0);\">ይህ ምልክት ያላቸው ጥያቄዎች አስፈላጊ ስለሆኑ እባክዎ ይምሏቸው።</span></p>",
+    "header_title": "<h1><strong style=\"color: rgb(102, 185, 102);\">የኢትዮጵያ ኤሌክትሪክ አገልግሎት በ2018 በጀት ዓመት የሰራተኞች የስራ ላይ እርካታ ጥናት ቁ.</strong><span style=\"color: rgb(102, 185, 102);\">2</span></h1>",
+    "header_subtitle": "<p>እባክዎን የዳሰሳ ጥናቱን በቅንነት እና ሁሉንም ጥያቄዎች በመመለስ ይሙሉ።</p>",
+    "language": "en",
+    "budget_year": 2018,
+    "is_active": true,
+    "created_at": "2025-12-18T11:58:54.082Z"
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "title": "Untitled Section",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 2,
+  "fields": {
+    "survey": 2,
+    "title": "Untitled Section",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 3,
+  "fields": {
+    "survey": 4,
+    "title": "Untitled Section",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 5,
+  "fields": {
+    "survey": 6,
+    "title": "Untitled Section",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 6,
+  "fields": {
+    "survey": 7,
+    "title": "Untitled Section",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 7,
+  "fields": {
+    "survey": 8,
+    "title": "Untitled Section",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 8,
+  "fields": {
+    "survey": 9,
+    "title": "<p>Untitled Section</p>",
+    "description": "",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 9,
+  "fields": {
+    "survey": 10,
+    "title": "<p>Section one</p>",
+    "description": "<p>General information</p>",
+    "order": 0
+  }
+},
+{
+  "model": "surveys.section",
+  "pk": 11,
+  "fields": {
+    "survey": 10,
+    "title": "<p>section 2</p>",
+    "description": "<p>Satisfaction rating</p>",
+    "order": 1
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "section": 1,
+    "text": "what is the date?",
+    "question_type": "text",
+    "order": 0,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 2,
+  "fields": {
+    "survey": 1,
+    "section": 1,
+    "text": "how happy are you?",
+    "question_type": "rating",
+    "order": 1,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 3,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "how legendary?",
+    "question_type": "rating",
+    "order": 0,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 4,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "Dr.Dawit?",
+    "question_type": "text",
+    "order": 1,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 5,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "How is the test going",
+    "question_type": "rating",
+    "order": 2,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 6,
+  "fields": {
+    "survey": 4,
+    "section": 3,
+    "text": "ክስህብህጅብህብ",
+    "question_type": "rating",
+    "order": 0,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 7,
+  "fields": {
+    "survey": 4,
+    "section": 3,
+    "text": "ግርይርይርይርየ5",
+    "question_type": "text",
+    "order": 1,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 9,
+  "fields": {
+    "survey": 4,
+    "section": 3,
+    "text": "added functions",
+    "question_type": "multiple_choice",
+    "order": 2,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 10,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "this are new functions",
+    "question_type": "multiple_choice",
+    "order": 3,
+    "required": true,
+    "options": "hello\nhi",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 11,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "Are you satisfied with EEU?",
+    "question_type": "linear_scale",
+    "order": 4,
+    "required": true,
+    "options": "",
+    "scale_min_label": "1",
+    "scale_max_label": "5",
+    "linear_scale_labels": {
+      "1": "1",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "5"
+    },
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 12,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "Is the dropdown working?",
+    "question_type": "dropdown",
+    "order": 5,
+    "required": true,
+    "options": "say hi\nSay hello",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 13,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "write paragraph",
+    "question_type": "paragraph",
+    "order": 6,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 14,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "rate us",
+    "question_type": "rating",
+    "order": 7,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 15,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "write a short text",
+    "question_type": "text",
+    "order": 8,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 16,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "this is to test multiple choice",
+    "question_type": "multiple_choice",
+    "order": 9,
+    "required": true,
+    "options": "Option 1\nOption 2\nOption 10",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 18,
+  "fields": {
+    "survey": 2,
+    "section": 2,
+    "text": "This is to test the rating",
+    "question_type": "rating",
+    "order": 10,
+    "required": true,
+    "options": "Option 1\nOption 2",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 19,
+  "fields": {
+    "survey": 6,
+    "section": 5,
+    "text": "What is your department?",
+    "question_type": "dropdown",
+    "order": 0,
+    "required": true,
+    "options": "Transmission  \nDistribution  \nGeneration  \nCustomer Service  \nFinance & Admin  \nIT  \nHuman Resources",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 20,
+  "fields": {
+    "survey": 6,
+    "section": 5,
+    "text": "How long have you worked at EEU?",
+    "question_type": "multiple_choice",
+    "order": 1,
+    "required": true,
+    "options": "Less than 1 year  \n1–3 years  \n4–6 years  \n7–10 years  \nMore than 10 years",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 22,
+  "fields": {
+    "survey": 6,
+    "section": 5,
+    "text": "I have the tools and equipment I need to do my job effectively.",
+    "question_type": "multiple_choice",
+    "order": 2,
+    "required": true,
+    "options": "Yes  \nSometimes  \nNo  \nNot applicable",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 23,
+  "fields": {
+    "survey": 6,
+    "section": 5,
+    "text": "What do you like most about working at EEU?",
+    "question_type": "paragraph",
+    "order": 3,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 24,
+  "fields": {
+    "survey": 6,
+    "section": 5,
+    "text": "What one thing would you change to improve employee satisfaction?",
+    "question_type": "text",
+    "order": 4,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 27,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "How long have you worked at EEU?",
+    "question_type": "multiple_choice",
+    "order": 0,
+    "required": true,
+    "options": "Less than 1 year  \n1–3 years  \n4–6 years  \n7–10 years  \nMore than 10 years",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 28,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "What is your department?",
+    "question_type": "dropdown",
+    "order": 1,
+    "required": true,
+    "options": "Transmission  \nDistribution  \nGeneration  \nCustomer Service  \nFinance & Admin  \nIT  \nHuman Resources",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 29,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "Overall, how satisfied are you with your job at EEU?",
+    "question_type": "linear_scale",
+    "order": 2,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Good",
+    "scale_max_label": "Very Poor",
+    "linear_scale_labels": {
+      "1": "Very Good",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Poor"
+    },
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 30,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "I have the tools and equipment I need to do my job effectively.",
+    "question_type": "multiple_choice",
+    "order": 3,
+    "required": true,
+    "options": "Yes  \n Sometimes  \n No  \n Not applicable",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 31,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "What do you like most about working at EEU?",
+    "question_type": "paragraph",
+    "order": 4,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 32,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "What one thing would you change to improve employee satisfaction?",
+    "question_type": "text",
+    "order": 5,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 33,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "I receive regular and helpful feedback on my performance.",
+    "question_type": "rating",
+    "order": 6,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 34,
+  "fields": {
+    "survey": 7,
+    "section": 6,
+    "text": "How satisfied are you with the recognition you receive for your work?",
+    "question_type": "rating",
+    "order": 7,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 35,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "How long have you been working at EEU?",
+    "question_type": "multiple_choice",
+    "order": 0,
+    "required": true,
+    "options": "Less than 1 year\n1–3 years\n4–7 years\n8–12 years\nMore than 12 years",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 36,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "Overall, how satisfied are you working at EEU?",
+    "question_type": "rating",
+    "order": 1,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Dissatisfied",
+    "scale_max_label": "Very Satisfied",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 37,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "How satisfied are you with the recognition you receive for good performance?",
+    "question_type": "linear_scale",
+    "order": 2,
+    "required": true,
+    "options": "",
+    "scale_min_label": "strongly agree",
+    "scale_max_label": "strongly disagree",
+    "linear_scale_labels": {
+      "1": "strongly agree",
+      "2": "agree",
+      "3": "Neutral ",
+      "4": "Disagree",
+      "5": "strongly disagree"
+    },
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 38,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "What is your department/directorate?",
+    "question_type": "dropdown",
+    "order": 3,
+    "required": true,
+    "options": "Transmission\nDistribution\nGeneration\nCustomer Service\nFinance & Procurement\nHuman Resources\nInformation Technology\nPlanning & Strategy\nRegional Office",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 39,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "How satisfied are you with your work-life balance?",
+    "question_type": "rating",
+    "order": 4,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Dissatisfied",
+    "scale_max_label": "Very Satisfied",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 40,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "What do you like MOST about working at EEU?",
+    "question_type": "paragraph",
+    "order": 5,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": 500
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 41,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "What ONE thing would most improve your satisfaction or experience at EEU?",
+    "question_type": "text",
+    "order": 6,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": 300
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 42,
+  "fields": {
+    "survey": 9,
+    "section": 8,
+    "text": "What is your department/directorate?",
+    "question_type": "dropdown",
+    "order": 0,
+    "required": true,
+    "options": "Transmission\nDistribution\nGeneration\nCustomer Service\nFinance & Procurement\nHuman Resources\nInformation Technology\nPlanning & Strategy\nRegional Office",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 43,
+  "fields": {
+    "survey": 9,
+    "section": 8,
+    "text": "How long have you been working at EEU?",
+    "question_type": "multiple_choice",
+    "order": 1,
+    "required": true,
+    "options": "Less than 1 year\n1–3 years\n4–7 years\n8–12 years\nMore than 12 years",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 44,
+  "fields": {
+    "survey": 9,
+    "section": 8,
+    "text": "Overall, how satisfied are you working at EEU?",
+    "question_type": "rating",
+    "order": 2,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Dissatisfied",
+    "scale_max_label": "Very Satisfied",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 45,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "Please write any suggestion.",
+    "question_type": "paragraph",
+    "order": 7,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": 500
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 46,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "which is your region?",
+    "question_type": "regions",
+    "order": 8,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 47,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "እኔ EEU እንደ ጥሩ የስራ ቦታ እመክራለሁ",
+    "question_type": "rating",
+    "order": 9,
+    "required": true,
+    "options": "",
+    "scale_min_label": "በጣም አልስማማም",
+    "scale_max_label": "በጣም እስማማለሁ",
+    "linear_scale_labels": {
+      "1": "በጣም አልስማማም",
+      "2": "አልስማማም",
+      "3": "ገለልተኛ",
+      "4": "እስማማለሁ",
+      "5": "በጣም እስማማለሁ"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 48,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "who",
+    "question_type": "rating",
+    "order": 10,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Dissatisfied",
+    "scale_max_label": "Very Satisfied",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "numbers",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 49,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "what",
+    "question_type": "rating",
+    "order": 11,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Dissatisfied",
+    "scale_max_label": "Very Satisfied",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "emojis",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 50,
+  "fields": {
+    "survey": 8,
+    "section": 7,
+    "text": "Is system nice",
+    "question_type": "rating",
+    "order": 12,
+    "required": true,
+    "options": "",
+    "scale_min_label": "Very Dissatisfied",
+    "scale_max_label": "Very Satisfied",
+    "linear_scale_labels": {
+      "1": "Very Dissatisfied",
+      "2": "Dissatisfied",
+      "3": "Neutral",
+      "4": "Satisfied",
+      "5": "Very Satisfied"
+    },
+    "rating_display_style": "numbers",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 51,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "እድሜ",
+    "question_type": "multiple_choice",
+    "order": 0,
+    "required": true,
+    "options": "ከ25 በታች\nከ26-30 \nከ31-40\nከ41-50 \nከ50 በላይ",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 52,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "ጾታ",
+    "question_type": "multiple_choice",
+    "order": 1,
+    "required": true,
+    "options": "ወንድ \nሴት",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 53,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "የትምህርት ደረጃ",
+    "question_type": "multiple_choice",
+    "order": 2,
+    "required": true,
+    "options": "ከዲፕሎማ በታች\nዲፕሎማ አድቫንስ\nዲፕሎማ\nየመጀመሪያ ዲግሪ\nማስተርስ \nዶክትሬት",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 54,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "በመስሪያ ቤት ያለዎት የስራ ልምድ",
+    "question_type": "multiple_choice",
+    "order": 3,
+    "required": true,
+    "options": "ከ2 ዓመት ያነሰ\nከ2-5 ዓመት \nከ5-10 ዓመት \nከ10 ዓመት በላይ",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 55,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "የወር ደመወዝ",
+    "question_type": "multiple_choice",
+    "order": 4,
+    "required": true,
+    "options": "3,212ብር\nከ3,212-5,500 ብር\nከ5,501-8,000 ብር\nከ8,001-10,500 ብር\nከ10,501-15,000 ብር\nከ15,000 ብር በላይ",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 56,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "የስራ ደረጃ",
+    "question_type": "multiple_choice",
+    "order": 5,
+    "required": true,
+    "options": "ከግሬድ 1-3\nከግሬድ 4-5 \nከግሬድ 6-8\nከግሬድ 9-12\nከግሬድ 13-16",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 57,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "የሚሰሩበት ክልል ይምረጡ",
+    "question_type": "regions",
+    "order": 6,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 58,
+  "fields": {
+    "survey": 10,
+    "section": 11,
+    "text": "ከአስተዳደር ቡድንዎ ጋር ባለው ግንኙነት ምን ያህል እርካታ ይሰማዎታል?v",
+    "question_type": "rating",
+    "order": 2,
+    "required": true,
+    "options": "",
+    "scale_min_label": "በጣም እርካታ የለኝም",
+    "scale_max_label": "በጣም እርካታ አለኝ",
+    "linear_scale_labels": {
+      "1": "በጣም እርካታ የለኝም",
+      "2": "እርካታ የለኝም",
+      "3": "መካከለኛ",
+      "4": "እርካታ አለኝ",
+      "5": "በጣም እርካታ አለኝ"
+    },
+    "rating_display_style": "stars",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 59,
+  "fields": {
+    "survey": 10,
+    "section": 11,
+    "text": "በኢኢዩ ውስጥ ባለው ደመወዝዎ እና ጥቅማ ጥቅሞችዎ እርካታ ይሰማዎታል?",
+    "question_type": "rating",
+    "order": 1,
+    "required": true,
+    "options": "",
+    "scale_min_label": "በጣም እርካታ የለኝም",
+    "scale_max_label": "በጣም እርካታ አለኝ",
+    "linear_scale_labels": {
+      "1": "በጣም እርካታ የለኝም",
+      "2": "እርካታ የለኝም",
+      "3": "መካከለኛ",
+      "4": "እርካታ አለኝ",
+      "5": "በጣም እርካታ አለኝ"
+    },
+    "rating_display_style": "emojis",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 60,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "በሥራ ቦታዎ ላይ ተቀባይነት እና ተበረታታችነት ይሰማዎታል?",
+    "question_type": "multiple_choice",
+    "order": 7,
+    "required": true,
+    "options": "ይሰማኛል\nአይሰማኝም",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 61,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "ከላይ ለተጠየቁት መጠይቅ መልስዎ አይሰማኝም ከሆነ፣ እባክዎን ምክንያትዎን በአጭሩ ይግለጹ",
+    "question_type": "text",
+    "order": 8,
+    "required": false,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": 300
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 62,
+  "fields": {
+    "survey": 10,
+    "section": 9,
+    "text": "ተጨማሪ አስተያየት ካለዎት እባክዎን ይጻፉ፡",
+    "question_type": "paragraph",
+    "order": 9,
+    "required": true,
+    "options": "",
+    "scale_min_label": "",
+    "scale_max_label": "",
+    "linear_scale_labels": null,
+    "rating_display_style": "",
+    "max_chars": 500
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 63,
+  "fields": {
+    "survey": 10,
+    "section": 11,
+    "text": "በኢኢዩ ውስጥ ከሚሰሩ ባልደረባዎችዎ ጋር ባለው ትብብር እርካታ ይሰማዎታል?",
+    "question_type": "rating",
+    "order": 0,
+    "required": true,
+    "options": "",
+    "scale_min_label": "በጣም እርካታ የለኝም",
+    "scale_max_label": "በጣም እርካታ አለኝ",
+    "linear_scale_labels": {
+      "1": "በጣም እርካታ የለኝም",
+      "2": "እርካታ የለኝም",
+      "3": "መካከለኛ",
+      "4": "እርካታ አለኝ",
+      "5": "በጣም እርካታ አለኝ"
+    },
+    "rating_display_style": "numbers",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.question",
+  "pk": 64,
+  "fields": {
+    "survey": 10,
+    "section": 11,
+    "text": "ኢኢዩን እንደ ጥሩ የሥራ ቦታ ለሌሎች እመክራለሁ።",
+    "question_type": "linear_scale",
+    "order": 3,
+    "required": true,
+    "options": "",
+    "scale_min_label": "በጣም አልስማማም",
+    "scale_max_label": "በጣም እስማማለሁ ",
+    "linear_scale_labels": {
+      "1": "በጣም አልስማማም",
+      "2": "አልስማማም",
+      "3": "መካከለኛ",
+      "4": "እስማማለሁ ",
+      "5": "በጣም እስማማለሁ "
+    },
+    "rating_display_style": "",
+    "max_chars": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "submitted_at": "2025-11-14T12:27:57.632Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 2,
+  "fields": {
+    "survey": 1,
+    "submitted_at": "2025-11-14T13:10:31.779Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 3,
+  "fields": {
+    "survey": 2,
+    "submitted_at": "2025-11-14T13:22:08.376Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 4,
+  "fields": {
+    "survey": 2,
+    "submitted_at": "2025-11-14T13:23:57.681Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 5,
+  "fields": {
+    "survey": 2,
+    "submitted_at": "2025-11-14T13:24:32.328Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 6,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-14T13:36:25.853Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 7,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-15T10:23:28.739Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 8,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-15T10:24:16.022Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 9,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-15T10:24:40.743Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 10,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-15T10:29:19.220Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 11,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-17T07:13:21.884Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 12,
+  "fields": {
+    "survey": 4,
+    "submitted_at": "2025-11-17T08:40:39.355Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 13,
+  "fields": {
+    "survey": 2,
+    "submitted_at": "2025-11-17T08:55:11.473Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 14,
+  "fields": {
+    "survey": 2,
+    "submitted_at": "2025-11-17T11:01:05.841Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 15,
+  "fields": {
+    "survey": 2,
+    "submitted_at": "2025-11-26T05:01:57.058Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 16,
+  "fields": {
+    "survey": 6,
+    "submitted_at": "2025-12-02T15:59:38.839Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 17,
+  "fields": {
+    "survey": 6,
+    "submitted_at": "2025-12-04T09:07:25.232Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 18,
+  "fields": {
+    "survey": 7,
+    "submitted_at": "2025-12-04T09:25:05.519Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 19,
+  "fields": {
+    "survey": 7,
+    "submitted_at": "2025-12-04T09:35:15.674Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 20,
+  "fields": {
+    "survey": 7,
+    "submitted_at": "2025-12-12T08:36:58.246Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 22,
+  "fields": {
+    "survey": 9,
+    "submitted_at": "2025-12-12T09:12:23.165Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 31,
+  "fields": {
+    "survey": 8,
+    "submitted_at": "2025-12-17T08:27:10.660Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 32,
+  "fields": {
+    "survey": 8,
+    "submitted_at": "2025-12-17T08:30:32.417Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 33,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-18T13:25:15.189Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 34,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-18T13:27:35.717Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 35,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-18T14:08:34.458Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 36,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-18T14:09:59.995Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 37,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-18T14:15:35.888Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 38,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-19T12:15:05.903Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 39,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-20T10:26:39.089Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 40,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-21T05:57:57.702Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 41,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-22T11:15:35.243Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 42,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-22T11:16:23.621Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 43,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-22T11:17:37.227Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 44,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-22T11:18:31.981Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 45,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-22T11:21:48.227Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 46,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-22T11:22:49.851Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 47,
+  "fields": {
+    "survey": 9,
+    "submitted_at": "2025-12-23T06:51:05.636Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 48,
+  "fields": {
+    "survey": 9,
+    "submitted_at": "2025-12-23T06:51:29.187Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 49,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-24T07:34:01.446Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 50,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-24T07:43:22.304Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 51,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-24T07:46:30.369Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 52,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-24T07:48:19.048Z",
+    "employee_identifier": null
+  }
+},
+{
+  "model": "surveys.response",
+  "pk": 53,
+  "fields": {
+    "survey": 10,
+    "submitted_at": "2025-12-26T07:21:44.986Z",
+    "employee_identifier": "Eeu_Laptop_022\\Selamu"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 1,
+  "fields": {
+    "response": 2,
+    "question": 1,
+    "rating": null,
+    "comment": "i don' know",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 2,
+  "fields": {
+    "response": 2,
+    "question": 2,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 3,
+  "fields": {
+    "response": 3,
+    "question": 3,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 4,
+  "fields": {
+    "response": 3,
+    "question": 4,
+    "rating": null,
+    "comment": "excellent",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 5,
+  "fields": {
+    "response": 3,
+    "question": 5,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 6,
+  "fields": {
+    "response": 4,
+    "question": 3,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 7,
+  "fields": {
+    "response": 4,
+    "question": 4,
+    "rating": null,
+    "comment": "not excellent",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 8,
+  "fields": {
+    "response": 4,
+    "question": 5,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 9,
+  "fields": {
+    "response": 5,
+    "question": 3,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 10,
+  "fields": {
+    "response": 5,
+    "question": 4,
+    "rating": null,
+    "comment": "not yet",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 11,
+  "fields": {
+    "response": 6,
+    "question": 6,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 12,
+  "fields": {
+    "response": 6,
+    "question": 7,
+    "rating": null,
+    "comment": "ድርግስርትሽርጥ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 13,
+  "fields": {
+    "response": 7,
+    "question": 6,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 14,
+  "fields": {
+    "response": 7,
+    "question": 7,
+    "rating": null,
+    "comment": "ታአክ ዮ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 15,
+  "fields": {
+    "response": 8,
+    "question": 6,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 16,
+  "fields": {
+    "response": 8,
+    "question": 7,
+    "rating": null,
+    "comment": "ሰላሙ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 17,
+  "fields": {
+    "response": 9,
+    "question": 6,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 18,
+  "fields": {
+    "response": 9,
+    "question": 7,
+    "rating": null,
+    "comment": "ና",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 19,
+  "fields": {
+    "response": 10,
+    "question": 6,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 20,
+  "fields": {
+    "response": 10,
+    "question": 7,
+    "rating": null,
+    "comment": "ምን",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 21,
+  "fields": {
+    "response": 11,
+    "question": 6,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 22,
+  "fields": {
+    "response": 11,
+    "question": 7,
+    "rating": null,
+    "comment": "dfdsfafa",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 23,
+  "fields": {
+    "response": 12,
+    "question": 6,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 24,
+  "fields": {
+    "response": 12,
+    "question": 7,
+    "rating": null,
+    "comment": "cvdvds",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 25,
+  "fields": {
+    "response": 13,
+    "question": 3,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 26,
+  "fields": {
+    "response": 13,
+    "question": 4,
+    "rating": null,
+    "comment": "tsghsgh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 27,
+  "fields": {
+    "response": 13,
+    "question": 5,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 28,
+  "fields": {
+    "response": 14,
+    "question": 3,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 29,
+  "fields": {
+    "response": 14,
+    "question": 4,
+    "rating": null,
+    "comment": "no",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 30,
+  "fields": {
+    "response": 14,
+    "question": 5,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 31,
+  "fields": {
+    "response": 14,
+    "question": 10,
+    "rating": null,
+    "comment": "",
+    "choice": "hello"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 32,
+  "fields": {
+    "response": 14,
+    "question": 11,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 33,
+  "fields": {
+    "response": 14,
+    "question": 12,
+    "rating": null,
+    "comment": "",
+    "choice": "say hi"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 34,
+  "fields": {
+    "response": 14,
+    "question": 13,
+    "rating": null,
+    "comment": "fafgdfgfdgdfgsfg\nadfafa",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 35,
+  "fields": {
+    "response": 14,
+    "question": 14,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 36,
+  "fields": {
+    "response": 14,
+    "question": 15,
+    "rating": null,
+    "comment": "fasaghsthshydhyjdh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 37,
+  "fields": {
+    "response": 15,
+    "question": 3,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 38,
+  "fields": {
+    "response": 15,
+    "question": 4,
+    "rating": null,
+    "comment": "gfqgqergq",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 39,
+  "fields": {
+    "response": 15,
+    "question": 5,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 40,
+  "fields": {
+    "response": 15,
+    "question": 10,
+    "rating": null,
+    "comment": "",
+    "choice": "hello"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 41,
+  "fields": {
+    "response": 15,
+    "question": 11,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 42,
+  "fields": {
+    "response": 15,
+    "question": 12,
+    "rating": null,
+    "comment": "",
+    "choice": "Say hello"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 43,
+  "fields": {
+    "response": 15,
+    "question": 13,
+    "rating": null,
+    "comment": "efEFwgf4rgf",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 44,
+  "fields": {
+    "response": 15,
+    "question": 14,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 45,
+  "fields": {
+    "response": 15,
+    "question": 15,
+    "rating": null,
+    "comment": "CASdcf",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 46,
+  "fields": {
+    "response": 15,
+    "question": 16,
+    "rating": null,
+    "comment": "",
+    "choice": "Option 2"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 47,
+  "fields": {
+    "response": 15,
+    "question": 18,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 48,
+  "fields": {
+    "response": 16,
+    "question": 19,
+    "rating": null,
+    "comment": "",
+    "choice": "IT"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 49,
+  "fields": {
+    "response": 16,
+    "question": 20,
+    "rating": null,
+    "comment": "",
+    "choice": "4–6 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 51,
+  "fields": {
+    "response": 16,
+    "question": 22,
+    "rating": null,
+    "comment": "",
+    "choice": "Sometimes"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 52,
+  "fields": {
+    "response": 16,
+    "question": 23,
+    "rating": null,
+    "comment": "The environment.",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 53,
+  "fields": {
+    "response": 16,
+    "question": 24,
+    "rating": null,
+    "comment": "The working hours.",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 55,
+  "fields": {
+    "response": 17,
+    "question": 19,
+    "rating": null,
+    "comment": "",
+    "choice": "Human Resources"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 56,
+  "fields": {
+    "response": 17,
+    "question": 20,
+    "rating": null,
+    "comment": "",
+    "choice": "7–10 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 57,
+  "fields": {
+    "response": 17,
+    "question": 22,
+    "rating": null,
+    "comment": "",
+    "choice": "Not applicable"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 58,
+  "fields": {
+    "response": 17,
+    "question": 23,
+    "rating": null,
+    "comment": "ghghgh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 59,
+  "fields": {
+    "response": 17,
+    "question": 24,
+    "rating": null,
+    "comment": "shsghsgh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 60,
+  "fields": {
+    "response": 18,
+    "question": 27,
+    "rating": null,
+    "comment": "",
+    "choice": "4–6 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 61,
+  "fields": {
+    "response": 18,
+    "question": 28,
+    "rating": null,
+    "comment": "",
+    "choice": "Generation"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 62,
+  "fields": {
+    "response": 18,
+    "question": 29,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 63,
+  "fields": {
+    "response": 18,
+    "question": 30,
+    "rating": null,
+    "comment": "",
+    "choice": "No"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 64,
+  "fields": {
+    "response": 18,
+    "question": 31,
+    "rating": null,
+    "comment": "Very long answer",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 65,
+  "fields": {
+    "response": 18,
+    "question": 32,
+    "rating": null,
+    "comment": "Short answer",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 66,
+  "fields": {
+    "response": 18,
+    "question": 33,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 67,
+  "fields": {
+    "response": 19,
+    "question": 27,
+    "rating": null,
+    "comment": "",
+    "choice": "More than 10 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 68,
+  "fields": {
+    "response": 19,
+    "question": 28,
+    "rating": null,
+    "comment": "",
+    "choice": "Finance & Admin"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 69,
+  "fields": {
+    "response": 19,
+    "question": 29,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 70,
+  "fields": {
+    "response": 19,
+    "question": 30,
+    "rating": null,
+    "comment": "",
+    "choice": "Not applicable"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 71,
+  "fields": {
+    "response": 19,
+    "question": 31,
+    "rating": null,
+    "comment": "Looooooooooong answer",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 72,
+  "fields": {
+    "response": 19,
+    "question": 32,
+    "rating": null,
+    "comment": "short answer",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 73,
+  "fields": {
+    "response": 19,
+    "question": 33,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 74,
+  "fields": {
+    "response": 20,
+    "question": 27,
+    "rating": null,
+    "comment": "",
+    "choice": "Less than 1 year"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 75,
+  "fields": {
+    "response": 20,
+    "question": 28,
+    "rating": null,
+    "comment": "",
+    "choice": "Human Resources"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 76,
+  "fields": {
+    "response": 20,
+    "question": 29,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 77,
+  "fields": {
+    "response": 20,
+    "question": 30,
+    "rating": null,
+    "comment": "",
+    "choice": "No"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 78,
+  "fields": {
+    "response": 20,
+    "question": 31,
+    "rating": null,
+    "comment": "gooooood",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 79,
+  "fields": {
+    "response": 20,
+    "question": 32,
+    "rating": null,
+    "comment": "bad",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 80,
+  "fields": {
+    "response": 20,
+    "question": 33,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 81,
+  "fields": {
+    "response": 20,
+    "question": 34,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 89,
+  "fields": {
+    "response": 22,
+    "question": 42,
+    "rating": null,
+    "comment": "",
+    "choice": "Generation"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 90,
+  "fields": {
+    "response": 22,
+    "question": 43,
+    "rating": null,
+    "comment": "",
+    "choice": "8–12 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 91,
+  "fields": {
+    "response": 22,
+    "question": 44,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 171,
+  "fields": {
+    "response": 31,
+    "question": 35,
+    "rating": null,
+    "comment": "",
+    "choice": "4–7 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 172,
+  "fields": {
+    "response": 31,
+    "question": 36,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 173,
+  "fields": {
+    "response": 31,
+    "question": 37,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 174,
+  "fields": {
+    "response": 31,
+    "question": 38,
+    "rating": null,
+    "comment": "",
+    "choice": "Customer Service"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 175,
+  "fields": {
+    "response": 31,
+    "question": 39,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 176,
+  "fields": {
+    "response": 31,
+    "question": 40,
+    "rating": null,
+    "comment": "rrrrrrr",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 177,
+  "fields": {
+    "response": 31,
+    "question": 41,
+    "rating": null,
+    "comment": "ppppp",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 178,
+  "fields": {
+    "response": 31,
+    "question": 45,
+    "rating": null,
+    "comment": "qqqqq",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 179,
+  "fields": {
+    "response": 31,
+    "question": 46,
+    "rating": null,
+    "comment": "",
+    "choice": "Head office"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 180,
+  "fields": {
+    "response": 31,
+    "question": 47,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 181,
+  "fields": {
+    "response": 31,
+    "question": 48,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 182,
+  "fields": {
+    "response": 31,
+    "question": 49,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 183,
+  "fields": {
+    "response": 31,
+    "question": 50,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 184,
+  "fields": {
+    "response": 32,
+    "question": 35,
+    "rating": null,
+    "comment": "",
+    "choice": "8–12 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 185,
+  "fields": {
+    "response": 32,
+    "question": 36,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 186,
+  "fields": {
+    "response": 32,
+    "question": 37,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 187,
+  "fields": {
+    "response": 32,
+    "question": 38,
+    "rating": null,
+    "comment": "",
+    "choice": "Generation"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 188,
+  "fields": {
+    "response": 32,
+    "question": 39,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 189,
+  "fields": {
+    "response": 32,
+    "question": 40,
+    "rating": null,
+    "comment": "okp",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 190,
+  "fields": {
+    "response": 32,
+    "question": 41,
+    "rating": null,
+    "comment": "kmokm",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 191,
+  "fields": {
+    "response": 32,
+    "question": 45,
+    "rating": null,
+    "comment": "oon",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 192,
+  "fields": {
+    "response": 32,
+    "question": 46,
+    "rating": null,
+    "comment": "",
+    "choice": "North Addis Ababa"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 193,
+  "fields": {
+    "response": 32,
+    "question": 47,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 194,
+  "fields": {
+    "response": 32,
+    "question": 48,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 195,
+  "fields": {
+    "response": 32,
+    "question": 49,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 196,
+  "fields": {
+    "response": 32,
+    "question": 50,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 197,
+  "fields": {
+    "response": 33,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ31-40"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 198,
+  "fields": {
+    "response": 33,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 199,
+  "fields": {
+    "response": 33,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "የመጀመሪያ ዲግሪ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 200,
+  "fields": {
+    "response": 33,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ10 ዓመት በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 201,
+  "fields": {
+    "response": 33,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ15,000 ብር በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 202,
+  "fields": {
+    "response": 33,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 203,
+  "fields": {
+    "response": 33,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ዋና መስሪያ ቤት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 204,
+  "fields": {
+    "response": 33,
+    "question": 58,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 205,
+  "fields": {
+    "response": 33,
+    "question": 59,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 206,
+  "fields": {
+    "response": 33,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 207,
+  "fields": {
+    "response": 33,
+    "question": 62,
+    "rating": null,
+    "comment": "ኢኢኦሆ ሂህ ኢህ ኢህፒህ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 208,
+  "fields": {
+    "response": 34,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 209,
+  "fields": {
+    "response": 34,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 210,
+  "fields": {
+    "response": 34,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "የመጀመሪያ ዲግሪ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 211,
+  "fields": {
+    "response": 34,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2 ዓመት ያነሰ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 212,
+  "fields": {
+    "response": 34,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5,501-8,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 213,
+  "fields": {
+    "response": 34,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 6-8"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 214,
+  "fields": {
+    "response": 34,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ፕሮጀክት ማኔጅመት ኦፊስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 215,
+  "fields": {
+    "response": 34,
+    "question": 58,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 216,
+  "fields": {
+    "response": 34,
+    "question": 59,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 217,
+  "fields": {
+    "response": 34,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 218,
+  "fields": {
+    "response": 34,
+    "question": 61,
+    "rating": null,
+    "comment": "ክንጅኒጅህ ህፒህ 9ሂኡኡህ ኢህ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 219,
+  "fields": {
+    "response": 34,
+    "question": 62,
+    "rating": null,
+    "comment": "ብህብህብ ብ ሂሂ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 220,
+  "fields": {
+    "response": 35,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ26-30"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 221,
+  "fields": {
+    "response": 35,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 222,
+  "fields": {
+    "response": 35,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ከዲፕሎማ በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 223,
+  "fields": {
+    "response": 35,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5-10 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 224,
+  "fields": {
+    "response": 35,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ8,001-10,500 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 225,
+  "fields": {
+    "response": 35,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 226,
+  "fields": {
+    "response": 35,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "Head office"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 227,
+  "fields": {
+    "response": 35,
+    "question": 58,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 228,
+  "fields": {
+    "response": 35,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 229,
+  "fields": {
+    "response": 35,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 230,
+  "fields": {
+    "response": 35,
+    "question": 61,
+    "rating": null,
+    "comment": "ጅጅጅግግግግ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 231,
+  "fields": {
+    "response": 35,
+    "question": 62,
+    "rating": null,
+    "comment": "ህህህህህህ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 232,
+  "fields": {
+    "response": 36,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ50 በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 233,
+  "fields": {
+    "response": 36,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 234,
+  "fields": {
+    "response": 36,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዲፕሎማ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 235,
+  "fields": {
+    "response": 36,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2 ዓመት ያነሰ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 236,
+  "fields": {
+    "response": 36,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ8,001-10,500 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 237,
+  "fields": {
+    "response": 36,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 4-5"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 238,
+  "fields": {
+    "response": 36,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "Head office"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 239,
+  "fields": {
+    "response": 36,
+    "question": 58,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 240,
+  "fields": {
+    "response": 36,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 241,
+  "fields": {
+    "response": 36,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 242,
+  "fields": {
+    "response": 36,
+    "question": 61,
+    "rating": null,
+    "comment": "ልልልልልልልል",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 243,
+  "fields": {
+    "response": 36,
+    "question": 62,
+    "rating": null,
+    "comment": "አአአአአአአአ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 244,
+  "fields": {
+    "response": 37,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 245,
+  "fields": {
+    "response": 37,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 246,
+  "fields": {
+    "response": 37,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ከዲፕሎማ በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 247,
+  "fields": {
+    "response": 37,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2 ዓመት ያነሰ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 248,
+  "fields": {
+    "response": 37,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "3,212ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 249,
+  "fields": {
+    "response": 37,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 6-8"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 250,
+  "fields": {
+    "response": 37,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "North Addis Ababa"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 251,
+  "fields": {
+    "response": 37,
+    "question": 58,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 252,
+  "fields": {
+    "response": 37,
+    "question": 59,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 253,
+  "fields": {
+    "response": 37,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 254,
+  "fields": {
+    "response": 37,
+    "question": 61,
+    "rating": null,
+    "comment": "ችግህጽግፍህግ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 255,
+  "fields": {
+    "response": 37,
+    "question": 62,
+    "rating": null,
+    "comment": "ጽፍግፍድግጅጅ",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 256,
+  "fields": {
+    "response": 38,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ26-30"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 257,
+  "fields": {
+    "response": 38,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 258,
+  "fields": {
+    "response": 38,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዲፕሎማ አድቫንስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 259,
+  "fields": {
+    "response": 38,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2 ዓመት ያነሰ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 260,
+  "fields": {
+    "response": 38,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ10,501-15,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 261,
+  "fields": {
+    "response": 38,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 6-8"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 262,
+  "fields": {
+    "response": 38,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 263,
+  "fields": {
+    "response": 38,
+    "question": 58,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 264,
+  "fields": {
+    "response": 38,
+    "question": 59,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 265,
+  "fields": {
+    "response": 38,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 266,
+  "fields": {
+    "response": 38,
+    "question": 61,
+    "rating": null,
+    "comment": "yguhgjgjghghjghh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 267,
+  "fields": {
+    "response": 38,
+    "question": 62,
+    "rating": null,
+    "comment": "vvjhhjjgjgjhjgjhghgh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 268,
+  "fields": {
+    "response": 38,
+    "question": 63,
+    "rating": 1,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 269,
+  "fields": {
+    "response": 39,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ31-40"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 270,
+  "fields": {
+    "response": 39,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 271,
+  "fields": {
+    "response": 39,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ከዲፕሎማ በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 272,
+  "fields": {
+    "response": 39,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2 ዓመት ያነሰ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 273,
+  "fields": {
+    "response": 39,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ8,001-10,500 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 274,
+  "fields": {
+    "response": 39,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 13-16"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 275,
+  "fields": {
+    "response": 39,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "Project Management Office"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 276,
+  "fields": {
+    "response": 39,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 277,
+  "fields": {
+    "response": 39,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 278,
+  "fields": {
+    "response": 39,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 279,
+  "fields": {
+    "response": 39,
+    "question": 61,
+    "rating": null,
+    "comment": "nnnnnnfff",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 280,
+  "fields": {
+    "response": 39,
+    "question": 62,
+    "rating": null,
+    "comment": "ssssss",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 281,
+  "fields": {
+    "response": 39,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 282,
+  "fields": {
+    "response": 39,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 283,
+  "fields": {
+    "response": 40,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 284,
+  "fields": {
+    "response": 40,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 285,
+  "fields": {
+    "response": 40,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "የመጀመሪያ ዲግሪ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 286,
+  "fields": {
+    "response": 40,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2-5 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 287,
+  "fields": {
+    "response": 40,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5,501-8,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 288,
+  "fields": {
+    "response": 40,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 289,
+  "fields": {
+    "response": 40,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "Gondar"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 290,
+  "fields": {
+    "response": 40,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 291,
+  "fields": {
+    "response": 40,
+    "question": 59,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 292,
+  "fields": {
+    "response": 40,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 293,
+  "fields": {
+    "response": 40,
+    "question": 61,
+    "rating": null,
+    "comment": "hjggghgh",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 294,
+  "fields": {
+    "response": 40,
+    "question": 62,
+    "rating": null,
+    "comment": "hghhhkhjk",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 295,
+  "fields": {
+    "response": 40,
+    "question": 63,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 296,
+  "fields": {
+    "response": 40,
+    "question": 64,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 297,
+  "fields": {
+    "response": 41,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ26-30"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 298,
+  "fields": {
+    "response": 41,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 299,
+  "fields": {
+    "response": 41,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ማስተርስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 300,
+  "fields": {
+    "response": 41,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2-5 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 301,
+  "fields": {
+    "response": 41,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5,501-8,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 302,
+  "fields": {
+    "response": 41,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 6-8"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 303,
+  "fields": {
+    "response": 41,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 304,
+  "fields": {
+    "response": 41,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 305,
+  "fields": {
+    "response": 41,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 306,
+  "fields": {
+    "response": 41,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 307,
+  "fields": {
+    "response": 41,
+    "question": 61,
+    "rating": null,
+    "comment": "fdfdfdf",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 308,
+  "fields": {
+    "response": 41,
+    "question": 62,
+    "rating": null,
+    "comment": "fdsfadfadfa",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 309,
+  "fields": {
+    "response": 41,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 310,
+  "fields": {
+    "response": 41,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 311,
+  "fields": {
+    "response": 42,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ41-50"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 312,
+  "fields": {
+    "response": 42,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 313,
+  "fields": {
+    "response": 42,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "የመጀመሪያ ዲግሪ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 314,
+  "fields": {
+    "response": 42,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2-5 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 315,
+  "fields": {
+    "response": 42,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ15,000 ብር በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 316,
+  "fields": {
+    "response": 42,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 317,
+  "fields": {
+    "response": 42,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 318,
+  "fields": {
+    "response": 42,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 319,
+  "fields": {
+    "response": 42,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 320,
+  "fields": {
+    "response": 42,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 321,
+  "fields": {
+    "response": 42,
+    "question": 61,
+    "rating": null,
+    "comment": "sdfvdsf",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 322,
+  "fields": {
+    "response": 42,
+    "question": 62,
+    "rating": null,
+    "comment": "sfgsafd",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 323,
+  "fields": {
+    "response": 42,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 324,
+  "fields": {
+    "response": 42,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 325,
+  "fields": {
+    "response": 43,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ31-40"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 326,
+  "fields": {
+    "response": 43,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 327,
+  "fields": {
+    "response": 43,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዲፕሎማ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 328,
+  "fields": {
+    "response": 43,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ10 ዓመት በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 329,
+  "fields": {
+    "response": 43,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "3,212ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 330,
+  "fields": {
+    "response": 43,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 13-16"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 331,
+  "fields": {
+    "response": 43,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 332,
+  "fields": {
+    "response": 43,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 333,
+  "fields": {
+    "response": 43,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 334,
+  "fields": {
+    "response": 43,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 335,
+  "fields": {
+    "response": 43,
+    "question": 61,
+    "rating": null,
+    "comment": "sfaff",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 336,
+  "fields": {
+    "response": 43,
+    "question": 62,
+    "rating": null,
+    "comment": "sfadsfa",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 337,
+  "fields": {
+    "response": 43,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 338,
+  "fields": {
+    "response": 43,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 339,
+  "fields": {
+    "response": 44,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ50 በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 340,
+  "fields": {
+    "response": 44,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 341,
+  "fields": {
+    "response": 44,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዶክትሬት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 342,
+  "fields": {
+    "response": 44,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ10 ዓመት በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 343,
+  "fields": {
+    "response": 44,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ15,000 ብር በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 344,
+  "fields": {
+    "response": 44,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 13-16"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 345,
+  "fields": {
+    "response": 44,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 346,
+  "fields": {
+    "response": 44,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 347,
+  "fields": {
+    "response": 44,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 348,
+  "fields": {
+    "response": 44,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 349,
+  "fields": {
+    "response": 44,
+    "question": 61,
+    "rating": null,
+    "comment": "fvzdsfsdf",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 350,
+  "fields": {
+    "response": 44,
+    "question": 62,
+    "rating": null,
+    "comment": "sadfdsfa",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 351,
+  "fields": {
+    "response": 44,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 352,
+  "fields": {
+    "response": 44,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 353,
+  "fields": {
+    "response": 45,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ41-50"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 354,
+  "fields": {
+    "response": 45,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 355,
+  "fields": {
+    "response": 45,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዲፕሎማ አድቫንስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 356,
+  "fields": {
+    "response": 45,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ10 ዓመት በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 357,
+  "fields": {
+    "response": 45,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ15,000 ብር በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 358,
+  "fields": {
+    "response": 45,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 13-16"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 359,
+  "fields": {
+    "response": 45,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 360,
+  "fields": {
+    "response": 45,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 361,
+  "fields": {
+    "response": 45,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 362,
+  "fields": {
+    "response": 45,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 363,
+  "fields": {
+    "response": 45,
+    "question": 61,
+    "rating": null,
+    "comment": "fgsfgs",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 364,
+  "fields": {
+    "response": 45,
+    "question": 62,
+    "rating": null,
+    "comment": "sfgsdfgsg",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 365,
+  "fields": {
+    "response": 45,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 366,
+  "fields": {
+    "response": 45,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 367,
+  "fields": {
+    "response": 46,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ41-50"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 368,
+  "fields": {
+    "response": 46,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 369,
+  "fields": {
+    "response": 46,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ማስተርስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 370,
+  "fields": {
+    "response": 46,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5-10 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 371,
+  "fields": {
+    "response": 46,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ10,501-15,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 372,
+  "fields": {
+    "response": 46,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 373,
+  "fields": {
+    "response": 46,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 374,
+  "fields": {
+    "response": 46,
+    "question": 58,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 375,
+  "fields": {
+    "response": 46,
+    "question": 59,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 376,
+  "fields": {
+    "response": 46,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 377,
+  "fields": {
+    "response": 46,
+    "question": 61,
+    "rating": null,
+    "comment": "lllll",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 378,
+  "fields": {
+    "response": 46,
+    "question": 62,
+    "rating": null,
+    "comment": "kkkkkk",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 379,
+  "fields": {
+    "response": 46,
+    "question": 63,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 380,
+  "fields": {
+    "response": 46,
+    "question": 64,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 381,
+  "fields": {
+    "response": 47,
+    "question": 42,
+    "rating": null,
+    "comment": "",
+    "choice": "Customer Service"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 382,
+  "fields": {
+    "response": 47,
+    "question": 43,
+    "rating": null,
+    "comment": "",
+    "choice": "8–12 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 383,
+  "fields": {
+    "response": 47,
+    "question": 44,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 384,
+  "fields": {
+    "response": 48,
+    "question": 42,
+    "rating": null,
+    "comment": "",
+    "choice": "Information Technology"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 385,
+  "fields": {
+    "response": 48,
+    "question": 43,
+    "rating": null,
+    "comment": "",
+    "choice": "8–12 years"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 386,
+  "fields": {
+    "response": 48,
+    "question": 44,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 387,
+  "fields": {
+    "response": 49,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 388,
+  "fields": {
+    "response": 49,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 389,
+  "fields": {
+    "response": 49,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዲፕሎማ አድቫንስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 390,
+  "fields": {
+    "response": 49,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2 ዓመት ያነሰ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 391,
+  "fields": {
+    "response": 49,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ15,000 ብር በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 392,
+  "fields": {
+    "response": 49,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 13-16"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 393,
+  "fields": {
+    "response": 49,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 394,
+  "fields": {
+    "response": 49,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 395,
+  "fields": {
+    "response": 49,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 396,
+  "fields": {
+    "response": 49,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 397,
+  "fields": {
+    "response": 49,
+    "question": 61,
+    "rating": null,
+    "comment": "hghghsgsoooo",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 398,
+  "fields": {
+    "response": 49,
+    "question": 62,
+    "rating": null,
+    "comment": "faafdgfgyyyy",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 399,
+  "fields": {
+    "response": 49,
+    "question": 63,
+    "rating": 2,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 400,
+  "fields": {
+    "response": 49,
+    "question": 64,
+    "rating": 3,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 401,
+  "fields": {
+    "response": 50,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 402,
+  "fields": {
+    "response": 50,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ወንድ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 403,
+  "fields": {
+    "response": 50,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ከዲፕሎማ በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 404,
+  "fields": {
+    "response": 50,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5-10 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 405,
+  "fields": {
+    "response": 50,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5,501-8,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 406,
+  "fields": {
+    "response": 50,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 407,
+  "fields": {
+    "response": 50,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "ደቡብ አዲስ አበባ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 408,
+  "fields": {
+    "response": 50,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 409,
+  "fields": {
+    "response": 50,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 410,
+  "fields": {
+    "response": 50,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 411,
+  "fields": {
+    "response": 50,
+    "question": 61,
+    "rating": null,
+    "comment": "qqqqqqqqqqqq",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 412,
+  "fields": {
+    "response": 50,
+    "question": 62,
+    "rating": null,
+    "comment": "rrrrrrrrrrrrrrrrrrrrrr",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 413,
+  "fields": {
+    "response": 50,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 414,
+  "fields": {
+    "response": 50,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 415,
+  "fields": {
+    "response": 51,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ50 በላይ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 416,
+  "fields": {
+    "response": 51,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 417,
+  "fields": {
+    "response": 51,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "የመጀመሪያ ዲግሪ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 418,
+  "fields": {
+    "response": 51,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ2-5 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 419,
+  "fields": {
+    "response": 51,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ8,001-10,500 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 420,
+  "fields": {
+    "response": 51,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 9-12"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 421,
+  "fields": {
+    "response": 51,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "South Addis Ababa"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 422,
+  "fields": {
+    "response": 51,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 423,
+  "fields": {
+    "response": 51,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 424,
+  "fields": {
+    "response": 51,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "አይሰማኝም"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 425,
+  "fields": {
+    "response": 51,
+    "question": 61,
+    "rating": null,
+    "comment": "lllllllllllllllllllp",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 426,
+  "fields": {
+    "response": 51,
+    "question": 62,
+    "rating": null,
+    "comment": "pppppppppppppl",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 427,
+  "fields": {
+    "response": 51,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 428,
+  "fields": {
+    "response": 51,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 429,
+  "fields": {
+    "response": 52,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 430,
+  "fields": {
+    "response": 52,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 431,
+  "fields": {
+    "response": 52,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዶክትሬት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 432,
+  "fields": {
+    "response": 52,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5-10 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 433,
+  "fields": {
+    "response": 52,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ3,212-5,500 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 434,
+  "fields": {
+    "response": 52,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 6-8"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 435,
+  "fields": {
+    "response": 52,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "South Addis Ababa"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 436,
+  "fields": {
+    "response": 52,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 437,
+  "fields": {
+    "response": 52,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 438,
+  "fields": {
+    "response": 52,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 439,
+  "fields": {
+    "response": 52,
+    "question": 61,
+    "rating": null,
+    "comment": "wwwwwwwww",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 440,
+  "fields": {
+    "response": 52,
+    "question": 62,
+    "rating": null,
+    "comment": "reeeeeeeeee",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 441,
+  "fields": {
+    "response": 52,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 442,
+  "fields": {
+    "response": 52,
+    "question": 64,
+    "rating": 4,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 444,
+  "fields": {
+    "response": 53,
+    "question": 51,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ25 በታች"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 445,
+  "fields": {
+    "response": 53,
+    "question": 52,
+    "rating": null,
+    "comment": "",
+    "choice": "ሴት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 446,
+  "fields": {
+    "response": 53,
+    "question": 53,
+    "rating": null,
+    "comment": "",
+    "choice": "ዲፕሎማ አድቫንስ"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 447,
+  "fields": {
+    "response": 53,
+    "question": 54,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5-10 ዓመት"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 448,
+  "fields": {
+    "response": 53,
+    "question": 55,
+    "rating": null,
+    "comment": "",
+    "choice": "ከ5,501-8,000 ብር"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 449,
+  "fields": {
+    "response": 53,
+    "question": 56,
+    "rating": null,
+    "comment": "",
+    "choice": "ከግሬድ 6-8"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 450,
+  "fields": {
+    "response": 53,
+    "question": 57,
+    "rating": null,
+    "comment": "",
+    "choice": "Head office"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 451,
+  "fields": {
+    "response": 53,
+    "question": 58,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 452,
+  "fields": {
+    "response": 53,
+    "question": 59,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 453,
+  "fields": {
+    "response": 53,
+    "question": 60,
+    "rating": null,
+    "comment": "",
+    "choice": "ይሰማኛል"
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 454,
+  "fields": {
+    "response": 53,
+    "question": 61,
+    "rating": null,
+    "comment": "fgsdfgsfgfsgffgsdfgsfggsffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 455,
+  "fields": {
+    "response": 53,
+    "question": 62,
+    "rating": null,
+    "comment": "fgsfgsfgfsgfg",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 456,
+  "fields": {
+    "response": 53,
+    "question": 63,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.answer",
+  "pk": 457,
+  "fields": {
+    "response": 53,
+    "question": 64,
+    "rating": 5,
+    "comment": "",
+    "choice": ""
+  }
+},
+{
+  "model": "surveys.surveyattempt",
+  "pk": "1b3f11102d29892d3af0edfa9ba56fc4afc5ac63ae5f8e8f5633b28f475ddad5",
+  "fields": {
+    "attempts": 2,
+    "last_submitted": "2025-12-26T07:21:45.047Z"
+  }
+},
+{
+  "model": "surveys.surveyattempt",
+  "pk": "b6bf4194e07b4bde32973ae245863554a385fef4fee8890122a5f37f796176e0",
+  "fields": {
+    "attempts": 2,
+    "last_submitted": "2025-12-23T06:51:29.213Z"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Qds3IBVvQcZldEwKgKlD13$DEzsuD1IIAxwZOhZX4td+y+YBf5MOMvWnWwy4j8v7gM=",
+    "last_login": "2025-11-24T08:53:58Z",
+    "is_superuser": true,
+    "username": "Super_admin",
+    "first_name": "S",
+    "last_name": "D",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-12T09:22:17Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "add_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "change_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "delete_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "view_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "change_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "delete_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "view_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "add_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "change_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "delete_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "view_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "add_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "change_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "delete_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "view_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "add_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "change_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "delete_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "view_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "add_survey",
+        "surveys",
+        "survey"
+      ],
+      [
+        "change_survey",
+        "surveys",
+        "survey"
+      ],
+      [
+        "delete_survey",
+        "surveys",
+        "survey"
+      ],
+      [
+        "view_survey",
+        "surveys",
+        "survey"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$CO4KJPYBKZtZ0sVYst6YmP$XtgQaqWXKE6RuCkF5Ro6EeWJntOfuiq9dUgRweCBsUY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "survey_designer",
+    "first_name": "Survey",
+    "last_name": "designer",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-24T08:55:55Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "add_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "change_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "delete_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "view_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "add_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "change_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "delete_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "view_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "add_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "change_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "delete_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "view_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "add_survey",
+        "surveys",
+        "survey"
+      ],
+      [
+        "change_survey",
+        "surveys",
+        "survey"
+      ],
+      [
+        "delete_survey",
+        "surveys",
+        "survey"
+      ],
+      [
+        "view_survey",
+        "surveys",
+        "survey"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$57sdekqybm9wRtVGj3KZ5H$S87W1DyEpKZS1yfNk4GdYEw0uEMZlPCJlDiNpSmYKM8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Viewer",
+    "first_name": "Viewer",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-24T08:59:45Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_answer",
+        "surveys",
+        "answer"
+      ],
+      [
+        "view_question",
+        "surveys",
+        "question"
+      ],
+      [
+        "view_response",
+        "surveys",
+        "response"
+      ],
+      [
+        "view_survey",
+        "surveys",
+        "survey"
+      ]
+    ]
+  }
+}
+]

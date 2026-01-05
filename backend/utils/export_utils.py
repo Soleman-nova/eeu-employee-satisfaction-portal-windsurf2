@@ -1,6 +1,7 @@
 from typing import Iterable, Dict, List
 
 from io import BytesIO
+from xml.sax.saxutils import escape as xml_escape
 
 
 def _normalize_rows(responses: Iterable[Dict]) -> List[List[str]]:
@@ -93,15 +94,21 @@ def export_responses_to_pdf(responses: Iterable[Dict]) -> bytes:
         candidate_paths = []
         # Preferred: project-local font
         candidate_paths.append(Path(__file__).resolve().parent / "fonts" / "NotoSansEthiopic-Regular.ttf")
-        # Common system locations
+        # Windows common fonts with Ethiopic/Unicode coverage
         candidate_paths.append(Path("C:/Windows/Fonts/NotoSansEthiopic-Regular.ttf"))
+        candidate_paths.append(Path("C:/Windows/Fonts/Nyala.ttf"))
+        candidate_paths.append(Path("C:/Windows/Fonts/Ebrima.ttf"))
+        candidate_paths.append(Path("C:/Windows/Fonts/arialuni.ttf"))
+        # Linux common fonts
         candidate_paths.append(Path("/usr/share/fonts/truetype/noto/NotoSansEthiopic-Regular.ttf"))
         candidate_paths.append(Path("/usr/share/fonts/opentype/noto/NotoSansEthiopic-Regular.ttf"))
+        candidate_paths.append(Path("/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf"))
+        candidate_paths.append(Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"))
 
         for p in candidate_paths:
             if p.exists():
-                pdfmetrics.registerFont(TTFont("NotoSansEthiopic", str(p)))
-                font_name = "NotoSansEthiopic"
+                pdfmetrics.registerFont(TTFont("UnifiedUnicode", str(p)))
+                font_name = "UnifiedUnicode"
                 break
     except Exception:
         font_name = "Helvetica"
@@ -127,9 +134,9 @@ def export_responses_to_pdf(responses: Iterable[Dict]) -> bytes:
         "Choice",
         "Comment",
     ]
-    data = [[Paragraph(h, cell_style) for h in header]]
+    data = [[Paragraph(xml_escape(h), cell_style) for h in header]]
     for row in _normalize_rows(responses):
-        data.append([Paragraph(str(v), cell_style) for v in row])
+        data.append([Paragraph(xml_escape(str(v)), cell_style) for v in row])
 
     table = Table(data, repeatRows=1)
     table.setStyle(TableStyle([
@@ -142,5 +149,51 @@ def export_responses_to_pdf(responses: Iterable[Dict]) -> bytes:
         ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.whitesmoke, colors.lightgrey]),
     ]))
 
-    doc.build([title, table])
+    try:
+        doc.build([title, table])
+    except Exception:
+        # Fallback: rebuild with ASCII-safe text and core Helvetica to avoid unicode/font errors
+        def _ascii_safe(s: str) -> str:
+            try:
+                return (s or "").encode("latin-1", "ignore").decode("latin-1")
+            except Exception:
+                return ""
+
+        fallback_style = styles["BodyText"].clone("CellAscii")
+        fallback_style.fontName = "Helvetica"
+        fallback_style.fontSize = 8
+        fallback_style.leading = 10
+
+        header = [
+            "Response ID",
+            "Submitted At",
+            "Survey ID",
+            "Survey Title",
+            "Question ID",
+            "Question",
+            "Type",
+            "Rating",
+            "Choice",
+            "Comment",
+        ]
+        data2 = [[Paragraph(xml_escape(_ascii_safe(h)), fallback_style) for h in header]]
+        for row in _normalize_rows(responses):
+            data2.append([Paragraph(xml_escape(_ascii_safe(str(v))), fallback_style) for v in row])
+
+        table2 = Table(data2, repeatRows=1)
+        table2.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0, 0.82, 1)),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.Color(0.039, 0.122, 0.239)),
+            ("FONTNAME", (0, 0), (-1, -1), "Helvetica"),
+            ("FONTSIZE", (0, 0), (-1, -1), 8),
+            ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+            ("GRID", (0, 0), (-1, -1), 0.25, colors.grey),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.whitesmoke, colors.lightgrey]),
+        ]))
+            
+        try:
+            title_fallback = Paragraph("EEU Responses Export", styles["Title"])
+        except Exception:
+            title_fallback = Paragraph("Responses Export", styles["Title"])
+        doc.build([title_fallback, table2])
     return buf.getvalue()

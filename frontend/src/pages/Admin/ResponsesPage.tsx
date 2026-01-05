@@ -113,8 +113,13 @@ export default function ResponsesPage() {
 
   const isFiltered = !!(survey || from || to || question || ratingMin || ratingMax)
 
+  const visibleItems = useMemo(() => {
+    if (!question) return items
+    return items.filter(r => r.answers?.some(a => a.question_id === question))
+  }, [items, question])
+
   const sortedItems = useMemo(() => {
-    const arr = [...items]
+    const arr = [...visibleItems]
     arr.sort((a, b) => {
       let va: number | string = 0
       let vb: number | string = 0
@@ -126,7 +131,7 @@ export default function ResponsesPage() {
       return 0
     })
     return arr
-  }, [items, sortKey, sortDir])
+  }, [visibleItems, sortKey, sortDir])
 
   const toggleSort = (key: 'id' | 'submitted_at' | 'survey') => {
     if (sortKey === key) setSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
@@ -299,6 +304,7 @@ export default function ResponsesPage() {
                       <li key={i} className="text-gray-700">
                         <span className="font-medium">{a.question}</span>
                         {a.type === 'rating' ? <span> — Rating: {a.rating ?? '-'}</span> : null}
+                        {a.choice ? <span> — Choice: {a.choice}</span> : null}
                         {a.comment ? <span> — "{a.comment}"</span> : null}
                       </li>
                     ))}
@@ -306,7 +312,7 @@ export default function ResponsesPage() {
                 </td>
               </tr>
             ))}
-            {!loading && !error && items.length === 0 && (
+            {!loading && !error && sortedItems.length === 0 && (
               <tr><td className="p-4 text-gray-600" colSpan={4}>{t('responses.no_results')}</td></tr>
             )}
           </tbody>

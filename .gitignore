@@ -3,3 +3,5 @@
 .dumpfile.json
 .datadump.json      
 venv
+node_modules
+assets

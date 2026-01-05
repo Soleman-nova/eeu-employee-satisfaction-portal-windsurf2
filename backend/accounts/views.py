@@ -1,4 +1,4 @@
-from rest_framework.views import APIView
+﻿from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate, get_user_model
@@ -8,6 +8,7 @@ from django.db.models import Avg, Q, Count
 from django.utils import timezone
 from django.http import HttpResponse
 from django.utils.dateparse import parse_date
+from django.utils.html import strip_tags
 
 from surveys.models import Survey, Section, Question, Response as SurveyResponse, Answer
 from utils.export_utils import export_responses_to_excel, export_responses_to_pdf
@@ -336,11 +337,11 @@ class DashboardView(APIView):
                 "ratings": _pct_breakdown_1dp_sum100(section_counts[None]),
             })
 
-        # Gender (Sex) distribution: locate question by text ('sex' or 'ጾታ')
+        # Gender (Sex) distribution: locate question by text ('sex' or 'áŒ¾á‰³')
         gender = None
         sex_q = (
             Question.objects.filter(survey=survey)
-            .filter(Q(text__icontains="sex") | Q(text__icontains="ጾታ"))
+            .filter(Q(text__icontains="sex") | Q(text__icontains="áŒ¾á‰³"))
             .order_by("id")
             .first()
         )
@@ -351,9 +352,9 @@ class DashboardView(APIView):
                 x = str(v).strip().lower()
                 if not x:
                     return None
-                if x in ("male", "m", "ወንድ"):
+                if x in ("male", "m", "á‹ˆáŠ•á‹µ"):
                     return "male"
-                if x in ("female", "f", "ሴት"):
+                if x in ("female", "f", "áˆ´á‰µ"):
                     return "female"
                 return None
 
@@ -380,11 +381,11 @@ class DashboardView(APIView):
                 },
             }
 
-        # Age (እድሜ) distribution: locate question by text ('age' or 'እድሜ')
+        # Age (áŠ¥á‹µáˆœ) distribution: locate question by text ('age' or 'áŠ¥á‹µáˆœ')
         age = None
         age_q = (
             Question.objects.filter(survey=survey)
-            .filter(Q(text__icontains="age") | Q(text__icontains="እድሜ"))
+            .filter(Q(text__icontains="age") | Q(text__icontains="áŠ¥á‹µáˆœ"))
             .order_by("id")
             .first()
         )
@@ -412,11 +413,11 @@ class DashboardView(APIView):
                 "percent": percent_map,
             }
 
-        # Education level (የትምህርት ደረጃ) distribution: locate question by text ('education' or 'የትምህርት')
+        # Education level (á‹¨á‰µáˆáˆ…áˆ­á‰µ á‹°áˆ¨áŒƒ) distribution: locate question by text ('education' or 'á‹¨á‰µáˆáˆ…áˆ­á‰µ')
         education = None
         edu_q = (
             Question.objects.filter(survey=survey)
-            .filter(Q(text__icontains="education") | Q(text__icontains="የትምህርት"))
+            .filter(Q(text__icontains="education") | Q(text__icontains="á‹¨á‰µáˆáˆ…áˆ­á‰µ"))
             .order_by("id")
             .first()
         )
@@ -504,7 +505,10 @@ class AdminResponsesListView(APIView):
         # Build an answers filter for rating range and/or specific question
         answer_filter = Q()
         if q_id:
-            answer_filter &= Q(answers__question_id=q_id)
+            try:
+                answer_filter &= Q(answers__question_id=int(q_id))
+            except (TypeError, ValueError):
+                pass
         if rating_min is not None:
             try:
                 rmin = int(rating_min)
@@ -517,9 +521,8 @@ class AdminResponsesListView(APIView):
                 answer_filter &= Q(answers__rating__lte=rmax)
             except (TypeError, ValueError):
                 pass
-        if answer_filter:  # only apply if any condition set
+        if (q_id or rating_min is not None or rating_max is not None):
             qs = qs.filter(answer_filter)
-
         qs = qs.order_by("-submitted_at").distinct()
 
         # Simple pagination
@@ -542,7 +545,7 @@ class AdminResponsesListView(APIView):
                     "comment": a.comment,
                     "choice": a.choice,
                 }
-                for a in resp.answers.all()
+                for a in resp.answers.all() if (not q_id or str(a.question_id) == str(q_id))
             ]
             items.append({
                 "id": resp.id,
@@ -600,7 +603,10 @@ class AdminResponsesExportExcelView(APIView):
                 qs = qs.filter(submitted_at__date__lte=d)
         answer_filter = Q()
         if q_id:
-            answer_filter &= Q(answers__question_id=q_id)
+            try:
+                answer_filter &= Q(answers__question_id=int(q_id))
+            except (TypeError, ValueError):
+                pass
         if rating_min is not None:
             try:
                 rmin = int(rating_min)
@@ -613,18 +619,35 @@ class AdminResponsesExportExcelView(APIView):
                 answer_filter &= Q(answers__rating__lte=rmax)
             except (TypeError, ValueError):
                 pass
-        if answer_filter:
+        if (q_id or rating_min is not None or rating_max is not None):
             qs = qs.filter(answer_filter)
         qs = qs.order_by("-submitted_at").distinct()
 
         data = []
         for resp in qs:
             for a in resp.answers.all():
+                include = True
+                if q_id and str(a.question_id) != str(q_id):
+                    include = False
+                if rating_min is not None:
+                    try:
+                        if a.rating is None or a.rating < int(rating_min):
+                            include = False
+                    except (TypeError, ValueError):
+                        pass
+                if rating_max is not None:
+                    try:
+                        if a.rating is None or a.rating > int(rating_max):
+                            include = False
+                    except (TypeError, ValueError):
+                        pass
+                if not include:
+                    continue
                 data.append({
                     "response_id": resp.id,
                     "submitted_at": resp.submitted_at.isoformat(),
                     "survey_id": resp.survey_id,
-                    "survey_title": resp.survey.title,
+                    "survey_title": strip_tags(resp.survey.title),
                     "question_id": a.question_id,
                     "question": a.question.text,
                     "type": a.question.question_type,
@@ -676,7 +699,10 @@ class AdminResponsesExportPdfView(APIView):
                 qs = qs.filter(submitted_at__date__lte=d)
         answer_filter = Q()
         if q_id:
-            answer_filter &= Q(answers__question_id=q_id)
+            try:
+                answer_filter &= Q(answers__question_id=int(q_id))
+            except (TypeError, ValueError):
+                pass
         if rating_min is not None:
             try:
                 rmin = int(rating_min)
@@ -689,18 +715,35 @@ class AdminResponsesExportPdfView(APIView):
                 answer_filter &= Q(answers__rating__lte=rmax)
             except (TypeError, ValueError):
                 pass
-        if answer_filter:
+        if (q_id or rating_min is not None or rating_max is not None):
             qs = qs.filter(answer_filter)
         qs = qs.order_by("-submitted_at").distinct()
 
         data = []
         for resp in qs:
             for a in resp.answers.all():
+                include = True
+                if q_id and str(a.question_id) != str(q_id):
+                    include = False
+                if rating_min is not None:
+                    try:
+                        if a.rating is None or a.rating < int(rating_min):
+                            include = False
+                    except (TypeError, ValueError):
+                        pass
+                if rating_max is not None:
+                    try:
+                        if a.rating is None or a.rating > int(rating_max):
+                            include = False
+                    except (TypeError, ValueError):
+                        pass
+                if not include:
+                    continue
                 data.append({
                     "response_id": resp.id,
                     "submitted_at": resp.submitted_at.isoformat(),
                     "survey_id": resp.survey_id,
-                    "survey_title": resp.survey.title,
+                    "survey_title": strip_tags(resp.survey.title),
                     "question_id": a.question_id,
                     "question": a.question.text,
                     "type": a.question.question_type,
@@ -926,3 +969,18 @@ class AdminUserResetPasswordView(APIView):
         user.save(update_fields=["password"])
 
         return Response({"detail": "Password reset successfully"}, status=status.HTTP_200_OK)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

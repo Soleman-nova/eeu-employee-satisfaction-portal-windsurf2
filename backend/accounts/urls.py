@@ -25,6 +25,7 @@ urlpatterns = [
     path('responses/', AdminResponsesListView.as_view(), name='admin-responses-list'),
     path('responses/export.xlsx', AdminResponsesExportExcelView.as_view(), name='admin-responses-export-excel'),
     path('responses/export.pdf', AdminResponsesExportPdfView.as_view(), name='admin-responses-export-pdf'),
+    path('responses/export-pdf', AdminResponsesExportPdfView.as_view(), name='admin-responses-export-pdf-alias'),
     # Spec aliases
     path('survey/create/', AdminSurveyListCreateView.as_view(), name='admin-survey-create-alias'),
     path('survey/responses/', AdminResponsesListView.as_view(), name='admin-survey-responses-alias'),

@@ -254,6 +254,6 @@ export async function exportResponsesExcel(params: ResponsesQuery): Promise<Blob
 }
 
 export async function exportResponsesPdf(params: ResponsesQuery): Promise<Blob> {
-  const res = await axiosClient.get('/api/admin/responses/export.pdf', { params, responseType: 'blob' })
+  const res = await axiosClient.get('/api/admin/responses/export-pdf', { params, responseType: 'blob' })
   return res.data
 }

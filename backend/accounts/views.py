@@ -337,11 +337,16 @@ class DashboardView(APIView):
                 "ratings": _pct_breakdown_1dp_sum100(section_counts[None]),
             })
 
-        # Gender (Sex) distribution: locate question by text ('sex' or 'áŒ¾á‰³')
+        # Gender (Sex) distribution: locate question by common English/Amharic terms
         gender = None
         sex_q = (
             Question.objects.filter(survey=survey)
-            .filter(Q(text__icontains="sex") | Q(text__icontains="áŒ¾á‰³"))
+            .filter(
+                Q(text__icontains="sex") |
+                Q(text__icontains="gender") |
+                Q(text__icontains="ጾታ") |
+                Q(text__icontains="የጾታ")
+            )
             .order_by("id")
             .first()
         )
@@ -352,9 +357,9 @@ class DashboardView(APIView):
                 x = str(v).strip().lower()
                 if not x:
                     return None
-                if x in ("male", "m", "á‹ˆáŠ•á‹µ"):
+                if x in ("male", "m", "ወንድ"):
                     return "male"
-                if x in ("female", "f", "áˆ´á‰µ"):
+                if x in ("female", "f", "ሴት"):
                     return "female"
                 return None
 
@@ -381,11 +386,14 @@ class DashboardView(APIView):
                 },
             }
 
-        # Age (áŠ¥á‹µáˆœ) distribution: locate question by text ('age' or 'áŠ¥á‹µáˆœ')
+        # Age distribution: locate question by common English/Amharic terms
         age = None
         age_q = (
             Question.objects.filter(survey=survey)
-            .filter(Q(text__icontains="age") | Q(text__icontains="áŠ¥á‹µáˆœ"))
+            .filter(
+                Q(text__icontains="age") |
+                Q(text__icontains="እድሜ")
+            )
             .order_by("id")
             .first()
         )
@@ -413,11 +421,16 @@ class DashboardView(APIView):
                 "percent": percent_map,
             }
 
-        # Education level (á‹¨á‰µáˆáˆ…áˆ­á‰µ á‹°áˆ¨áŒƒ) distribution: locate question by text ('education' or 'á‹¨á‰µáˆáˆ…áˆ­á‰µ')
+        # Education level distribution: locate question by common English/Amharic terms
         education = None
         edu_q = (
             Question.objects.filter(survey=survey)
-            .filter(Q(text__icontains="education") | Q(text__icontains="á‹¨á‰µáˆáˆ…áˆ­á‰µ"))
+            .filter(
+                Q(text__icontains="education") |
+                Q(text__icontains="education level") |
+                Q(text__icontains="ትምህርት") |
+                Q(text__icontains="የትምህርት")
+            )
             .order_by("id")
             .first()
         )

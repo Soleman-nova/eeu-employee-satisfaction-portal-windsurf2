@@ -392,7 +392,8 @@ class DashboardView(APIView):
             Question.objects.filter(survey=survey)
             .filter(
                 Q(text__icontains="age") |
-                Q(text__icontains="እድሜ")
+                Q(text__icontains="እድሜ") |
+                Q(text__icontains="ዕድሜ")
             )
             .order_by("id")
             .first()

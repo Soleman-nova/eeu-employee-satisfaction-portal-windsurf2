@@ -37,7 +37,7 @@ export default function LoginPage() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: "url('/landing-bg.jpg')",
+          backgroundImage: "url('/admin-login.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -46,14 +46,14 @@ export default function LoginPage() {
       <div className="pointer-events-none absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.35)' }} />
 
       <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-10">
-        <div className="flex flex-col items-center text-center space-y-6">
+        <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-wide text-white" style={{textShadow: '0 0 6px rgba(255,215,0,0.45)'}}>
             {t('login.title')}
           </h1>
           <p className="text-sm text-[#FFD166]">{t('login.subtitle')}</p>
         </div>
 
-        <div className="mt-10 mx-auto max-w-xl">
+        <div className="mt-10 max-w-xl mx-auto md:ml-0 md:mr-auto">
           <div className="glass-card neon-border pulse rounded-2xl p-6 md:p-8">
             {error && <div className="mb-4 text-red-400 text-sm">{error}</div>}
 

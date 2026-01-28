@@ -11,7 +11,10 @@ import {
 
 const stripHtml = (html?: string | null) => {
   const raw = (html ?? '').toString()
-  return raw.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+  const div = document.createElement('div')
+  div.innerHTML = raw
+  const text = (div.textContent || div.innerText || '')
+  return text.replace(/\s+/g, ' ').trim()
 }
 
 function downloadBlob(data: Blob, filename: string) {

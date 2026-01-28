@@ -11,7 +11,7 @@ export default function LandingPage() {
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage: "url('/landing-bg.jpg')",
+          backgroundImage: "url('/landing-bg.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

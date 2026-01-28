@@ -85,6 +85,22 @@ const defaultRatingLabels: LinearScaleLabels = {
   5: 'Very Satisfied',
 }
 
+const amharicRatingLabels: LinearScaleLabels = {
+  1: 'በጣም አለመደሰት',
+  2: 'አለመደሰት',
+  3: 'ገለልተኛ',
+  4: 'መደሰት',
+  5: 'በጣም መደሰት',
+}
+
+const getRatingLabelsForLang = (lang: 'en' | 'am'): LinearScaleLabels =>
+  lang === 'am' ? amharicRatingLabels : defaultRatingLabels
+
+const labelsEqual = (a?: LinearScaleLabels, b?: LinearScaleLabels) => {
+  if (!a || !b) return false
+  return [1, 2, 3, 4, 5].every((k) => (a as any)[k] === (b as any)[k])
+}
+
 const formatApiError = (e: any) => {
   const data = e?.response?.data
   if (!data) return e?.message || 'Request failed'
@@ -104,8 +120,9 @@ const formatApiError = (e: any) => {
 
  const normalizeRichText = (html?: string | null) => {
    const raw = (html ?? '').toString()
-   const text = stripHtml(raw)
-   return text.length === 0 ? '' : raw
+   const cleaned = raw.replace(/&nbsp;/g, ' ').replace(/\u00A0/g, ' ')
+   const text = stripHtml(cleaned)
+   return text.length === 0 ? '' : cleaned
  }
 
  const SortableQuestionCard: React.FC<{
@@ -397,6 +414,28 @@ export default function ManageSurveysPage() {
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
 
+  const swapRatingLabelsForLanguage = (mode: 'create' | 'edit', prevLang: 'en' | 'am', nextLang: 'en' | 'am') => {
+    if (prevLang === nextLang) return
+    const setter = mode === 'create' ? setSections : setEditSections
+    const prevDefault = getRatingLabelsForLang(prevLang)
+    const nextDefault = getRatingLabelsForLang(nextLang)
+    setter(prev => prev.map(sec => ({
+      ...sec,
+      questions: (sec.questions || []).map(q => {
+        if (q.question_type !== 'rating') return q
+        if (labelsEqual(q.labels as any, prevDefault)) {
+          return {
+            ...q,
+            labels: { ...nextDefault },
+            scale_min_label: nextDefault[1],
+            scale_max_label: nextDefault[5],
+          }
+        }
+        return q
+      }),
+    })))
+  }
+
   const editQuestionCount = editSections.reduce((sum, s) => sum + (s.questions?.length ?? 0), 0)
   const editHasEmptyQuestion = editSections.some(s => (s.questions || []).some(q => q.text.trim().length === 0))
 
@@ -493,10 +532,12 @@ export default function ManageSurveysPage() {
         q.scale_max_label = defaultLinearScaleLabels[5]
       }
       if (type === 'rating') {
-        q.labels = { ...defaultRatingLabels }
+        const lang = mode === 'create' ? surveyLanguage : editSurveyLanguage
+        const labels = getRatingLabelsForLang(lang)
+        q.labels = { ...labels }
         q.displayStyle = 'stars'
-        q.scale_min_label = defaultRatingLabels[1]
-        q.scale_max_label = defaultRatingLabels[5]
+        q.scale_min_label = labels[1]
+        q.scale_max_label = labels[5]
       }
       return { ...s, questions: [...(s.questions || []), q] }
     }))
@@ -674,13 +715,21 @@ export default function ManageSurveysPage() {
             options: q.options ?? '',
             scale_min_label: q.scale_min_label ?? '',
             scale_max_label: q.scale_max_label ?? '',
-            labels: (q as any).labels || {
-              1: q.scale_min_label || defaultLinearScaleLabels[1],
-              2: defaultLinearScaleLabels[2],
-              3: defaultLinearScaleLabels[3],
-              4: defaultLinearScaleLabels[4],
-              5: q.scale_max_label || defaultLinearScaleLabels[5],
-            },
+            labels: (q as any).labels || (((q as any).question_type === 'rating')
+              ? {
+                  1: q.scale_min_label || getRatingLabelsForLang(((s as any).language || 'en') as any)[1],
+                  2: getRatingLabelsForLang(((s as any).language || 'en') as any)[2],
+                  3: getRatingLabelsForLang(((s as any).language || 'en') as any)[3],
+                  4: getRatingLabelsForLang(((s as any).language || 'en') as any)[4],
+                  5: q.scale_max_label || getRatingLabelsForLang(((s as any).language || 'en') as any)[5],
+                }
+              : {
+                  1: q.scale_min_label || defaultLinearScaleLabels[1],
+                  2: defaultLinearScaleLabels[2],
+                  3: defaultLinearScaleLabels[3],
+                  4: defaultLinearScaleLabels[4],
+                  5: q.scale_max_label || defaultLinearScaleLabels[5],
+                }),
             displayStyle: (q as any).displayStyle || ((q.question_type === 'rating') ? 'stars' : undefined),
             maxChars: (q as any).maxChars ?? getMaxCharsForType(q.question_type),
           })),
@@ -847,7 +896,11 @@ export default function ManageSurveysPage() {
                 <select
                   className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-sm bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
                   value={surveyLanguage}
-                  onChange={(e) => setSurveyLanguage(e.target.value as any)}
+                  onChange={(e) => {
+                    const next = e.target.value as 'en' | 'am'
+                    swapRatingLabelsForLanguage('create', surveyLanguage, next)
+                    setSurveyLanguage(next)
+                  }}
                 >
                   <option value="en">English</option>
                   <option value="am">Amharic</option>
@@ -933,7 +986,11 @@ export default function ManageSurveysPage() {
                 <select
                   className="w-full border border-[#DADCE0] dark:border-slate-700 rounded px-3 py-2 text-sm bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100"
                   value={editSurveyLanguage}
-                  onChange={(e) => setEditSurveyLanguage(e.target.value as any)}
+                  onChange={(e) => {
+                    const next = e.target.value as 'en' | 'am'
+                    swapRatingLabelsForLanguage('edit', editSurveyLanguage, next)
+                    setEditSurveyLanguage(next)
+                  }}
                 >
                   <option value="en">English</option>
                   <option value="am">Amharic</option>

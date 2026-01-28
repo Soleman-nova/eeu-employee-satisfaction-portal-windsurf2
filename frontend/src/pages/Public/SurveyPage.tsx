@@ -251,13 +251,9 @@ export default function SurveyPage() {
     )
   }
 
-  const ratingLabels = [
-    'Very Dissatisfied',
-    'Dissatisfied',
-    'Neutral',
-    'Satisfied',
-    'Very Satisfied',
-  ]
+  const defaultLabelsEn = ['Very Dissatisfied', 'Dissatisfied', 'Neutral', 'Satisfied', 'Very Satisfied']
+  const defaultLabelsAm = ['በጣም አለመደሰት', 'አለመደሰት', 'ገለልተኛ', 'መደሰት', 'በጣም መደሰት']
+  const ratingLabels = (survey?.language === 'am') ? defaultLabelsAm : defaultLabelsEn
 
   const getOptions = (options?: string) =>
     (options || '')
@@ -422,11 +418,11 @@ export default function SurveyPage() {
                   labels={
                     (q.labels as any) ||
                     ({
-                      1: q.scale_min_label || 'Very Dissatisfied',
-                      2: 'Dissatisfied',
-                      3: 'Neutral',
-                      4: 'Satisfied',
-                      5: q.scale_max_label || 'Very Satisfied',
+                      1: q.scale_min_label || ratingLabels[0],
+                      2: ratingLabels[1],
+                      3: ratingLabels[2],
+                      4: ratingLabels[3],
+                      5: q.scale_max_label || ratingLabels[4],
                     } as any)
                   }
                   displayStyle={(q.displayStyle as any) || 'stars'}
@@ -455,11 +451,11 @@ export default function SurveyPage() {
                   labels={
                     (q.labels as any) ||
                     ({
-                      1: q.scale_min_label || 'Very Dissatisfied',
-                      2: 'Dissatisfied',
-                      3: 'Neutral',
-                      4: 'Satisfied',
-                      5: q.scale_max_label || 'Very Satisfied',
+                      1: q.scale_min_label || ratingLabels[0],
+                      2: ratingLabels[1],
+                      3: ratingLabels[2],
+                      4: ratingLabels[3],
+                      5: q.scale_max_label || ratingLabels[4],
                     } as any)
                   }
                   value={answers[q.id]?.rating ?? null}
